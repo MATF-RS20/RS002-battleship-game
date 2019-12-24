@@ -16,7 +16,7 @@ public:
 
     virtual QString GetPlayerName() = 0;
     virtual PlayerType GetPlayerType() = 0;
-    virtual IBoard GetBoard() = 0;
+    virtual IBoard* GetBoard() = 0;
 };
 
 #endif // IPLAYER_HPP
