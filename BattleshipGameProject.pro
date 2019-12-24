@@ -32,7 +32,9 @@ SOURCES += \
     Game/Ships/ShipTypes/Cruiser.cpp \
     Game/Ships/ShipTypes/Battleship.cpp \
     Game/Ships/ShipTypes/Submarine.cpp \
-    Game/Ships/ShipTypes/Destroyer.cpp
+    Game/Ships/ShipTypes/Destroyer.cpp \
+    Game/Board/Board.cpp \
+    Game/Player/Player.cpp
 
 HEADERS += \
         Game/Board/IBoard.hpp \
@@ -45,7 +47,9 @@ HEADERS += \
     Game/Ships/ShipTypes/Cruiser.hpp \
     Game/Ships/ShipTypes/Battleship.hpp \
     Game/Ships/ShipTypes/Submarine.hpp \
-    Game/Ships/ShipTypes/Destroyer.hpp
+    Game/Ships/ShipTypes/Destroyer.hpp \
+    Game/Board/Board.hpp \
+    Game/Player/Player.hpp
 
 FORMS += \
         mainwindow.ui
