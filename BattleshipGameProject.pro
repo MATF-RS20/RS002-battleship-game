@@ -28,7 +28,11 @@ SOURCES += \
         Game/Ships/FactoryMethod/ShipFactory.cpp \
         Game/Ships/ShipTypes/Carrier.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    Game/Ships/ShipTypes/Cruiser.cpp \
+    Game/Ships/ShipTypes/Battleship.cpp \
+    Game/Ships/ShipTypes/Submarine.cpp \
+    Game/Ships/ShipTypes/Destroyer.cpp
 
 HEADERS += \
         Game/Board/IBoard.hpp \
@@ -37,7 +41,11 @@ HEADERS += \
         Game/Ships/FactoryMethod/ShipFactory.hpp \
         Game/Ships/IShip.hpp \
         Game/Ships/ShipTypes/Carrier.hpp \
-        mainwindow.h
+        mainwindow.h \
+    Game/Ships/ShipTypes/Cruiser.hpp \
+    Game/Ships/ShipTypes/Battleship.hpp \
+    Game/Ships/ShipTypes/Submarine.hpp \
+    Game/Ships/ShipTypes/Destroyer.hpp
 
 FORMS += \
         mainwindow.ui

@@ -7,19 +7,19 @@ IShip* ShipFactory::CreateShip(ShipType shipType)
 {
     IShip* pShip = nullptr;
     switch (shipType) {
-        case ShipType::Carrier:
-            //pShip = new Carrier();
+        case ShipType::CarrierType:
+            pShip = new Carrier();
             break;
-        case ShipType::Cruiser:
+        case ShipType::CruiserType:
             //pShip = new Cruiser(); // todo : implementirati Cruiser klasu
             break;
-        case ShipType::Destroyer:
+        case ShipType::DestroyerType:
             //pShip = new Destroyer(); // todo : implementirati Destroyer klasu
             break;
-        case ShipType::Submarine:
+        case ShipType::SubmarineType:
             //pShip = new Submarine(); // todo : implementirati Submarine klasu
             break;
-        case ShipType::Battleship:
+        case ShipType::BattleshipType:
             //pShip = new Battleship(); // todo : implementirati Battleship klasu
             break;
     }

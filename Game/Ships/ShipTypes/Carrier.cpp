@@ -1,7 +1,7 @@
 #include "Game/Ships/ShipTypes/Carrier.hpp"
 
 Carrier::Carrier() :
-    m_shipType(ShipType::Carrier)
+    m_shipType(ShipType::CarrierType)
 {}
 
 int Carrier::GetShipSize()
@@ -21,7 +21,7 @@ bool Carrier::IsShipOnPosition(int x, int y)
 
 ShipType Carrier::GetShipType()
 {
-    return ShipType::Carrier;
+    return ShipType::CarrierType;
 }
 
 ShipStatus Carrier::GetShipStatus()

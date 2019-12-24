@@ -1,7 +1,7 @@
 #ifndef CARRIER_HPP
 #define CARRIER_HPP
 
-#include "Game/Ships/iship.hpp"
+#include "Game/Ships/IShip.hpp"
 
 class Carrier : public IShip
 {

@@ -2,11 +2,11 @@
 #define ISHIP_HPP
 
 enum ShipType {
-    Carrier = 0,
-    Battleship,
-    Cruiser,
-    Submarine,
-    Destroyer
+    CarrierType = 0,
+    BattleshipType,
+    CruiserType,
+    SubmarineType,
+    DestroyerType
 };
 
 enum ShipStatus {
