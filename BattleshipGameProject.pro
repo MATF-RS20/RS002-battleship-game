@@ -34,7 +34,12 @@ SOURCES += \
     Game/Ships/ShipTypes/Submarine.cpp \
     Game/Ships/ShipTypes/Destroyer.cpp \
     Game/Board/Board.cpp \
-    Game/Player/Player.cpp
+    Game/Player/Player.cpp \
+    Game/Game.cpp \
+    Template/FactoryMethod/TurnFactory.cpp \
+    Template/Turn.cpp \
+    Template/TurnTypes/ComputerTurn.cpp \
+    Template/TurnTypes/HumanTurn.cpp
 
 HEADERS += \
         Game/Board/IBoard.hpp \
@@ -49,7 +54,15 @@ HEADERS += \
     Game/Ships/ShipTypes/Submarine.hpp \
     Game/Ships/ShipTypes/Destroyer.hpp \
     Game/Board/Board.hpp \
-    Game/Player/Player.hpp
+    Game/Player/Player.hpp \
+    Game/IGame.hpp \
+    Game/Game.hpp \
+    Template/FactoryMethod/TurnFactory.hpp \
+    Game/Board/Position.hpp \
+    Template/Turn.hpp \
+    Template/Shoot.hpp \
+    Template/TurnTypes/ComputerTurn.hpp \
+    Template/TurnTypes/HumanTurn.hpp
 
 FORMS += \
         mainwindow.ui
@@ -58,3 +71,5 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=
