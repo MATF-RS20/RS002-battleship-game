@@ -7,13 +7,98 @@
     <x>0</x>
     <y>0</y>
     <width>748</width>
-    <height>683</height>
+    <height>388</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>20</y>
+      <width>651</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="player1NameInput">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>Player1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="startBattleBtn">
+       <property name="text">
+        <string>Start Battle</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="player2NameInput">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>Player2</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGraphicsView" name="player2Space">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>70</y>
+      <width>251</width>
+      <height>231</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="player1Space">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>70</y>
+      <width>251</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="rubberBandSelectionMode">
+     <enum>Qt::ContainsItemBoundingRect</enum>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="Ships">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>70</y>
+      <width>71</width>
+      <height>199</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>199</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
