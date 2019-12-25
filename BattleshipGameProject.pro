@@ -39,7 +39,8 @@ SOURCES += \
     Template/FactoryMethod/TurnFactory.cpp \
     Template/Turn.cpp \
     Template/TurnTypes/ComputerTurn.cpp \
-    Template/TurnTypes/HumanTurn.cpp
+    Template/TurnTypes/HumanTurn.cpp \
+    Template/Shoot.cpp
 
 HEADERS += \
         Game/Board/IBoard.hpp \
