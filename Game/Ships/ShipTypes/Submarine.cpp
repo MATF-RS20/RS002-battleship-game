@@ -2,12 +2,13 @@
 
 
 Submarine::Submarine() :
-    m_shipType(ShipType::SubmarineType)
+    m_shipType(ShipType::SubmarineType),
+    m_shipSize(SUBMARINE_SIZE)
 {}
 
 int Submarine::GetShipSize()
 {
-    return 0;
+    return m_shipSize;
 }
 
 void Submarine::SetShipOnPosition(int x, int y)

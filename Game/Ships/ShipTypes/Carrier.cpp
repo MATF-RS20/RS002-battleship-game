@@ -1,12 +1,13 @@
 #include "Game/Ships/ShipTypes/Carrier.hpp"
 
 Carrier::Carrier() :
-    m_shipType(ShipType::CarrierType)
+    m_shipType(ShipType::CarrierType),
+    m_shipSize(CARRIER_SIZE)
 {}
 
 int Carrier::GetShipSize()
 {
-    return 0;
+    return m_shipSize;
 }
 
 void Carrier::SetShipOnPosition(int x, int y)

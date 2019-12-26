@@ -1,13 +1,14 @@
 #include "Game/Ships/ShipTypes/Battleship.hpp"
 
 Battleship::Battleship()
-    : m_shipType(ShipType::BattleshipType)
+    : m_shipType(ShipType::BattleshipType),
+      m_shipSize(BATTLESHIP_SIZE)
 {}
 
 
 int Battleship::GetShipSize()
 {
-    return 0;
+    return m_shipSize;
 }
 
 void Battleship::SetShipOnPosition(int x, int y)

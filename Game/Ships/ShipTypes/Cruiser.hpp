@@ -17,6 +17,7 @@ public:
 
 private:
     ShipType m_shipType;
+    int m_shipSize;
 
 };
 

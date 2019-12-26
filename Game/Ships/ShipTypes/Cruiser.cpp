@@ -1,12 +1,13 @@
 #include "Game/Ships/ShipTypes/Cruiser.hpp"
 
 Cruiser::Cruiser()
-    : m_shipType(ShipType::CruiserType)
+    : m_shipType(ShipType::CruiserType),
+      m_shipSize(CRUISER_SIZE)
 {}
 
 int Cruiser::GetShipSize()
 {
-    return 0;
+    return m_shipSize;
 }
 
 void Cruiser::SetShipOnPosition(int x, int y)

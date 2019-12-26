@@ -1,6 +1,7 @@
 #ifndef BATTLESHIP_HPP
 #define BATTLESHIP_HPP
 
+
 #include "Game/Ships/IShip.hpp"
 
 class Battleship : public IShip
@@ -16,6 +17,7 @@ public:
 
 private:
     ShipType m_shipType;
+    int m_shipSize;
 };
 
 #endif // BATTLESHIP_HPP

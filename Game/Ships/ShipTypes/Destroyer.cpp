@@ -1,13 +1,14 @@
 #include "Game/Ships/ShipTypes/Destroyer.hpp"
 
 Destroyer::Destroyer()
-    : m_shipType(ShipType::DestroyerType)
+    : m_shipType(ShipType::DestroyerType),
+      m_shipSize(DESTROYER_SIZE)
 {}
 
 
 int Destroyer::GetShipSize()
 {
-    return 0;
+    return m_shipSize;
 }
 
 void Destroyer::SetShipOnPosition(int x, int y)
