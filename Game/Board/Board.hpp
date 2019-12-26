@@ -1,7 +1,10 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+#define BOARD_SIZE 10
+
 #include "Game/Board/IBoard.hpp"
+#include "Game/Board/Position.hpp"
 
 class Board : public IBoard
 {
@@ -18,6 +21,7 @@ public:
 
 private:
     QVector<IShip*> m_ships;
+    Position* m_boardPositions[BOARD_SIZE][BOARD_SIZE];
 };
 
 #endif // BOARD_HPP

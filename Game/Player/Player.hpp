@@ -5,17 +5,16 @@
 class Player : public IPlayer
 {
 public:
-    Player(QString playerName, PlayerType player);
+    Player(QString playerName, PlayerType playerType);
 
     QString GetPlayerName() override;
     PlayerType GetPlayerType() override;
     IBoard* GetBoard() override;
 
 private:
-    IBoard* m_board;
-    PlayerType m_player;
+    PlayerType m_playerType;
     QString m_playerName;
-
+    IBoard* m_board;
 };
 
 #endif // PLAYER_HPP

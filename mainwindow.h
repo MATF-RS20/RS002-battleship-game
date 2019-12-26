@@ -23,6 +23,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     IGame* m_game;
+    IPlayer* m_player1;
+    IPlayer* m_player2;
 };
 
 #endif // MAINWINDOW_H

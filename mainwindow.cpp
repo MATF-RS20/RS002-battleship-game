@@ -22,10 +22,10 @@ void MainWindow::on_startBattleBtn_clicked()
     QString player1Name = ui->player1NameInput->text();
     QString player2Name = ui->player2NameInput->text();
 
-    IPlayer* player1 = new Player(player1Name, PlayerType::Human);
-    IPlayer* player2 = new Player(player2Name, PlayerType::Human);
+    m_player1 = new Player(player1Name, PlayerType::Human);
+    m_player2 = new Player(player2Name, PlayerType::Human);
 
-    m_game = new Game(player1, player2);
+    m_game = new Game(m_player1, m_player2);
 
     while(m_game->GetGameState() != GameState::GameOver)
     {
