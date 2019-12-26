@@ -5,7 +5,7 @@
 class Player : public IPlayer
 {
 public:
-    Player(IBoard* board, PlayerType player);
+    Player(QString playerName, PlayerType player);
 
     QString GetPlayerName() override;
     PlayerType GetPlayerType() override;
@@ -14,6 +14,7 @@ public:
 private:
     IBoard* m_board;
     PlayerType m_player;
+    QString m_playerName;
 
 };
 

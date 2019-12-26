@@ -1,7 +1,7 @@
 #include "Game/Player/Player.hpp"
 
-Player::Player(IBoard* board, PlayerType player)
-    : m_board(board), m_player(player)
+Player::Player(QString playerName, PlayerType player)
+    : m_playerName(playerName), m_player(player)
 {}
 
 QString Player::GetPlayerName()
