@@ -10,6 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    for (int i = 0; i < 10; i++) {
+        ui->player1Field->setColumnWidth(i,2);
+        ui->player1Field->setRowHeight(i,2);
+        ui->player2Field->setColumnWidth(i,2);
+        ui->player2Field->setRowHeight(i,2);
+    }
+
 }
 
 MainWindow::~MainWindow()
