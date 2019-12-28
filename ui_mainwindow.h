@@ -52,12 +52,12 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(879, 484);
+        MainWindow->resize(933, 484);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(40, 20, 811, 31));
+        horizontalLayoutWidget->setGeometry(QRect(40, 20, 841, 31));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -96,12 +96,12 @@ public:
         if (player2Field->rowCount() < 10)
             player2Field->setRowCount(10);
         player2Field->setObjectName(QString::fromUtf8("player2Field"));
-        player2Field->setGeometry(QRect(510, 70, 341, 341));
+        player2Field->setGeometry(QRect(540, 70, 341, 341));
         player2Field->setRowCount(10);
         player2Field->setColumnCount(10);
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(410, 79, 71, 201));
+        verticalLayoutWidget->setGeometry(QRect(390, 79, 141, 201));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -109,33 +109,38 @@ public:
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         ship1 = new QLabel(verticalLayoutWidget);
         ship1->setObjectName(QString::fromUtf8("ship1"));
+        ship1->setMaximumSize(QSize(30, 30));
 
         verticalLayout->addWidget(ship1);
 
         ship2 = new QLabel(verticalLayoutWidget);
         ship2->setObjectName(QString::fromUtf8("ship2"));
+        ship2->setMaximumSize(QSize(60, 30));
 
         verticalLayout->addWidget(ship2);
 
         ship3 = new QLabel(verticalLayoutWidget);
         ship3->setObjectName(QString::fromUtf8("ship3"));
+        ship3->setMaximumSize(QSize(90, 30));
 
         verticalLayout->addWidget(ship3);
 
         ship4 = new QLabel(verticalLayoutWidget);
         ship4->setObjectName(QString::fromUtf8("ship4"));
+        ship4->setMaximumSize(QSize(120, 30));
 
         verticalLayout->addWidget(ship4);
 
         ship5 = new QLabel(verticalLayoutWidget);
         ship5->setObjectName(QString::fromUtf8("ship5"));
+        ship5->setMaximumSize(QSize(150, 30));
 
         verticalLayout->addWidget(ship5);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 879, 25));
+        menuBar->setGeometry(QRect(0, 0, 933, 25));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));

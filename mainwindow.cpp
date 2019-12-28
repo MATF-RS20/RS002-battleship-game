@@ -60,6 +60,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->player1Field->setCellWidget(5,7,ship3);
 
+    // 5.ship
+    ui->player1Field->setSpan(8, 4, 1,5);
+    QLabel *ship5 = new QLabel();
+    ship5->setPixmap(QPixmap("Assets/Images/5.png"));
+    ship5->setScaledContents(true);
+
+    ui->player1Field->setCellWidget(8,4,ship5);
+
 
 
 

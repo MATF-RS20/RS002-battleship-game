@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>879</width>
+    <width>933</width>
     <height>484</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
      <rect>
       <x>40</x>
       <y>20</y>
-      <width>811</width>
+      <width>841</width>
       <height>31</height>
      </rect>
     </property>
@@ -101,7 +101,7 @@
    <widget class="QTableWidget" name="player2Field">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>540</x>
       <y>70</y>
       <width>341</width>
       <height>341</height>
@@ -137,15 +137,21 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>390</x>
       <y>79</y>
-      <width>71</width>
+      <width>141</width>
       <height>201</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QLabel" name="ship1">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -153,6 +159,12 @@
      </item>
      <item>
       <widget class="QLabel" name="ship2">
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -160,6 +172,12 @@
      </item>
      <item>
       <widget class="QLabel" name="ship3">
+       <property name="maximumSize">
+        <size>
+         <width>90</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -167,6 +185,12 @@
      </item>
      <item>
       <widget class="QLabel" name="ship4">
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -174,6 +198,12 @@
      </item>
      <item>
       <widget class="QLabel" name="ship5">
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -187,7 +217,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>879</width>
+     <width>933</width>
      <height>25</height>
     </rect>
    </property>
