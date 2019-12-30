@@ -70,6 +70,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
+//    ui->player1Field->setCellWidget(1,5,ui->player1Field->cellWidget(8,4));
+//    ui->player1Field->cellWidget(8,5)
+
 
 
 
