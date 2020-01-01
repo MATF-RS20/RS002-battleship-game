@@ -2,7 +2,6 @@
 #define SHIPFACTORY_HPP
 
 #include "Game/Ships/IShip.hpp"
-#include "Game/Ships/ShipTypes/Carrier.hpp"
 
 class ShipFactory
 {

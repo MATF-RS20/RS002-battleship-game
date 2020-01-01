@@ -1,10 +1,14 @@
 #ifndef POSITION_HPP
 #define POSITION_HPP
 
-#include "Game/Board/IBoard.hpp"
-
-struct Position
+enum PositionStatus
 {
+    Unknown = 0,
+    Hit,
+    Miss
+};
+
+struct Position {
     Position(int x, int y, PositionStatus status)
     {
         m_coordinateX = x;

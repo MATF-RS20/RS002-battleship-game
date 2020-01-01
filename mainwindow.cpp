@@ -1,4 +1,5 @@
 #include "Game/Player/Player.hpp";
+#include "Game/Board/Board.hpp";
 #include "Game/Game.hpp";
 #include <QThread>
 #include <QIcon>
@@ -97,8 +98,14 @@ void MainWindow::on_startBattleBtn_clicked()
 
     m_game = new Game(m_player1, m_player2);
 
-    while(m_game->GetGameState() != GameState::GameOver)
+    /*while(m_game->GetGameState() != GameState::GameOver)
     {
+        m_game->AttackBy(m_player1);
+        m_game->AttackBy(m_player2);
+
         QThread::msleep(500);
-    }
+    }*/
+
+    IBoard* p1Board = m_player1->GetBoard();
+    QVector<ShipCoordinates*> p1ShipCoordinates = p1Board->GetShips();
 }

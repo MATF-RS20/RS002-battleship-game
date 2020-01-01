@@ -1,4 +1,9 @@
 #include "ShipFactory.hpp"
+#include "Game/Ships/ShipTypes/Carrier.hpp"
+#include "Game/Ships/ShipTypes/Cruiser.hpp"
+#include "Game/Ships/ShipTypes/Destroyer.hpp"
+#include "Game/Ships/ShipTypes/Submarine.hpp"
+#include "Game/Ships/ShipTypes/Battleship.hpp"
 
 ShipFactory::ShipFactory()
 {}
@@ -11,16 +16,16 @@ IShip* ShipFactory::CreateShip(ShipType shipType)
             pShip = new Carrier();
             break;
         case ShipType::CruiserType:
-            //pShip = new Cruiser(); // todo : implementirati Cruiser klasu
+            pShip = new Cruiser();
             break;
         case ShipType::DestroyerType:
-            //pShip = new Destroyer(); // todo : implementirati Destroyer klasu
+            pShip = new Destroyer();
             break;
         case ShipType::SubmarineType:
-            //pShip = new Submarine(); // todo : implementirati Submarine klasu
+            pShip = new Submarine();
             break;
         case ShipType::BattleshipType:
-            //pShip = new Battleship(); // todo : implementirati Battleship klasu
+            pShip = new Battleship();
             break;
     }
 

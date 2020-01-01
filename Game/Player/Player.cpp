@@ -7,6 +7,7 @@ Player::Player(QString playerName, PlayerType playerType)
       m_board(new Board())
 {
     m_board->InitializeBoard();
+    m_board->CreateShips();
 }
 
 QString Player::GetPlayerName()
