@@ -12,12 +12,13 @@ class Board : public IBoard
 public:
 
     Board();
+    ~Board();
 
     void InitializeBoard() override;
     void CreateShips() override;
     void PlaceShips(int x, int y) override;
     int NumberOfAvailableShips() override;
-    void SetXYStatus(int x, int y, PositionStatus xyStatus) override;
+    void AttackOnCoordinates(int x, int y) override;
     QVector<ShipCoordinates*> GetShips() override;
 
 private:

@@ -7,7 +7,7 @@ class Game : public IGame
 {
 public:
     Game(IPlayer* player1, IPlayer* player2);
-    void AttackBy(IPlayer* player) override;
+    void AttackBy(IPlayer* player, int x, int y) override;
     GameState GetGameState() override;
 
 private:

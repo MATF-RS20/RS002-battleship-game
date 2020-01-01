@@ -19,6 +19,7 @@ public:
 
 private slots:
     void on_startBattleBtn_clicked();
+    void player2FieldClicked(int, int);
 
 private:
     Ui::MainWindow *ui;

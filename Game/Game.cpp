@@ -6,16 +6,19 @@ Game::Game(IPlayer* player1, IPlayer* player2)
 {}
 
 
-void Game::AttackBy(IPlayer* player)
+void Game::AttackBy(IPlayer* player, int x, int y)
 {
     bool isHit = false;
 
-    do
-    {
+    //do
+    //{
+        m_defender->GetBoard()->AttackOnCoordinates(x, y);
+        int availableShips = m_defender->GetBoard()->NumberOfAvailableShips();
 
-    }
-    while(isHit);
-
+        if(availableShips == 0)
+            m_state = GameState::GameOver;
+    //}
+    //while(isHit);
 }
 
 GameState Game::GetGameState()

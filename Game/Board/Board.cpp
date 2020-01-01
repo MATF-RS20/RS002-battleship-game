@@ -6,6 +6,11 @@ Board::Board() :
     m_shipFactory(new ShipFactory())
 {}
 
+Board::~Board()
+{
+    delete m_boardPositions;
+}
+
 void Board::InitializeBoard()
 {
     for(int i = 0 ; i < BOARD_SIZE; i++)
@@ -77,12 +82,40 @@ void Board::PlaceShips(int x, int y)
 
 int Board::NumberOfAvailableShips()
 {
-    return 0;
+    foreach (ShipCoordinates* ship, m_ships) {
+
+        bool removeShip = true;
+        foreach(Position* shipCoordinate, ship->m_coordinates) {
+
+            if (shipCoordinate->m_status == PositionStatus::Unknown
+                || shipCoordinate->m_status == PositionStatus::Miss) {
+                removeShip = false;
+            }
+        }
+
+        if (removeShip == true)
+            m_ships.remove(m_ships.indexOf(ship));
+    }
+
+    return m_ships.size();
 }
 
-void Board::SetXYStatus(int x, int y, PositionStatus xyStatus)
+void Board::AttackOnCoordinates(int x, int y)
 {
+    PositionStatus attackStatus = PositionStatus::Miss;
 
+    foreach (ShipCoordinates* ship, m_ships) {
+        foreach(Position* shipCoordinate, ship->m_coordinates) {
+            if(shipCoordinate->m_coordinateX == x
+               && shipCoordinate->m_coordinateY == y)
+            {
+                attackStatus = PositionStatus::Hit;
+                shipCoordinate->m_status = PositionStatus::Hit;
+            }
+        }
+    }
+
+    m_boardPositions[x][y]->m_status = attackStatus;
 }
 
 QVector<ShipCoordinates*> Board::GetShips()
