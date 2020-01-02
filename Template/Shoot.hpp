@@ -1,11 +1,12 @@
 #ifndef SHOOT_HPP
 #define SHOOT_HPP
+
 #include "Game/Board/Position.hpp"
 
 class Shoot
 {
 public:
-    Shoot();
+    Shoot(int x, int y);
     void SearchPosition();
     Position* getPosition();
 

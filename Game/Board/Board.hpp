@@ -19,6 +19,7 @@ public:
     void PlaceShips(int x, int y) override;
     int NumberOfAvailableShips() override;
     void AttackOnCoordinates(int x, int y) override;
+    PositionStatus GetPositionStatus(int x, int y) override;
     QVector<ShipCoordinates*> GetShips() override;
 
 private:

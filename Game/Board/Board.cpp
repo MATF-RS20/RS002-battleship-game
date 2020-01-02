@@ -118,6 +118,12 @@ void Board::AttackOnCoordinates(int x, int y)
     m_boardPositions[x][y]->m_status = attackStatus;
 }
 
+PositionStatus Board::GetPositionStatus(int x, int y)
+{
+    PositionStatus status = m_boardPositions[x][y]->m_status;
+    return status;
+}
+
 QVector<ShipCoordinates*> Board::GetShips()
 {
     return m_ships;

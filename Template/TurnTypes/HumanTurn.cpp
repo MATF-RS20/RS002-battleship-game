@@ -2,6 +2,6 @@
 
 Shoot* HumanTurn::CreateShoot()
 {
-    Shoot* shoot = new Shoot();
+    Shoot* shoot = new Shoot(0, 0);
     return shoot;
 }

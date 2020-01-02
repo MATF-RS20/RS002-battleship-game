@@ -7,7 +7,7 @@
 class Turn
 {
 public:
-    bool Play(IPlayer* attacker, IPlayer* defender);
+    bool Play(IPlayer* attacker, IPlayer* defender, Shoot* shoot);
 
 protected:
     Shoot* CreateShoot();

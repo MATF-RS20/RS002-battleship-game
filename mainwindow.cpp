@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    connect(ui->player1Field, SIGNAL(cellClicked(int, int)), this, SLOT(player1FieldClicked(int, int)));
     connect(ui->player2Field, SIGNAL(cellClicked(int, int)), this, SLOT(player2FieldClicked(int, int)));
 
 //    ui->label->setText(QDir::currentPath());
@@ -71,13 +72,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->player1Field->setCellWidget(8,4,ship5);
 
-
-
 //    ui->player1Field->setCellWidget(1,5,ui->player1Field->cellWidget(8,4));
 //    ui->player1Field->cellWidget(8,5)
-
-
-
 
     ui->player1Field->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect( ui->player1Field, SIGNAL( cellDoubleClicked (int, int) ),
@@ -92,18 +88,38 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::player2FieldClicked(int x, int y)
+void MainWindow::player1FieldClicked(int x, int y)
 {
-    if (m_game->GetGameState() != GameState::GameOver)
-    {
-        m_game->AttackBy(m_player2, x, y);
+    bool playAgain = false;
+
+    if (m_game->GetGameState() != GameState::GameOver) {
+        playAgain = m_game->AttackBy(m_player1, x, y);
     }
 
-    IBoard* p1Board = m_player1->GetBoard();
-    QVector<ShipCoordinates*> p1ShipCoordinates = p1Board->GetShips();
+    if (playAgain == false) {
+        ui->player1Field->setEnabled(false);
+        ui->player2Field->setEnabled(true);
+    }
+}
 
-    IBoard* p2Board = m_player2->GetBoard();
-    QVector<ShipCoordinates*> p2ShipCoordinates = p2Board->GetShips();
+void MainWindow::player2FieldClicked(int x, int y)
+{
+    bool playAgain = false;
+
+    if (m_game->GetGameState() != GameState::GameOver) {
+        playAgain = m_game->AttackBy(m_player2, x, y);
+    }
+
+    if (playAgain == false) {
+        ui->player1Field->setEnabled(true);
+        ui->player2Field->setEnabled(false);
+    }
+
+    //IBoard* p1Board = m_player1->GetBoard();
+    //QVector<ShipCoordinates*> p1ShipCoordinates = p1Board->GetShips();
+
+    //IBoard* p2Board = m_player2->GetBoard();
+    //QVector<ShipCoordinates*> p2ShipCoordinates = p2Board->GetShips();
 }
 
 void MainWindow::on_startBattleBtn_clicked()
@@ -116,7 +132,7 @@ void MainWindow::on_startBattleBtn_clicked()
 
     m_game = new Game(m_player1, m_player2);
 
-    ui->player1Field->setEnabled(true);
+    ui->player1Field->setEnabled(false);
     ui->player2Field->setEnabled(true);
 
     /*while(m_game->GetGameState() != GameState::GameOver)

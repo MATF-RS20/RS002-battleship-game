@@ -27,6 +27,7 @@ public:
     virtual void PlaceShips(int x, int y) = 0;
     virtual int NumberOfAvailableShips() = 0;
     virtual void AttackOnCoordinates(int x, int y) = 0;
+    virtual PositionStatus GetPositionStatus(int x, int y) = 0;
     virtual QVector<ShipCoordinates*> GetShips() = 0;
 };
 

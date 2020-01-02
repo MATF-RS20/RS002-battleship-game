@@ -8,7 +8,7 @@ class TurnFactory
 {
 
 public:
-    Turn CreateTurn(PlayerType playerType);
+    Turn* CreateTurn(PlayerType playerType);
 
 };
 

@@ -14,7 +14,7 @@ class IGame
 {
 public:
     virtual ~IGame() {}
-    virtual void AttackBy(IPlayer* player, int x, int y) = 0;
+    virtual bool AttackBy(IPlayer* player, int x, int y) = 0;
     virtual GameState GetGameState() = 0;
 
 };

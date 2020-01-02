@@ -2,12 +2,13 @@
 #define GAME_HPP
 
 #include "IGame.hpp"
+#include "Template/FactoryMethod/TurnFactory.hpp"
 
 class Game : public IGame
 {
 public:
     Game(IPlayer* player1, IPlayer* player2);
-    void AttackBy(IPlayer* player, int x, int y) override;
+    bool AttackBy(IPlayer* player, int x, int y) override;
     GameState GetGameState() override;
 
 private:
@@ -18,6 +19,7 @@ private:
     GameState m_state;
     int m_round;
 
+    TurnFactory* m_turnFactory;
 };
 
 #endif // GAME_HPP

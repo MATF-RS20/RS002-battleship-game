@@ -5,7 +5,7 @@
 class HumanTurn : public Turn
 {
 protected:
-    Shoot* CreateShoot() override;
+    Shoot* CreateShoot();
 
 };
 
