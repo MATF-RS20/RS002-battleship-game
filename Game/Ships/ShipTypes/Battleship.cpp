@@ -38,7 +38,19 @@ ShipType Battleship::GetShipType()
 
 ShipStatus Battleship::GetShipStatus()
 {
-    return ShipStatus::OK;
+    ShipStatus status = ShipStatus::OK;
+
+    foreach (Position* shipPosition, m_shipCoordinates) {
+        if(shipPosition->m_status == PositionStatus::Hit)
+            status = ShipStatus::Sunken;
+    }
+
+    foreach (Position* shipPosition, m_shipCoordinates) {
+        if(shipPosition->m_status == PositionStatus::Unknown)
+            status = ShipStatus::Damaged;
+    }
+
+    return status;
 }
 
 QVector<Position*> Battleship::getShipPositions()

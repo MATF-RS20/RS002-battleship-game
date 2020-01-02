@@ -36,7 +36,19 @@ ShipType Cruiser::GetShipType()
 
 ShipStatus Cruiser::GetShipStatus()
 {
-    return ShipStatus::OK;
+    ShipStatus status = ShipStatus::OK;
+
+    foreach (Position* shipPosition, m_shipCoordinates) {
+        if(shipPosition->m_status == PositionStatus::Hit)
+            status = ShipStatus::Sunken;
+    }
+
+    foreach (Position* shipPosition, m_shipCoordinates) {
+        if(shipPosition->m_status == PositionStatus::Unknown)
+            status = ShipStatus::Damaged;
+    }
+
+    return status;
 }
 
 QVector<Position*> Cruiser::getShipPositions()

@@ -68,22 +68,12 @@ void Board::PlaceShips(int x, int y)
 }
 
 int Board::NumberOfAvailableShips()
-{/*
-    foreach (ShipCoordinates* ship, m_ships) {
-
-        bool removeShip = true;
-        foreach(Position* shipCoordinate, ship->m_coordinates) {
-
-            if (shipCoordinate->m_status == PositionStatus::Unknown
-                || shipCoordinate->m_status == PositionStatus::Miss) {
-                removeShip = false;
-            }
-        }
-
-        if (removeShip == true)
+{
+    foreach (IShip* ship, m_ships) {
+        if(ship->GetShipStatus() == ShipStatus::Sunken)
             m_ships.remove(m_ships.indexOf(ship));
     }
-*/
+
     return m_ships.size();
 }
 
