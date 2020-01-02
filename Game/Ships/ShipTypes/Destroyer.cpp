@@ -1,9 +1,18 @@
 #include "Game/Ships/ShipTypes/Destroyer.hpp"
 
-Destroyer::Destroyer()
+Destroyer::Destroyer(QVector<Position*> coordinates)
     : m_shipType(ShipType::DestroyerType),
       m_shipSize(DESTROYER_SIZE)
-{}
+{
+    if(coordinates.size() != 2)
+    {
+
+    }
+    else
+    {
+        m_shipCoordinates = coordinates;
+    }
+}
 
 
 int Destroyer::GetShipSize()

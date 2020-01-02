@@ -2,11 +2,14 @@
 #define DESTROYER_HPP
 
 #include "Game/Ships/IShip.hpp"
+#include <QVector>
+#include "Game/Board/Position.hpp"
+
 
 class Destroyer : public IShip
 {
 public:
-    Destroyer();
+    Destroyer(QVector<Position*> coordinates);
 
     int GetShipSize() override;
     void SetShipOnPosition(int x, int y) override;
@@ -17,6 +20,7 @@ public:
 private:
     ShipType m_shipType;
     int m_shipSize;
+    QVector<Position*> m_shipCoordinates;
 };
 
 

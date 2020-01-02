@@ -2,11 +2,14 @@
 #define CRUISER_HPP
 
 #include "Game/Ships/IShip.hpp"
+#include <QVector>
+#include "Game/Board/Position.hpp"
+
 
 class Cruiser: public IShip
 {
 public:
-    Cruiser();
+    Cruiser(QVector<Position*> coordinates);
 
     int GetShipSize() override;
     void SetShipOnPosition(int x, int y) override;
@@ -18,6 +21,7 @@ public:
 private:
     ShipType m_shipType;
     int m_shipSize;
+    QVector<Position*> m_shipCoordinates;
 
 };
 

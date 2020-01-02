@@ -1,9 +1,19 @@
 #include "Game/Ships/ShipTypes/Battleship.hpp"
 
-Battleship::Battleship()
+Battleship::Battleship(QVector<Position*> coordinates)
     : m_shipType(ShipType::BattleshipType),
       m_shipSize(BATTLESHIP_SIZE)
-{}
+{
+    if(coordinates.size() != 4)
+    {
+
+    }
+    else
+    {
+        m_shipCoordinates = coordinates;
+    }
+
+}
 
 
 int Battleship::GetShipSize()

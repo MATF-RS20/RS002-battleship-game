@@ -24,49 +24,47 @@ void Board::InitializeBoard()
 
 void Board::CreateShips()
 {
-    IShip* battleship = m_shipFactory->CreateShip(ShipType::BattleshipType);
-    IShip* carrier = m_shipFactory->CreateShip(ShipType::CarrierType);
-    IShip* cruiser = m_shipFactory->CreateShip(ShipType::CruiserType);
-    IShip* destroyer = m_shipFactory->CreateShip(ShipType::DestroyerType);
-    IShip* submarine = m_shipFactory->CreateShip(ShipType::SubmarineType);
-
-
     // Battleship
     QVector<Position*> battleshipPosition = {new Position(0, 0, PositionStatus::Unknown),
                                              new Position(0, 1, PositionStatus::Unknown),
                                              new Position(0, 2, PositionStatus::Unknown),
                                              new Position(0, 3, PositionStatus::Unknown)};
-    ShipCoordinates* battleshipCoordinates = new ShipCoordinates(battleship, battleshipPosition);
-    // ****
-
     // Carrier
     QVector<Position*> carrierPosition = {new Position(1, 0, PositionStatus::Unknown),
                                           new Position(1, 1, PositionStatus::Unknown),
                                           new Position(1, 2, PositionStatus::Unknown),
                                           new Position(1, 3, PositionStatus::Unknown),
                                           new Position(1, 3, PositionStatus::Unknown)};
-    ShipCoordinates* carrierCoordinates = new ShipCoordinates(carrier, carrierPosition);
-    // ****
-
     // Cruiser
     QVector<Position*> cruiserPosition = {new Position(2, 0, PositionStatus::Unknown),
                                           new Position(2, 1, PositionStatus::Unknown),
                                           new Position(2, 2, PositionStatus::Unknown)};
-    ShipCoordinates* cruiserCoordinates = new ShipCoordinates(cruiser, cruiserPosition);
-    // ****
 
     // Submarine
     QVector<Position*> submarinePosition = {new Position(3, 0, PositionStatus::Unknown),
                                             new Position(3, 1, PositionStatus::Unknown),
                                             new Position(3, 2, PositionStatus::Unknown)};
-    ShipCoordinates* submarineCoordinates = new ShipCoordinates(submarine, submarinePosition);
-    // ****
 
     // Destroyer
     QVector<Position*> destroyerPosition = {new Position(4, 0, PositionStatus::Unknown),
                                             new Position(4, 1, PositionStatus::Unknown)};
+
+    IShip* battleship = m_shipFactory->CreateShip(ShipType::BattleshipType, battleshipPosition);
+    IShip* carrier = m_shipFactory->CreateShip(ShipType::CarrierType, carrierPosition);
+    IShip* cruiser = m_shipFactory->CreateShip(ShipType::CruiserType, cruiserPosition);
+    IShip* destroyer = m_shipFactory->CreateShip(ShipType::DestroyerType, destroyerPosition);
+    IShip* submarine = m_shipFactory->CreateShip(ShipType::SubmarineType, submarinePosition);
+
+    // Battleship
+    ShipCoordinates* battleshipCoordinates = new ShipCoordinates(battleship, battleshipPosition);
+    // Carrier
+    ShipCoordinates* carrierCoordinates = new ShipCoordinates(carrier, carrierPosition);
+    // Cruiser
+    ShipCoordinates* cruiserCoordinates = new ShipCoordinates(cruiser, cruiserPosition);
+    // Submarine
+    ShipCoordinates* submarineCoordinates = new ShipCoordinates(submarine, submarinePosition);
+    // Destroyer
     ShipCoordinates* destroyerCoordinates = new ShipCoordinates(destroyer, destroyerPosition);
-    // ****
 
     m_ships.push_back(battleshipCoordinates);
     m_ships.push_back(carrierCoordinates);

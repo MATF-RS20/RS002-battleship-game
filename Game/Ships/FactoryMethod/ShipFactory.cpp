@@ -8,24 +8,24 @@
 ShipFactory::ShipFactory()
 {}
 
-IShip* ShipFactory::CreateShip(ShipType shipType)
+IShip* ShipFactory::CreateShip(ShipType shipType, QVector<Position*> shipCoordinates)
 {
     IShip* pShip = nullptr;
     switch (shipType) {
         case ShipType::CarrierType:
-            pShip = new Carrier();
+            pShip = new Carrier(shipCoordinates);
             break;
         case ShipType::CruiserType:
-            pShip = new Cruiser();
+            pShip = new Cruiser(shipCoordinates);
             break;
         case ShipType::DestroyerType:
-            pShip = new Destroyer();
+            pShip = new Destroyer(shipCoordinates);
             break;
         case ShipType::SubmarineType:
-            pShip = new Submarine();
+            pShip = new Submarine(shipCoordinates);
             break;
         case ShipType::BattleshipType:
-            pShip = new Battleship();
+            pShip = new Battleship(shipCoordinates);
             break;
     }
 
