@@ -38,3 +38,8 @@ ShipStatus Cruiser::GetShipStatus()
 {
     return ShipStatus::OK;
 }
+
+QVector<Position*> Cruiser::getShipPositions()
+{
+    return m_shipCoordinates;
+}

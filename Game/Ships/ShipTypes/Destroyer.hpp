@@ -3,7 +3,6 @@
 
 #include "Game/Ships/IShip.hpp"
 #include <QVector>
-#include "Game/Board/Position.hpp"
 
 
 class Destroyer : public IShip
@@ -16,6 +15,7 @@ public:
     bool IsShipOnPosition(int x, int y) override;
     ShipType GetShipType() override;
     ShipStatus GetShipStatus() override;
+    QVector<Position*> getShipPositions() override;
 
 private:
     ShipType m_shipType;

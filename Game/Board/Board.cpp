@@ -55,22 +55,11 @@ void Board::CreateShips()
     IShip* destroyer = m_shipFactory->CreateShip(ShipType::DestroyerType, destroyerPosition);
     IShip* submarine = m_shipFactory->CreateShip(ShipType::SubmarineType, submarinePosition);
 
-    // Battleship
-    ShipCoordinates* battleshipCoordinates = new ShipCoordinates(battleship, battleshipPosition);
-    // Carrier
-    ShipCoordinates* carrierCoordinates = new ShipCoordinates(carrier, carrierPosition);
-    // Cruiser
-    ShipCoordinates* cruiserCoordinates = new ShipCoordinates(cruiser, cruiserPosition);
-    // Submarine
-    ShipCoordinates* submarineCoordinates = new ShipCoordinates(submarine, submarinePosition);
-    // Destroyer
-    ShipCoordinates* destroyerCoordinates = new ShipCoordinates(destroyer, destroyerPosition);
-
-    m_ships.push_back(battleshipCoordinates);
-    m_ships.push_back(carrierCoordinates);
-    m_ships.push_back(cruiserCoordinates);
-    m_ships.push_back(submarineCoordinates);
-    m_ships.push_back(destroyerCoordinates);
+    m_ships.push_back(battleship);
+    m_ships.push_back(carrier);
+    m_ships.push_back(cruiser);
+    m_ships.push_back(destroyer);
+    m_ships.push_back(submarine);
 }
 
 void Board::PlaceShips(int x, int y)
@@ -79,7 +68,7 @@ void Board::PlaceShips(int x, int y)
 }
 
 int Board::NumberOfAvailableShips()
-{
+{/*
     foreach (ShipCoordinates* ship, m_ships) {
 
         bool removeShip = true;
@@ -94,7 +83,7 @@ int Board::NumberOfAvailableShips()
         if (removeShip == true)
             m_ships.remove(m_ships.indexOf(ship));
     }
-
+*/
     return m_ships.size();
 }
 
@@ -102,8 +91,12 @@ void Board::AttackOnCoordinates(int x, int y)
 {
     PositionStatus attackStatus = PositionStatus::Miss;
 
-    foreach (ShipCoordinates* ship, m_ships) {
-        foreach(Position* shipCoordinate, ship->m_coordinates) {
+    foreach (IShip* ship, m_ships) {
+
+        QVector<Position*> shipPositions;
+        shipPositions = ship->getShipPositions();
+
+        foreach (Position* shipCoordinate, shipPositions) {
             if(shipCoordinate->m_coordinateX == x
                && shipCoordinate->m_coordinateY == y)
             {
@@ -122,7 +115,7 @@ PositionStatus Board::GetPositionStatus(int x, int y)
     return status;
 }
 
-QVector<ShipCoordinates*> Board::GetShips()
+QVector<IShip*> Board::GetShips()
 {
     return m_ships;
 }

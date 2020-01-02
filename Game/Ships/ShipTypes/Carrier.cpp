@@ -38,3 +38,8 @@ ShipStatus Carrier::GetShipStatus()
 {
     return ShipStatus::OK;
 }
+
+QVector<Position*> Carrier::getShipPositions()
+{
+    return m_shipCoordinates;
+}

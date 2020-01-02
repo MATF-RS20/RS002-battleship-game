@@ -39,3 +39,8 @@ ShipStatus Submarine::GetShipStatus()
 {
     return ShipStatus::OK;
 }
+
+QVector<Position*> Submarine::getShipPositions()
+{
+    return m_shipCoordinates;
+}

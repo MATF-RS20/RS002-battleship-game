@@ -39,3 +39,8 @@ ShipStatus Destroyer::GetShipStatus()
 {
     return ShipStatus::OK;
 }
+
+QVector<Position*> Destroyer::getShipPositions()
+{
+    return m_shipCoordinates;
+}

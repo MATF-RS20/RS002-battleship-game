@@ -41,3 +41,7 @@ ShipStatus Battleship::GetShipStatus()
     return ShipStatus::OK;
 }
 
+QVector<Position*> Battleship::getShipPositions()
+{
+    return m_shipCoordinates;
+}

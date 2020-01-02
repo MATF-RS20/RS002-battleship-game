@@ -5,18 +5,6 @@
 #include "Game/Board/Position.hpp"
 #include <QVector>
 
-struct ShipCoordinates {
-
-    ShipCoordinates(IShip* ship, QVector<Position*> coordinates)
-    {
-        m_ship = ship;
-        m_coordinates = coordinates;
-    }
-
-    IShip* m_ship;
-    QVector<Position*> m_coordinates;
-};
-
 class IBoard
 {
 public:
@@ -28,7 +16,7 @@ public:
     virtual int NumberOfAvailableShips() = 0;
     virtual void AttackOnCoordinates(int x, int y) = 0;
     virtual PositionStatus GetPositionStatus(int x, int y) = 0;
-    virtual QVector<ShipCoordinates*> GetShips() = 0;
+    virtual QVector<IShip*> GetShips() = 0;
 };
 
 #endif // IBOARD_HPP

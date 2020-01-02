@@ -20,10 +20,10 @@ public:
     int NumberOfAvailableShips() override;
     void AttackOnCoordinates(int x, int y) override;
     PositionStatus GetPositionStatus(int x, int y) override;
-    QVector<ShipCoordinates*> GetShips() override;
+    QVector<IShip*> GetShips() override;
 
 private:
-    QVector<ShipCoordinates*> m_ships;
+    QVector<IShip*> m_ships;
     Position* m_boardPositions[BOARD_SIZE][BOARD_SIZE];
     ShipFactory* m_shipFactory;
 };
