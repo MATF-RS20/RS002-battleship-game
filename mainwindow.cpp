@@ -78,10 +78,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::player1FieldClicked(int x, int y)
 {
+    selectedRow = x;
+    selectedColumn = y;
+
     bool playAgain = false;
 
     if (m_game->GetGameState() != GameState::GameOver) {
-        playAgain = m_game->AttackBy(m_player1, x, y);
+        playAgain = m_game->AttackBy(m_player1);
     }
 
     if (playAgain == false) {
@@ -92,10 +95,13 @@ void MainWindow::player1FieldClicked(int x, int y)
 
 void MainWindow::player2FieldClicked(int x, int y)
 {
+    selectedRow = x;
+    selectedColumn = y;
+
     bool playAgain = false;
 
     if (m_game->GetGameState() != GameState::GameOver) {
-        playAgain = m_game->AttackBy(m_player2, x, y);
+        playAgain = m_game->AttackBy(m_player2);
     }
 
     if (playAgain == false) {
@@ -110,6 +116,16 @@ void MainWindow::player2FieldClicked(int x, int y)
     //QVector<ShipCoordinates*> p2ShipCoordinates = p2Board->GetShips();
 }
 
+int MainWindow::getSelectedRow()
+{
+    return selectedRow;
+}
+
+int MainWindow::getSelectedColumn()
+{
+    return selectedColumn;
+}
+
 void MainWindow::on_startBattleBtn_clicked()
 {
     QString player1Name = ui->player1NameInput->text();
@@ -118,7 +134,7 @@ void MainWindow::on_startBattleBtn_clicked()
     m_player1 = new Player(player1Name, PlayerType::Human);
     m_player2 = new Player(player2Name, PlayerType::Human);
 
-    m_game = new Game(m_player1, m_player2);
+    m_game = new Game(this, m_player1, m_player2);
 
     ui->player1Field->setEnabled(false);
     ui->player2Field->setEnabled(true);
