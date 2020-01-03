@@ -1,6 +1,7 @@
 #include "Game/Player/Player.hpp";
 #include "Game/Board/Board.hpp";
 #include "Game/Game.hpp";
+#include <iostream>
 #include <QThread>
 #include <QIcon>
 #include <QImage>
@@ -33,44 +34,29 @@ MainWindow::MainWindow(QWidget *parent) :
     // prikaz i odabir brodova
     // TODO: napraviti draggable elemente koje mozemo pomerati u tabelu
     ui->ship1->setPixmap(QPixmap("Assets/Images/1.png"));
-    ui->ship1->setScaledContents(true);
     ui->ship2->setPixmap(QPixmap("Assets/Images/2.png"));
     ui->ship3->setPixmap(QPixmap("Assets/Images/3.png"));
     ui->ship4->setPixmap(QPixmap("Assets/Images/4.png"));
     ui->ship5->setPixmap(QPixmap("Assets/Images/5.png"));
 
 
+
+
     // ubacio sam staticki ove brodove samo da vidim kako ce da izgleda
-    // 1. ship
-    QLabel *ship1 = new QLabel();
-    ship1->setPixmap(QPixmap("Assets/Images/1.png"));
-    ship1->setScaledContents(true);
+    // 1. ship, x = 0, y = 1, size = 1
+    setShip(0,1,1);
 
-    ui->player1Field->setCellWidget(0,1,ship1);
+    // 2. ship, x = 3, y = 2, size = 2
+    setShip(3,2,2);
 
-    // 2. ship
-    ui->player1Field->setSpan(3, 2, 1,2);
-    QLabel *ship2 = new QLabel();
-    ship2->setPixmap(QPixmap("Assets/Images/2.png"));
-    ship2->setScaledContents(true);
+    // 3. ship, x = 5, y = 7, size = 3
+    setShip(5,7,3);
 
-    ui->player1Field->setCellWidget(3,2,ship2);
+    // 4. ship, x = 2, y = 0, size = 4
+    setShip(2,0,4);
 
-    // 3.ship
-    ui->player1Field->setSpan(5, 7, 1,3);
-    QLabel *ship3 = new QLabel();
-    ship3->setPixmap(QPixmap("Assets/Images/3.png"));
-    ship3->setScaledContents(true);
-
-    ui->player1Field->setCellWidget(5,7,ship3);
-
-    // 5.ship
-    ui->player1Field->setSpan(8, 4, 1,5);
-    QLabel *ship5 = new QLabel();
-    ship5->setPixmap(QPixmap("Assets/Images/5.png"));
-    ship5->setScaledContents(true);
-
-    ui->player1Field->setCellWidget(8,4,ship5);
+    // 5. ship, x = 8, y = 4, size = 5
+    setShip(8,4,5);
 
 //    ui->player1Field->setCellWidget(1,5,ui->player1Field->cellWidget(8,4));
 //    ui->player1Field->cellWidget(8,5)
@@ -146,3 +132,21 @@ void MainWindow::on_startBattleBtn_clicked()
     //IBoard* p1Board = m_player1->GetBoard();
     //QVector<ShipCoordinates*> p1ShipCoordinates = p1Board->GetShips();
 }
+
+void MainWindow::setShip(int x, int y, int size)
+{
+    for (int i = 0; i < size ; i++ ) {
+        QLabel *ship = new QLabel();
+        std::string imageNamePom;
+        if (size == 1)
+            imageNamePom = "Assets/Images/" + std::to_string(size) + ".png";
+        else
+            imageNamePom = "Assets/Images/" + std::to_string(size) + "_" + std::to_string(i+1) + ".png";
+        const char* imageName = imageNamePom.c_str();
+        ship->setPixmap(QPixmap(imageName));
+        ship->setScaledContents(true);
+        ui->player1Field->setCellWidget(x,y+i,ship);
+
+    }
+}
+
