@@ -22,7 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->player1Field, SIGNAL(cellClicked(int, int)), this, SLOT(player1FieldClicked(int, int)));
     connect(ui->player2Field, SIGNAL(cellClicked(int, int)), this, SLOT(player2FieldClicked(int, int)));
 
-//    ui->label->setText(QDir::currentPath());
+    ui->playerType->addItems({"Player", "Computer"});
+    connect(ui->playerType,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged(const QString&)));
+
 
     for (int i = 0; i < 10; i++) {
         ui->player1Field->setColumnWidth(i,30);
@@ -148,5 +150,10 @@ void MainWindow::setShip(int x, int y, int size)
         ui->player1Field->setCellWidget(x,y+i,ship);
 
     }
+}
+
+void MainWindow::typeChanged(const QString& name)
+{
+
 }
 

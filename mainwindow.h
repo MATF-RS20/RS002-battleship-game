@@ -21,7 +21,8 @@ private slots:
     void on_startBattleBtn_clicked();
     void player1FieldClicked(int, int);
     void player2FieldClicked(int, int);
-    void setShip(int,int,int);
+    void setShip(int, int, int);
+    void typeChanged(const QString&);
 
 private:
     Ui::MainWindow *ui;

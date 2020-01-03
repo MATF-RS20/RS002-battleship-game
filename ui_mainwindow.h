@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -34,6 +35,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QLineEdit *player1NameInput;
     QPushButton *startBattleBtn;
+    QComboBox *playerType;
     QLineEdit *player2NameInput;
     QTableWidget *player1Field;
     QTableWidget *player2Field;
@@ -72,6 +74,11 @@ public:
         startBattleBtn->setObjectName(QString::fromUtf8("startBattleBtn"));
 
         horizontalLayout->addWidget(startBattleBtn);
+
+        playerType = new QComboBox(horizontalLayoutWidget);
+        playerType->setObjectName(QString::fromUtf8("playerType"));
+
+        horizontalLayout->addWidget(playerType);
 
         player2NameInput = new QLineEdit(horizontalLayoutWidget);
         player2NameInput->setObjectName(QString::fromUtf8("player2NameInput"));

@@ -42,6 +42,9 @@
       </widget>
      </item>
      <item>
+      <widget class="QComboBox" name="playerType"/>
+     </item>
+     <item>
       <widget class="QLineEdit" name="player2NameInput">
        <property name="text">
         <string/>
