@@ -8,6 +8,7 @@
 #include <QPixmap>
 #include <QLabel>
 #include <QDir>
+#include <QMessageBox>
 
 
 #include "mainwindow.h"
@@ -26,7 +27,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->player2Type->addItems({"Player", "Computer"});
     connect(ui->player1Type,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged(const QString&)));
     connect(ui->player2Type,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged(const QString&)));
-
 
     for (int i = 0; i < 10; i++) {
         ui->player1Field->setColumnWidth(i,30);
@@ -148,6 +148,7 @@ void MainWindow::on_startBattleBtn_clicked()
 
     ui->player1Field->setEnabled(false);
     ui->player2Field->setEnabled(true);
+    UpdateFields();
     QApplication::processEvents();
 
     if (player1Type == PlayerType::Computer && player2Type == PlayerType::Computer)
@@ -161,7 +162,9 @@ void MainWindow::on_startBattleBtn_clicked()
             do
             {
                 playAgain = m_game->AttackBy(m_player1, m_player2);
-                QThread::msleep(2000);
+                UpdateFields();
+                QApplication::processEvents();
+                QThread::msleep(500);
             }
             while(playAgain);
 
@@ -171,10 +174,51 @@ void MainWindow::on_startBattleBtn_clicked()
             do
             {
                 playAgain = m_game->AttackBy(m_player2, m_player1);
-                QThread::msleep(2000);
+                UpdateFields();
+                QApplication::processEvents();
+                QThread::msleep(500);
             }
             while(playAgain);
         }
+
+    if (m_game->GetGameState() == GameState::GameOver)
+    {
+        QMessageBox gameOverMsgBox;
+        gameOverMsgBox.setText(QString("Game over!"));
+        gameOverMsgBox.exec();
+    }
+}
+
+void MainWindow::UpdateFields()
+{
+    for(int row = 0; row < 10; ++row)
+    {
+        for(int column = 0; column < 10; ++column)
+        {
+            PositionStatus status1 = m_player1->GetBoard()->GetPositionStatus(row, column);
+            PositionStatus status2 = m_player2->GetBoard()->GetPositionStatus(row, column);
+
+            switch(status1)
+            {
+                case PositionStatus::Hit:
+                    ui->player1Field->item(row, column)->setBackground(Qt::black);
+                    break;
+                case PositionStatus::Miss:
+                    ui->player1Field->item(row, column)->setBackground(Qt::red);
+                    break;
+            }
+
+            switch(status2)
+            {
+                case PositionStatus::Hit:
+                    ui->player2Field->item(row, column)->setBackground(Qt::black);
+                    break;
+                case PositionStatus::Miss:
+                    ui->player2Field->item(row, column)->setBackground(Qt::red);
+                    break;
+            }
+        }
+    }
 }
 
 void MainWindow::setShip(int x, int y, int size)

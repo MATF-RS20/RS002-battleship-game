@@ -30,6 +30,8 @@ private slots:
     void typeChanged(const QString&);
 
 private:
+    void UpdateFields();
+
     Ui::MainWindow *ui;
     IGame* m_game;
     IPlayer* m_player1;
