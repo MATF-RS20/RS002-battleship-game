@@ -22,8 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->player1Field, SIGNAL(cellClicked(int, int)), this, SLOT(player1FieldClicked(int, int)));
     connect(ui->player2Field, SIGNAL(cellClicked(int, int)), this, SLOT(player2FieldClicked(int, int)));
 
-    ui->playerType->addItems({"Player", "Computer"});
-    connect(ui->playerType,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged(const QString&)));
+    ui->player1Type->addItems({"Player", "Computer"});
+    ui->player2Type->addItems({"Player", "Computer"});
+    connect(ui->player1Type,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged(const QString&)));
+    connect(ui->player2Type,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged(const QString&)));
 
 
     for (int i = 0; i < 10; i++) {
@@ -84,7 +86,7 @@ void MainWindow::player1FieldClicked(int x, int y)
     bool playAgain = false;
 
     if (m_game->GetGameState() != GameState::GameOver) {
-        playAgain = m_game->AttackBy(m_player1);
+        playAgain = m_game->AttackBy(m_player1, m_player2);
     }
 
     if (playAgain == false) {
@@ -101,7 +103,7 @@ void MainWindow::player2FieldClicked(int x, int y)
     bool playAgain = false;
 
     if (m_game->GetGameState() != GameState::GameOver) {
-        playAgain = m_game->AttackBy(m_player2);
+        playAgain = m_game->AttackBy(m_player2, m_player1);
     }
 
     if (playAgain == false) {
@@ -131,24 +133,48 @@ void MainWindow::on_startBattleBtn_clicked()
     QString player1Name = ui->player1NameInput->text();
     QString player2Name = ui->player2NameInput->text();
 
-    m_player1 = new Player(player1Name, PlayerType::Human);
-    m_player2 = new Player(player2Name, PlayerType::Human);
+    PlayerType player1Type = PlayerType::Human;
+    if(ui->player1Type->currentText() == "Computer")
+            player1Type = PlayerType::Computer;
+
+    PlayerType player2Type = PlayerType::Human;
+    if(ui->player2Type->currentText() == "Computer")
+            player2Type = PlayerType::Computer;
+
+    m_player1 = new Player(player1Name, player1Type);
+    m_player2 = new Player(player2Name, player2Type);
 
     m_game = new Game(this, m_player1, m_player2);
 
     ui->player1Field->setEnabled(false);
     ui->player2Field->setEnabled(true);
+    QApplication::processEvents();
 
-    /*while(m_game->GetGameState() != GameState::GameOver)
-    {
-        m_game->AttackBy(m_player1);
-        m_game->AttackBy(m_player2);
+    if (player1Type == PlayerType::Computer && player2Type == PlayerType::Computer)
+        while(m_game->GetGameState() != GameOver)
+        {
+            bool playAgain = false;
 
-        QThread::msleep(500);
-    }*/
+            ui->player1Field->setEnabled(false);
+            ui->player2Field->setEnabled(true);
+            QApplication::processEvents();
+            do
+            {
+                playAgain = m_game->AttackBy(m_player1, m_player2);
+                QThread::msleep(2000);
+            }
+            while(playAgain);
 
-    //IBoard* p1Board = m_player1->GetBoard();
-    //QVector<ShipCoordinates*> p1ShipCoordinates = p1Board->GetShips();
+            ui->player1Field->setEnabled(true);
+            ui->player2Field->setEnabled(false);
+            QApplication::processEvents();
+            do
+            {
+                playAgain = m_game->AttackBy(m_player2, m_player1);
+                QThread::msleep(2000);
+            }
+            while(playAgain);
+        }
 }
 
 void MainWindow::setShip(int x, int y, int size)

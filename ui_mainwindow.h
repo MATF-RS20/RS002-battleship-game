@@ -35,7 +35,8 @@ public:
     QHBoxLayout *horizontalLayout;
     QLineEdit *player1NameInput;
     QPushButton *startBattleBtn;
-    QComboBox *playerType;
+    QComboBox *player1Type;
+    QComboBox *player2Type;
     QLineEdit *player2NameInput;
     QTableWidget *player1Field;
     QTableWidget *player2Field;
@@ -65,9 +66,12 @@ public:
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
+
+        player1Type = new QComboBox(horizontalLayoutWidget);
+        player1Type->setObjectName(QString::fromUtf8("playerType"));
+        horizontalLayout->addWidget(player1Type);
         player1NameInput = new QLineEdit(horizontalLayoutWidget);
         player1NameInput->setObjectName(QString::fromUtf8("player1NameInput"));
-
         horizontalLayout->addWidget(player1NameInput);
 
         startBattleBtn = new QPushButton(horizontalLayoutWidget);
@@ -75,14 +79,11 @@ public:
 
         horizontalLayout->addWidget(startBattleBtn);
 
-        playerType = new QComboBox(horizontalLayoutWidget);
-        playerType->setObjectName(QString::fromUtf8("playerType"));
-
-        horizontalLayout->addWidget(playerType);
-
+        player2Type = new QComboBox(horizontalLayoutWidget);
+        player2Type->setObjectName(QString::fromUtf8("playerType"));
+        horizontalLayout->addWidget(player2Type);
         player2NameInput = new QLineEdit(horizontalLayoutWidget);
         player2NameInput->setObjectName(QString::fromUtf8("player2NameInput"));
-
         horizontalLayout->addWidget(player2NameInput);
 
         player1Field = new QTableWidget(centralWidget);

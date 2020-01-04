@@ -10,25 +10,20 @@ Game::Game(MainWindow *ui, IPlayer* player1, IPlayer* player2)
 {}
 
 
-bool Game::AttackBy(IPlayer* player)
+bool Game::AttackBy(IPlayer* attacker, IPlayer* defender)
 {
     bool playAgain = false;
 
-    //do
-    //{
-        Turn* turn = m_turnFactory->CreateTurn(player->GetPlayerType());
-        playAgain = turn->Play(m_attacker, m_defender);
+    m_attacker = attacker;
+    m_defender = defender;
 
-        int availableShips = m_defender->GetBoard()->NumberOfAvailableShips();
+    Turn* turn = m_turnFactory->CreateTurn(m_attacker->GetPlayerType());
+    playAgain = turn->Play(m_attacker, m_defender);
 
-        if(availableShips == 0)
-            m_state = GameState::GameOver;
+    int availableShips = m_defender->GetBoard()->NumberOfAvailableShips();
 
-        QThread::msleep(1000);
-    //}
-    //while(isHit);
-
-    //SwapPlayers();
+    if(availableShips == 0)
+        m_state = GameState::GameOver;
 
     return playAgain;
 }

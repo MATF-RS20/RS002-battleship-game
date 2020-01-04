@@ -14,9 +14,9 @@ class IGame
 {
 public:
     virtual ~IGame() {}
-    virtual bool AttackBy(IPlayer* player) = 0;
+    virtual bool AttackBy(IPlayer* player, IPlayer* defender) = 0;
     virtual GameState GetGameState() = 0;
-
+    virtual void SwapPlayers() = 0;
 };
 
 #endif // IGAME_HPP

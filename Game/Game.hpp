@@ -10,12 +10,11 @@ class Game : public IGame
 {
 public:
     Game(MainWindow *ui, IPlayer* player1, IPlayer* player2);
-    bool AttackBy(IPlayer* player) override;
+    bool AttackBy(IPlayer* player, IPlayer* defender) override;
     GameState GetGameState() override;
+    void SwapPlayers() override;
 
 private:
-    void SwapPlayers();
-
     IPlayer* m_attacker;
     IPlayer* m_defender;
     GameState m_state;
