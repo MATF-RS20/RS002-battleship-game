@@ -1,7 +1,7 @@
 #ifndef IGAME_HPP
 #define IGAME_HPP
 
-#include "Game/Player/IPlayer.hpp";
+#include "Game/Player/IPlayer.hpp"
 
 enum GameState
 {

@@ -1,6 +1,6 @@
-#include "Game/Player/Player.hpp";
-#include "Game/Board/Board.hpp";
-#include "Game/Game.hpp";
+#include "Game/Player/Player.hpp"
+#include "Game/Board/Board.hpp"
+#include "Game/Game.hpp"
 #include <iostream>
 #include <QThread>
 #include <QIcon>

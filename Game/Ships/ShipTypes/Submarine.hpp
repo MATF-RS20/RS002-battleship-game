@@ -1,7 +1,7 @@
 #ifndef SUBMARINE_HPP
 #define SUBMARINE_HPP
 
-#include "Game/Ships/IShip.hpp";
+#include "Game/Ships/IShip.hpp"
 #include <QVector>
 
 

@@ -7,6 +7,9 @@ ComputerTurn::ComputerTurn()
 
 Shoot* ComputerTurn::CreateShoot()
 {
-    Shoot* shoot = new Shoot(0, 0);
+    srand(time(0));
+    int randX = rand() % 10;
+    int randY = rand() % 10;
+    Shoot* shoot = new Shoot(randX, randY);
     return shoot;
 }
