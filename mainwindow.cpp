@@ -28,6 +28,18 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->player1Type,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged(const QString&)));
     connect(ui->player2Type,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged(const QString&)));
 
+//    connect(ui->player2NameInput, SIGNAL(textChanged(const QString &)), this, SLOT());
+
+    ui->startBattleBtn->setDisabled(true);
+
+    connect(ui->player2NameInput, &QLineEdit::textChanged, this, [this]() {
+        if(ui->player2NameInput->text().isEmpty()) {
+            ui->startBattleBtn->setDisabled(true);
+        }
+        else {
+            ui->startBattleBtn->setEnabled(true);
+        }
+    });
     for (int i = 0; i < 10; i++) {
         ui->player1Field->setColumnWidth(i,30);
         ui->player1Field->setRowHeight(i,30);
@@ -240,6 +252,12 @@ void MainWindow::setShip(int x, int y, int size)
 
 void MainWindow::typeChanged(const QString& name)
 {
-
+    if (name.toStdString().compare("Computer") == 0) {
+        ui->player2NameInput->hide();
+        ui->startBattleBtn->setEnabled(true);
+    }
+    else if (name.toStdString().compare("Player") == 0) {
+        ui->player2NameInput->show();
+    }
 }
 
