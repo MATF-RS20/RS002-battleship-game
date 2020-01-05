@@ -4,7 +4,7 @@ Cruiser::Cruiser(QVector<Position*> coordinates)
     : m_shipType(ShipType::CruiserType),
       m_shipSize(CRUISER_SIZE)
 {
-    if(coordinates.size() != 3)
+    if(coordinates.size() != CRUISER_SIZE)
     {
 
     }

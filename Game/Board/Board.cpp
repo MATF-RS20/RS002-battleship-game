@@ -24,30 +24,43 @@ void Board::InitializeBoard()
 
 void Board::CreateShips()
 {
+    srand(time(0));
+    QVector<int> rows;
+    do {
+        int row = rand() % 10;
+        if (rows.contains(row) == false)
+            rows.append(row);
+    } while(rows.size() < 5);
+
     // Battleship
-    QVector<Position*> battleshipPosition = {new Position(0, 0, PositionStatus::Unknown),
-                                             new Position(0, 1, PositionStatus::Unknown),
-                                             new Position(0, 2, PositionStatus::Unknown),
-                                             new Position(0, 3, PositionStatus::Unknown)};
+    int columnBattleship = rand() % 6;
+    QVector<Position*> battleshipPosition = {new Position(rows[0], columnBattleship, PositionStatus::Unknown),
+                                             new Position(rows[0], columnBattleship+1, PositionStatus::Unknown),
+                                             new Position(rows[0], columnBattleship+2, PositionStatus::Unknown),
+                                             new Position(rows[0], columnBattleship+3, PositionStatus::Unknown)};
     // Carrier
-    QVector<Position*> carrierPosition = {new Position(1, 0, PositionStatus::Unknown),
-                                          new Position(1, 1, PositionStatus::Unknown),
-                                          new Position(1, 2, PositionStatus::Unknown),
-                                          new Position(1, 3, PositionStatus::Unknown),
-                                          new Position(1, 4, PositionStatus::Unknown)};
+    int columnCarrier = rand() % 5;
+    QVector<Position*> carrierPosition = {new Position(rows[1], columnCarrier, PositionStatus::Unknown),
+                                          new Position(rows[1], columnCarrier+1, PositionStatus::Unknown),
+                                          new Position(rows[1], columnCarrier+2, PositionStatus::Unknown),
+                                          new Position(rows[1], columnCarrier+3, PositionStatus::Unknown),
+                                          new Position(rows[1], columnCarrier+4, PositionStatus::Unknown)};
     // Cruiser
-    QVector<Position*> cruiserPosition = {new Position(2, 0, PositionStatus::Unknown),
-                                          new Position(2, 1, PositionStatus::Unknown),
-                                          new Position(2, 2, PositionStatus::Unknown)};
+    int columnCruiser = rand() % 7;
+    QVector<Position*> cruiserPosition = {new Position(rows[2], columnCruiser, PositionStatus::Unknown),
+                                          new Position(rows[2], columnCruiser+1, PositionStatus::Unknown),
+                                          new Position(rows[2], columnCruiser+2, PositionStatus::Unknown)};
 
     // Submarine
-    QVector<Position*> submarinePosition = {new Position(3, 0, PositionStatus::Unknown),
-                                            new Position(3, 1, PositionStatus::Unknown),
-                                            new Position(3, 2, PositionStatus::Unknown)};
+    int columnSubmarine = rand() % 7;
+    QVector<Position*> submarinePosition = {new Position(rows[3], columnSubmarine, PositionStatus::Unknown),
+                                            new Position(rows[3], columnSubmarine+1, PositionStatus::Unknown),
+                                            new Position(rows[3], columnSubmarine+2, PositionStatus::Unknown)};
 
     // Destroyer
-    QVector<Position*> destroyerPosition = {new Position(4, 0, PositionStatus::Unknown),
-                                            new Position(4, 1, PositionStatus::Unknown)};
+    int columnDestroyer = rand() % 8;
+    QVector<Position*> destroyerPosition = {new Position(rows[4], columnDestroyer, PositionStatus::Unknown),
+                                            new Position(rows[4], columnDestroyer+1, PositionStatus::Unknown)};
 
     IShip* battleship = m_shipFactory->CreateShip(ShipType::BattleshipType, battleshipPosition);
     IShip* carrier = m_shipFactory->CreateShip(ShipType::CarrierType, carrierPosition);
