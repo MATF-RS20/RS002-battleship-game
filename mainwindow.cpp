@@ -25,21 +25,31 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->player1Type->addItems({"Player", "Computer"});
     ui->player2Type->addItems({"Player", "Computer"});
-    connect(ui->player1Type,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged(const QString&)));
-    connect(ui->player2Type,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged(const QString&)));
-
-//    connect(ui->player2NameInput, SIGNAL(textChanged(const QString &)), this, SLOT());
+    connect(ui->player1Type,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged1(const QString&)));
+    connect(ui->player2Type,SIGNAL(currentIndexChanged(const QString&)), this,SLOT(typeChanged2(const QString&)));
 
     ui->startBattleBtn->setDisabled(true);
 
-    connect(ui->player2NameInput, &QLineEdit::textChanged, this, [this]() {
-        if(ui->player2NameInput->text().isEmpty()) {
-            ui->startBattleBtn->setDisabled(true);
-        }
-        else {
-            ui->startBattleBtn->setEnabled(true);
-        }
-    });
+    connect(ui->player1NameInput, SIGNAL(textChanged(const QString &)), this, SLOT(playerNameEdited(const QString &)));
+    connect(ui->player2NameInput, SIGNAL(textChanged(const QString &)), this, SLOT(playerNameEdited(const QString &)));
+
+//    connect(ui->player2NameInput, &QLineEdit::textChanged, this, [this]() {
+//        if(!ui->player2NameInput->text().isEmpty() && !ui->player1NameInput->text().isEmpty()) {
+//            ui->startBattleBtn->setEnabled(true);
+//        }
+//        else if ((!ui->player1NameInput->text().isEmpty() && ui->player2Type->currentText().toStdString().compare("Computer") == 0) ||
+//                 (!ui->player2NameInput->text().isEmpty() && ui->player1Type->currentText().toStdString().compare("Computer") == 0)) {
+//            ui->startBattleBtn->setEnabled(true);
+//        }
+//        else if (ui->player2Type->currentText().toStdString().compare("Computer") == 0 && ui->player1Type->currentText().toStdString().compare("Computer") == 0) {
+//            ui->startBattleBtn->setEnabled(true);
+//        }
+//        else {
+//            ui->startBattleBtn->setDisabled(true);
+//        }
+//    });
+
+
     for (int i = 0; i < 10; i++) {
         ui->player1Field->setColumnWidth(i,30);
         ui->player1Field->setRowHeight(i,30);
@@ -250,14 +260,58 @@ void MainWindow::setShip(int x, int y, int size)
     }
 }
 
-void MainWindow::typeChanged(const QString& name)
+void MainWindow::typeChanged1(const QString& name)
 {
+//    if (name.toStdString().compare("Computer") == 0 && ui->player2Type->currentText().toStdString().compare("Computer") == 0) {
+//        ui->startBattleBtn->setEnabled(true);
+//    }
     if (name.toStdString().compare("Computer") == 0) {
-        ui->player2NameInput->hide();
-        ui->startBattleBtn->setEnabled(true);
+        ui->player1NameInput->hide();
+        if (!ui->player2NameInput->text().isEmpty())
+            ui->startBattleBtn->setEnabled(true);
     }
     else if (name.toStdString().compare("Player") == 0) {
-        ui->player2NameInput->show();
+        ui->player1NameInput->show();
+        if (ui->player2NameInput->text().isEmpty() || ui->player1NameInput->text().isEmpty())
+            ui->startBattleBtn->setDisabled(true);
+
+        if (ui->player2Type->currentText().toStdString().compare("Computer") == 0)
+            ui->startBattleBtn->setDisabled(true);
     }
 }
 
+void MainWindow::typeChanged2(const QString& name)
+{
+//    if (name.toStdString().compare("Computer") == 0 && ui->player1Type->currentText().toStdString().compare("Computer") == 0) {
+//        ui->startBattleBtn->setEnabled(true);
+//    }
+    if (name.toStdString().compare("Computer") == 0) {
+        ui->player2NameInput->hide();
+        if (!ui->player1NameInput->text().isEmpty())
+            ui->startBattleBtn->setEnabled(true);
+
+        if (ui->player1Type->currentText().toStdString().compare("Computer") == 0)
+            ui->startBattleBtn->setEnabled(true);
+    }
+    else if (name.toStdString().compare("Player") == 0) {
+        ui->player2NameInput->show();
+        if (ui->player2NameInput->text().isEmpty() || ui->player1NameInput->text().isEmpty())
+            ui->startBattleBtn->setDisabled(true);
+    }
+}
+
+void MainWindow::playerNameEdited(const QString & text) {
+    if(!ui->player2NameInput->text().isEmpty() && !ui->player1NameInput->text().isEmpty()) {
+        ui->startBattleBtn->setEnabled(true);
+    }
+    else if ((!ui->player1NameInput->text().isEmpty() && ui->player2Type->currentText().toStdString().compare("Computer") == 0) ||
+             (!ui->player2NameInput->text().isEmpty() && ui->player1Type->currentText().toStdString().compare("Computer") == 0)) {
+        ui->startBattleBtn->setEnabled(true);
+    }
+    else if (ui->player2Type->currentText().toStdString().compare("Computer") == 0 && ui->player1Type->currentText().toStdString().compare("Computer") == 0) {
+        ui->startBattleBtn->setEnabled(true);
+    }
+    else {
+        ui->startBattleBtn->setDisabled(true);
+    }
+}

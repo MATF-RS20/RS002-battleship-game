@@ -27,7 +27,9 @@ private slots:
     void player2FieldClicked(int, int);    
 
     void setShip(int, int, int);
-    void typeChanged(const QString&);
+    void typeChanged1(const QString&);
+    void typeChanged2(const QString&);
+    void playerNameEdited(const QString &);
 
 private:
     void UpdateFields();
