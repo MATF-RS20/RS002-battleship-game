@@ -217,16 +217,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QComboBox" name="playerType_2">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>300</y>
-      <width>86</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
