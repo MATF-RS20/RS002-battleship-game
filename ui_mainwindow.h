@@ -47,7 +47,6 @@ public:
     QLabel *ship3;
     QLabel *ship4;
     QLabel *ship5;
-    QComboBox *playerType_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -104,15 +103,6 @@ public:
         player1Field->setAutoScroll(true);
         player1Field->setRowCount(10);
         player1Field->setColumnCount(10);
-        for(int i = 0; i < 10; ++i)
-        {
-            for(int j = 0; j < 10; ++j)
-            {
-                player1Field->setItem(i, j, new QTableWidgetItem);
-                player1Field->item(i, j)->setBackground(Qt::blue);
-            }
-        }
-
         player2Field = new QTableWidget(centralWidget);
         if (player2Field->columnCount() < 10)
             player2Field->setColumnCount(10);
@@ -122,15 +112,6 @@ public:
         player2Field->setGeometry(QRect(540, 70, 341, 341));
         player2Field->setRowCount(10);
         player2Field->setColumnCount(10);
-        for(int i = 0; i < 10; ++i)
-        {
-            for(int j = 0; j < 10; ++j)
-            {
-                player2Field->setItem(i, j, new QTableWidgetItem);
-                player2Field->item(i, j)->setBackground(Qt::blue);
-            }
-        }
-
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
         verticalLayoutWidget->setGeometry(QRect(390, 79, 141, 201));
@@ -169,9 +150,6 @@ public:
 
         verticalLayout->addWidget(ship5);
 
-        playerType_2 = new QComboBox(centralWidget);
-        playerType_2->setObjectName(QString::fromUtf8("playerType_2"));
-        playerType_2->setGeometry(QRect(800, 300, 86, 25));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
