@@ -1,11 +1,10 @@
 #include "Game/Ships/ShipTypes/Submarine.hpp"
 
-
 Submarine::Submarine(QVector<Position*> coordinates) :
     m_shipType(ShipType::SubmarineType),
     m_shipSize(SUBMARINE_SIZE)
 {
-    if(coordinates.size() != 3)
+    if(coordinates.size() != SUBMARINE_SIZE)
     {
 
     }

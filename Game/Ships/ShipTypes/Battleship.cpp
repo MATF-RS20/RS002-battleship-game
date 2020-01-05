@@ -4,7 +4,7 @@ Battleship::Battleship(QVector<Position*> coordinates)
     : m_shipType(ShipType::BattleshipType),
       m_shipSize(BATTLESHIP_SIZE)
 {
-    if(coordinates.size() != 4)
+    if(coordinates.size() != BATTLESHIP_SIZE)
     {
 
     }
@@ -12,7 +12,6 @@ Battleship::Battleship(QVector<Position*> coordinates)
     {
         m_shipCoordinates = coordinates;
     }
-
 }
 
 int Battleship::GetShipSize()
