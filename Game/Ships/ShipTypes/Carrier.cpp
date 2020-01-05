@@ -4,7 +4,7 @@ Carrier::Carrier(QVector<Position*> coordinates) :
     m_shipType(ShipType::CarrierType),
     m_shipSize(CARRIER_SIZE)
 {
-    if(coordinates.size() != 5)
+    if(coordinates.size() != CARRIER_SIZE)
     {
 
     }

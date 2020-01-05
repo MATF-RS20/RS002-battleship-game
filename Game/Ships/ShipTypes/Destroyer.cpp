@@ -14,7 +14,6 @@ Destroyer::Destroyer(QVector<Position*> coordinates)
     }
 }
 
-
 int Destroyer::GetShipSize()
 {
     return m_shipSize;

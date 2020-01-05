@@ -301,7 +301,7 @@ void MainWindow::typeChanged2(const QString& name)
 }
 
 void MainWindow::playerNameEdited(const QString & text) {
-    /*if(!ui->player2NameInput->text().isEmpty() && !ui->player1NameInput->text().isEmpty()) {
+    if(!ui->player2NameInput->text().isEmpty() && !ui->player1NameInput->text().isEmpty()) {
         ui->startBattleBtn->setEnabled(true);
     }
     else if ((!ui->player1NameInput->text().isEmpty() && ui->player2Type->currentText().toStdString().compare("Computer") == 0) ||
@@ -313,5 +313,5 @@ void MainWindow::playerNameEdited(const QString & text) {
     }
     else {
         ui->startBattleBtn->setDisabled(true);
-    }*/
+    }
 }
