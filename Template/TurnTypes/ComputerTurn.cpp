@@ -10,7 +10,6 @@ Shoot* ComputerTurn::CreateShoot()
 {
     QVector<QPair<int, int>> attackedPositions = m_attacker->GetAttackedPositions();
     srand(time(0));
-
     int randX = 0;
     int randY = 0;
     QPair<int, int> position;
