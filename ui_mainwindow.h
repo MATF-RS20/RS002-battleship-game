@@ -33,9 +33,9 @@ public:
     QWidget *centralWidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
+    QComboBox *player1Type;
     QLineEdit *player1NameInput;
     QPushButton *startBattleBtn;
-    QComboBox *player1Type;
     QComboBox *player2Type;
     QLineEdit *player2NameInput;
     QTableWidget *player1Field;
@@ -47,6 +47,7 @@ public:
     QLabel *ship3;
     QLabel *ship4;
     QLabel *ship5;
+    QComboBox *playerType_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -66,12 +67,14 @@ public:
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-
         player1Type = new QComboBox(horizontalLayoutWidget);
-        player1Type->setObjectName(QString::fromUtf8("playerType"));
+        player1Type->setObjectName(QString::fromUtf8("player1Type"));
+
         horizontalLayout->addWidget(player1Type);
+
         player1NameInput = new QLineEdit(horizontalLayoutWidget);
         player1NameInput->setObjectName(QString::fromUtf8("player1NameInput"));
+
         horizontalLayout->addWidget(player1NameInput);
 
         startBattleBtn = new QPushButton(horizontalLayoutWidget);
@@ -80,10 +83,13 @@ public:
         horizontalLayout->addWidget(startBattleBtn);
 
         player2Type = new QComboBox(horizontalLayoutWidget);
-        player2Type->setObjectName(QString::fromUtf8("playerType"));
+        player2Type->setObjectName(QString::fromUtf8("player2Type"));
+
         horizontalLayout->addWidget(player2Type);
+
         player2NameInput = new QLineEdit(horizontalLayoutWidget);
         player2NameInput->setObjectName(QString::fromUtf8("player2NameInput"));
+
         horizontalLayout->addWidget(player2NameInput);
 
         player1Field = new QTableWidget(centralWidget);
@@ -98,15 +104,6 @@ public:
         player1Field->setAutoScroll(true);
         player1Field->setRowCount(10);
         player1Field->setColumnCount(10);
-        for(int i = 0; i < 10; ++i)
-        {
-            for(int j = 0; j < 10; ++j)
-            {
-                player1Field->setItem(i, j, new QTableWidgetItem);
-                player1Field->item(i, j)->setBackground(Qt::blue);
-            }
-        }
-
         player2Field = new QTableWidget(centralWidget);
         if (player2Field->columnCount() < 10)
             player2Field->setColumnCount(10);
@@ -116,15 +113,6 @@ public:
         player2Field->setGeometry(QRect(540, 70, 341, 341));
         player2Field->setRowCount(10);
         player2Field->setColumnCount(10);
-        for(int i = 0; i < 10; ++i)
-        {
-            for(int j = 0; j < 10; ++j)
-            {
-                player2Field->setItem(i, j, new QTableWidgetItem);
-                player2Field->item(i, j)->setBackground(Qt::blue);
-            }
-        }
-
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
         verticalLayoutWidget->setGeometry(QRect(390, 79, 141, 201));
@@ -135,13 +123,13 @@ public:
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         ship1 = new QLabel(verticalLayoutWidget);
         ship1->setObjectName(QString::fromUtf8("ship1"));
-        ship1->setMaximumSize(QSize(30, 30));
+        ship1->setMaximumSize(QSize(60, 30));
 
         verticalLayout->addWidget(ship1);
 
         ship2 = new QLabel(verticalLayoutWidget);
         ship2->setObjectName(QString::fromUtf8("ship2"));
-        ship2->setMaximumSize(QSize(60, 30));
+        ship2->setMaximumSize(QSize(90, 30));
 
         verticalLayout->addWidget(ship2);
 
@@ -163,6 +151,9 @@ public:
 
         verticalLayout->addWidget(ship5);
 
+        playerType_2 = new QComboBox(centralWidget);
+        playerType_2->setObjectName(QString::fromUtf8("playerType_2"));
+        playerType_2->setGeometry(QRect(800, 300, 86, 25));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
