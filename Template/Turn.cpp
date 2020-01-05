@@ -3,6 +3,10 @@
 bool Turn::Play(IPlayer* attacker, IPlayer* defender)
 {
     Shoot* shoot = CreateShoot();
+    int x = shoot->getPosition()->m_coordinateX;
+    int y = shoot->getPosition()->m_coordinateY;
+
+    attacker->AddAttackedPosition(QPair<int, int>(x, y));
     return ExecuteShoot(attacker, defender, shoot->getPosition());
 }
 

@@ -17,7 +17,7 @@ bool Game::AttackBy(IPlayer* attacker, IPlayer* defender)
     m_attacker = attacker;
     m_defender = defender;
 
-    Turn* turn = m_turnFactory->CreateTurn(m_attacker->GetPlayerType());
+    Turn* turn = m_turnFactory->CreateTurn(m_attacker->GetPlayerType(), m_attacker);
     playAgain = turn->Play(m_attacker, m_defender);
 
     int availableShips = m_defender->GetBoard()->NumberOfAvailableShips();

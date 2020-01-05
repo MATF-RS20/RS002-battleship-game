@@ -15,7 +15,6 @@ Battleship::Battleship(QVector<Position*> coordinates)
 
 }
 
-
 int Battleship::GetShipSize()
 {
     return m_shipSize;

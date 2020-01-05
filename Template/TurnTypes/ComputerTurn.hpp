@@ -6,8 +6,11 @@
 class ComputerTurn : public Turn
 {
 public:
-    ComputerTurn();
+    ComputerTurn(IPlayer* attacker);
     Shoot* CreateShoot();
+
+private:
+    IPlayer* m_attacker;
 };
 
 #endif // COMPUTERTURN_HPP

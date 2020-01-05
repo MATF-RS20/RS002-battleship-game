@@ -3,6 +3,8 @@
 
 #include "Game/Board/IBoard.hpp"
 #include <QString>
+#include <QPair>
+#include <QVector>
 
 enum PlayerType {
     Human = 0,
@@ -17,6 +19,8 @@ public:
     virtual QString GetPlayerName() = 0;
     virtual PlayerType GetPlayerType() = 0;
     virtual IBoard* GetBoard() = 0;
+    virtual void AddAttackedPosition(QPair<int, int> attackedPosition) = 0;
+    virtual QVector<QPair<int, int>> GetAttackedPositions() = 0;
 };
 
 #endif // IPLAYER_HPP

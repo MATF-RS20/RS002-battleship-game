@@ -10,13 +10,13 @@ TurnFactory::TurnFactory(MainWindow *ui)
 
 }
 
-Turn* TurnFactory::CreateTurn(PlayerType playerType)
+Turn* TurnFactory::CreateTurn(PlayerType playerType, IPlayer* attacker)
 {
     Turn* turn;
     switch(playerType)
     {
         case PlayerType::Computer:
-            turn = new ComputerTurn();
+            turn = new ComputerTurn(attacker);
             break;
         case PlayerType::Human:
             turn = new HumanTurn(m_ui);

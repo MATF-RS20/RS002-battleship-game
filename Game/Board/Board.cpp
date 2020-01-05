@@ -34,7 +34,7 @@ void Board::CreateShips()
                                           new Position(1, 1, PositionStatus::Unknown),
                                           new Position(1, 2, PositionStatus::Unknown),
                                           new Position(1, 3, PositionStatus::Unknown),
-                                          new Position(1, 3, PositionStatus::Unknown)};
+                                          new Position(1, 4, PositionStatus::Unknown)};
     // Cruiser
     QVector<Position*> cruiserPosition = {new Position(2, 0, PositionStatus::Unknown),
                                           new Position(2, 1, PositionStatus::Unknown),

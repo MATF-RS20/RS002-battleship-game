@@ -4,7 +4,8 @@
 Player::Player(QString playerName, PlayerType playerType)
     : m_playerType(playerType),
       m_playerName(playerName),
-      m_board(new Board())
+      m_board(new Board()),
+      m_attackedPositions()
 {
     m_board->InitializeBoard();
     m_board->CreateShips();
@@ -23,4 +24,14 @@ PlayerType Player::GetPlayerType()
 IBoard* Player::GetBoard()
 {
     return m_board;
+}
+
+void Player::AddAttackedPosition(QPair<int, int> attackedPosition)
+{
+    m_attackedPositions.append(attackedPosition);
+}
+
+QVector<QPair<int, int>> Player::GetAttackedPositions()
+{
+    return m_attackedPositions;
 }

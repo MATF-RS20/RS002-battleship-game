@@ -11,7 +11,7 @@ class TurnFactory
 public:
     TurnFactory(MainWindow *ui);
 
-    Turn* CreateTurn(PlayerType playerType);
+    Turn* CreateTurn(PlayerType playerType, IPlayer* attacker);
 
 private:
     MainWindow *m_ui;
