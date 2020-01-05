@@ -1,4 +1,5 @@
 #include "Template/TurnTypes/ComputerTurn.hpp"
+#include <QTime>
 
 ComputerTurn::ComputerTurn(IPlayer* attacker)
     : m_attacker(attacker)
@@ -9,13 +10,13 @@ ComputerTurn::ComputerTurn(IPlayer* attacker)
 Shoot* ComputerTurn::CreateShoot()
 {
     QVector<QPair<int, int>> attackedPositions = m_attacker->GetAttackedPositions();
-    srand(time(0));
     int randX = 0;
     int randY = 0;
+    qsrand(QTime::currentTime().msec());
     QPair<int, int> position;
     do {
-        randX = rand() % 10;
-        randY = rand() % 10;
+        randX = qrand() % 10;
+        randY = qrand() % 10;
         position.first = randX;
         position.second = randY;
     } while(attackedPositions.contains(position));

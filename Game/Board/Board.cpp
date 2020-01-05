@@ -1,5 +1,6 @@
 #include "Game/Board/IBoard.hpp"
 #include "Game/Board/Board.hpp"
+#include <QTime>
 
 Board::Board() :
     m_ships(),
@@ -24,41 +25,41 @@ void Board::InitializeBoard()
 
 void Board::CreateShips()
 {
-    srand(time(0));
     QVector<int> rows;
+    qsrand(QTime::currentTime().msec());
     do {
-        int row = rand() % 10;
+        int row = qrand() % 10;
         if (rows.contains(row) == false)
             rows.append(row);
     } while(rows.size() < 5);
 
     // Battleship
-    int columnBattleship = rand() % 6;
+    int columnBattleship = qrand() % 6;
     QVector<Position*> battleshipPosition = {new Position(rows[0], columnBattleship, PositionStatus::Unknown),
                                              new Position(rows[0], columnBattleship+1, PositionStatus::Unknown),
                                              new Position(rows[0], columnBattleship+2, PositionStatus::Unknown),
                                              new Position(rows[0], columnBattleship+3, PositionStatus::Unknown)};
     // Carrier
-    int columnCarrier = rand() % 5;
+    int columnCarrier = qrand() % 5;
     QVector<Position*> carrierPosition = {new Position(rows[1], columnCarrier, PositionStatus::Unknown),
                                           new Position(rows[1], columnCarrier+1, PositionStatus::Unknown),
                                           new Position(rows[1], columnCarrier+2, PositionStatus::Unknown),
                                           new Position(rows[1], columnCarrier+3, PositionStatus::Unknown),
                                           new Position(rows[1], columnCarrier+4, PositionStatus::Unknown)};
     // Cruiser
-    int columnCruiser = rand() % 7;
+    int columnCruiser = qrand() % 7;
     QVector<Position*> cruiserPosition = {new Position(rows[2], columnCruiser, PositionStatus::Unknown),
                                           new Position(rows[2], columnCruiser+1, PositionStatus::Unknown),
                                           new Position(rows[2], columnCruiser+2, PositionStatus::Unknown)};
 
     // Submarine
-    int columnSubmarine = rand() % 7;
+    int columnSubmarine = qrand() % 7;
     QVector<Position*> submarinePosition = {new Position(rows[3], columnSubmarine, PositionStatus::Unknown),
                                             new Position(rows[3], columnSubmarine+1, PositionStatus::Unknown),
                                             new Position(rows[3], columnSubmarine+2, PositionStatus::Unknown)};
 
     // Destroyer
-    int columnDestroyer = rand() % 8;
+    int columnDestroyer = qrand() % 8;
     QVector<Position*> destroyerPosition = {new Position(rows[4], columnDestroyer, PositionStatus::Unknown),
                                             new Position(rows[4], columnDestroyer+1, PositionStatus::Unknown)};
 

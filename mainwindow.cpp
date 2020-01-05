@@ -175,7 +175,7 @@ void MainWindow::on_startBattleBtn_clicked()
                 playAgain = m_game->AttackBy(m_player1, m_player2);
                 UpdateFields();
                 QApplication::processEvents();
-                QThread::msleep(500);
+                QThread::msleep(50);
             }
             while(playAgain);
 
@@ -187,7 +187,7 @@ void MainWindow::on_startBattleBtn_clicked()
                 playAgain = m_game->AttackBy(m_player2, m_player1);
                 UpdateFields();
                 QApplication::processEvents();
-                QThread::msleep(500);
+                QThread::msleep(50);
             }
             while(playAgain);
         }

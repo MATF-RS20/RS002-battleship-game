@@ -17,7 +17,6 @@ bool Game::AttackBy(IPlayer* attacker, IPlayer* defender)
     m_attacker = attacker;
     m_defender = defender;
 
-    QThread::msleep(200); // Da bi random f-ja prilikom gadjanja generisala razlicite vrednosti
     Turn* turn = m_turnFactory->CreateTurn(m_attacker->GetPlayerType(), m_attacker);
     playAgain = turn->Play(m_attacker, m_defender);
 
