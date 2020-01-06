@@ -8,7 +8,8 @@ Player::Player(QString playerName, PlayerType playerType)
       m_attackedPositions()
 {
     m_board->InitializeBoard();
-    m_board->CreateShips();
+    if(playerType == PlayerType::Computer)
+        m_board->CreateShips();
 }
 
 QString Player::GetPlayerName()

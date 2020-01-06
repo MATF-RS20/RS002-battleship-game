@@ -15,14 +15,16 @@ public:
     ~Board();
 
     void InitializeBoard() override;
-    void CreateShips() override;
-    void PlaceShips(int x, int y) override;
-    int NumberOfAvailableShips() override;
+    void CreateShips() override;    
+    void SetShipOnPositions(ShipType ship, QVector<QPair<int, int>> positions) override;
+    int NumberOfAvailableShips() override;    
     void AttackOnCoordinates(int x, int y) override;
     PositionStatus GetPositionStatus(int x, int y) override;
     QVector<IShip*> GetShips() override;
 
 private:
+    void CheckPositionsValues(uint ship, QVector<QPair<int, int>> positions);
+
     QVector<IShip*> m_ships;
     Position* m_boardPositions[BOARD_SIZE][BOARD_SIZE];
     ShipFactory* m_shipFactory;

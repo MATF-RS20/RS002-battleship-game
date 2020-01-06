@@ -12,7 +12,7 @@ public:
 
     virtual void InitializeBoard() = 0;
     virtual void CreateShips() = 0;
-    virtual void PlaceShips(int x, int y) = 0;
+    virtual void SetShipOnPositions(ShipType ship, QVector<QPair<int, int>> positions) = 0;
     virtual int NumberOfAvailableShips() = 0;
     virtual void AttackOnCoordinates(int x, int y) = 0;
     virtual PositionStatus GetPositionStatus(int x, int y) = 0;

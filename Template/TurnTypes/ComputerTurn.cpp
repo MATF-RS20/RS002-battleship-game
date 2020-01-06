@@ -12,7 +12,6 @@ Shoot* ComputerTurn::CreateShoot()
     QVector<QPair<int, int>> attackedPositions = m_attacker->GetAttackedPositions();
     int randX = 0;
     int randY = 0;
-    qsrand(QTime::currentTime().msec());
     QPair<int, int> position;
     do {
         randX = qrand() % 10;

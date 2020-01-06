@@ -9,6 +9,10 @@ Game::Game(MainWindow *ui, IPlayer* player1, IPlayer* player2)
       m_turnFactory(new TurnFactory(ui))
 {}
 
+/*bool Game::PlaceShipOnBoard(IPlayer* player)
+{
+    player->
+}*/
 
 bool Game::AttackBy(IPlayer* attacker, IPlayer* defender)
 {
