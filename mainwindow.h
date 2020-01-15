@@ -20,7 +20,6 @@ public:
     int getSelectedRow();
     int getSelectedColumn();
 
-
 private slots:
     void on_startBattleBtn_clicked();
     void setShip(int, int, int);

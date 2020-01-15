@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QDir>
 #include <QMessageBox>
+#include <QtDebug>
 
 
 #include "mainwindow.h"
@@ -212,6 +213,7 @@ void MainWindow::UpdateFields()
         {
             PositionStatus status1 = m_player1->GetBoard()->GetPositionStatus(row, column);
             PositionStatus status2 = m_player2->GetBoard()->GetPositionStatus(row, column);
+
             QLabel *miss = new QLabel();
             miss->setPixmap(QPixmap("Assets/Images/miss.png"));
             miss->setScaledContents(true);

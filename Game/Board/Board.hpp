@@ -21,7 +21,7 @@ public:
     void AttackOnCoordinates(int x, int y) override;
     PositionStatus GetPositionStatus(int x, int y) override;
     QVector<IShip*> GetShips() override;
-    AvailabilityStatus GetAvailabilityStatus(int x, int y);
+    AvailabilityStatus GetAvailabilityStatus(int x, int y) override;
     QVector<Position*> PlaceShipOnTable(int size);
 
 private:
@@ -30,6 +30,7 @@ private:
     QVector<IShip*> m_ships;
     Position* m_boardPositions[BOARD_SIZE][BOARD_SIZE];
     ShipFactory* m_shipFactory;
+
 };
 
 #endif // BOARD_HPP

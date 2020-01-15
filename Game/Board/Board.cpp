@@ -3,6 +3,11 @@
 #include <QTime>
 #include <QMessageBox>
 #include <QDebug>
+#include <QThread>
+#include <future>
+#include <iostream>
+#include <mutex>
+
 
 #include "mainwindow.h"
 
@@ -29,8 +34,8 @@ void Board::InitializeBoard()
 
 void Board::CreateShips()
 {
-    QVector<int> rows;
-    QVector<int> cols;
+//    QVector<int> rows;
+//    QVector<int> cols;
 //    do {
 //        int row = qrand() % 10;
 //        int col = qrand() % 10;
@@ -47,7 +52,9 @@ void Board::CreateShips()
 //                                             new Position(rows[0], columnBattleship+2, PositionStatus::Unknown, AvailabilityStatus::Busy),
 //                                             new Position(rows[0], columnBattleship+3, PositionStatus::Unknown, AvailabilityStatus::Busy)};
     // horizontal position
+
     QVector<Position*> battleshipPosition = PlaceShipOnTable(4);
+//    QVector<Position*> battleshipPosition = std::async(PlaceShipOnTable, 4);
 
     // Carrier
 //    int columnCarrier = qrand() % 5;
@@ -57,7 +64,8 @@ void Board::CreateShips()
 //                                          new Position(rows[1], columnCarrier+3, PositionStatus::Unknown, AvailabilityStatus::Busy),
 //                                          new Position(rows[1], columnCarrier+4, PositionStatus::Unknown, AvailabilityStatus::Busy)};
     QVector<Position*> carrierPosition = PlaceShipOnTable(5);
-//    if(qrand() % 10 <= 5) {
+
+    //    if(qrand() % 10 <= 5) {
 //        while (GetAvailabilityStatus(rows[1], cols[1]) == Busy ||
 //               GetAvailabilityStatus(rows[1], cols[1]+1) == Busy ||
 //               GetAvailabilityStatus(rows[1], cols[1]+2) == Busy ||
@@ -87,6 +95,7 @@ void Board::CreateShips()
 
     // Cruiser
     QVector<Position*> cruiserPosition = PlaceShipOnTable(3);
+
 //    int columnCruiser = qrand() % 7;
 //    QVector<Position*> cruiserPosition = {new Position(rows[2], columnCruiser, PositionStatus::Unknown, AvailabilityStatus::Busy),
 //                                          new Position(rows[2], columnCruiser+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
@@ -95,6 +104,7 @@ void Board::CreateShips()
 //    qDebug() << columnCruiser;
     // Submarine
     QVector<Position*> submarinePosition = PlaceShipOnTable(3);
+
 //    int columnSubmarine = qrand() % 7;
 //    QVector<Position*> submarinePosition = {new Position(rows[3], columnSubmarine, PositionStatus::Unknown, AvailabilityStatus::Busy),
 //                                            new Position(rows[3], columnSubmarine+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
@@ -238,18 +248,21 @@ QVector<IShip*> Board::GetShips()
 AvailabilityStatus Board::GetAvailabilityStatus(int x, int y)
 {
     AvailabilityStatus status = m_boardPositions[x][y]->m_availabilityStatus;
+//    qDebug() << GetAvailabilityStatus(x, y);
     return status;
 }
 
 QVector<Position*> Board::PlaceShipOnTable(int size)
 {
-    int x = qrand() % (10-size);
-    int y = qrand() % (10-size);
+    int x,y;
     // horizontal position
     QVector<Position*> shipPosition;
     if(qrand() % 10 <= 5) {
+        x = qrand() % 10;
+        y = qrand() % (10-size);
         for(int i = 0; i < size; i++) {
-            if(GetAvailabilityStatus(x, y+i) == Busy) {
+            if(GetAvailabilityStatus(x, y+i) == AvailabilityStatus::Busy) {
+                qDebug() << "Jeste";
                 i = 0;
                 x = qrand() % (10-size);
                 y = qrand() % (10-size);
@@ -257,11 +270,15 @@ QVector<Position*> Board::PlaceShipOnTable(int size)
         }
         for(int i = 0; i < size; i++) {
             shipPosition.append(new Position(x, y+i, PositionStatus::Unknown, AvailabilityStatus::Busy));
+            m_boardPositions[x][y+i]->m_availabilityStatus = AvailabilityStatus::Busy;
         }
 //        MainWindow::setShip(x,y,size);
     } else { // vertical position
+        x = qrand() % (10-size);
+        y = qrand() % 10;
         for(int i = 0; i < size; i++) {
-            if(GetAvailabilityStatus(x+i, y) == Busy) {
+            if(GetAvailabilityStatus(x+i, y) == AvailabilityStatus::Busy) {
+                qDebug() << "Jeste";
                 i = 0;
                 x = qrand() % (10-size);
                 y = qrand() % (10-size);
@@ -269,8 +286,8 @@ QVector<Position*> Board::PlaceShipOnTable(int size)
         }
         for(int i = 0; i < size; i++) {
             shipPosition.append(new Position(x+i, y, PositionStatus::Unknown, AvailabilityStatus::Busy));
+            m_boardPositions[x+i][y]->m_availabilityStatus = AvailabilityStatus::Busy;
         }
     }
-
     return shipPosition;
 }
