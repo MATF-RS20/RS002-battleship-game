@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = BattleshipGameProject1.0.0
-DISTDIR = /home/djv/Desktop/rs_projekat/RS002-battleship-game/battleship-matf/.tmp/BattleshipGameProject1.0.0
+DISTDIR = /home/djv/Desktop/ProjectFileRS/RS002-battleship-game/.tmp/BattleshipGameProject1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) /usr/lib/libQt5Widgets.so /usr/lib/libQt5Gui.so /usr/lib/libQt5Core.so /usr/lib/libGL.so -lpthread   
@@ -258,7 +258,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/qt_config.prf \
 		/usr/lib/qt/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/qt/mkspecs/features/spec_post.prf \
-		../.qmake.stash \
+		.qmake.stash \
 		/usr/lib/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/qt/mkspecs/features/toolchain.prf \
 		/usr/lib/qt/mkspecs/features/default_pre.prf \
@@ -493,7 +493,7 @@ Makefile: BattleshipGameProject.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /us
 		/usr/lib/qt/mkspecs/features/qt_config.prf \
 		/usr/lib/qt/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/qt/mkspecs/features/spec_post.prf \
-		../.qmake.stash \
+		.qmake.stash \
 		/usr/lib/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/qt/mkspecs/features/toolchain.prf \
 		/usr/lib/qt/mkspecs/features/default_pre.prf \
@@ -679,7 +679,7 @@ Makefile: BattleshipGameProject.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /us
 /usr/lib/qt/mkspecs/features/qt_config.prf:
 /usr/lib/qt/mkspecs/linux-g++/qmake.conf:
 /usr/lib/qt/mkspecs/features/spec_post.prf:
-../.qmake.stash:
+.qmake.stash:
 /usr/lib/qt/mkspecs/features/exclusive_builds.prf:
 /usr/lib/qt/mkspecs/features/toolchain.prf:
 /usr/lib/qt/mkspecs/features/default_pre.prf:
@@ -726,6 +726,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -758,17 +759,17 @@ moc_mainwindow.cpp: mainwindow.h \
 		Game/Board/Position.hpp \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/djv/Desktop/rs_projekat/RS002-battleship-game/battleship-matf/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/djv/Desktop/rs_projekat/RS002-battleship-game/battleship-matf -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/usr/bin/moc $(DEFINES) --include /home/djv/Desktop/ProjectFileRS/RS002-battleship-game/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/djv/Desktop/ProjectFileRS/RS002-battleship-game -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 moc_EasyMode.cpp: Game/Player/Strategy/EasyMode.h \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/djv/Desktop/rs_projekat/RS002-battleship-game/battleship-matf/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/djv/Desktop/rs_projekat/RS002-battleship-game/battleship-matf -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include Game/Player/Strategy/EasyMode.h -o moc_EasyMode.cpp
+	/usr/bin/moc $(DEFINES) --include /home/djv/Desktop/ProjectFileRS/RS002-battleship-game/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/djv/Desktop/ProjectFileRS/RS002-battleship-game -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include Game/Player/Strategy/EasyMode.h -o moc_EasyMode.cpp
 
 moc_HardMode.cpp: Game/Player/Strategy/HardMode.h \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/djv/Desktop/rs_projekat/RS002-battleship-game/battleship-matf/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/djv/Desktop/rs_projekat/RS002-battleship-game/battleship-matf -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include Game/Player/Strategy/HardMode.h -o moc_HardMode.cpp
+	/usr/bin/moc $(DEFINES) --include /home/djv/Desktop/ProjectFileRS/RS002-battleship-game/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/djv/Desktop/ProjectFileRS/RS002-battleship-game -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include Game/Player/Strategy/HardMode.h -o moc_HardMode.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
