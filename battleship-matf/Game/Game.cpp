@@ -1,7 +1,7 @@
 #include "Game.hpp"
 #include <QThread>
 
-Game::Game(MainWindow *ui, IPlayer* player1, IPlayer* player2)
+Game::Game(MainWindow *ui, std::shared_ptr<IPlayer> player1, std::shared_ptr<IPlayer> player2)
     : m_attacker(player1),
       m_defender(player2),
       m_state(GameState::InProgress),
@@ -14,7 +14,7 @@ Game::Game(MainWindow *ui, IPlayer* player1, IPlayer* player2)
     player->
 }*/
 
-bool Game::AttackBy(IPlayer* attacker, IPlayer* defender)
+bool Game::AttackBy(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender)
 {
     bool playAgain = false;
 
@@ -39,7 +39,7 @@ GameState Game::GetGameState()
 
 void Game::SwapPlayers()
 {
-    IPlayer* tmp = m_attacker;
+    std::shared_ptr<IPlayer> tmp = m_attacker;
     m_attacker = m_defender;
     m_defender = tmp;
 }

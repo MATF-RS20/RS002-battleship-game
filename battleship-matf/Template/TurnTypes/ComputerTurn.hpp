@@ -2,15 +2,16 @@
 #define COMPUTERTURN_HPP
 
 #include "Template/Turn.hpp"
+#include <memory>
 
 class ComputerTurn : public Turn
 {
 public:
-    ComputerTurn(IPlayer* attacker);
+    ComputerTurn(std::shared_ptr<IPlayer> attacker);
     Shoot* CreateShoot();
 
 private:
-    IPlayer* m_attacker;
+    std::shared_ptr<IPlayer> m_attacker;
 };
 
 #endif // COMPUTERTURN_HPP

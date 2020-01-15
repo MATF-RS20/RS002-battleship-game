@@ -10,7 +10,7 @@ TurnFactory::TurnFactory(MainWindow *ui)
 
 }
 
-Turn* TurnFactory::CreateTurn(PlayerType playerType, IPlayer* attacker)
+Turn* TurnFactory::CreateTurn(PlayerType playerType, std::shared_ptr<IPlayer> attacker)
 {
     Turn* turn;
     switch(playerType)
