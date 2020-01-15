@@ -212,14 +212,21 @@ void MainWindow::UpdateFields()
         {
             PositionStatus status1 = m_player1->GetBoard()->GetPositionStatus(row, column);
             PositionStatus status2 = m_player2->GetBoard()->GetPositionStatus(row, column);
-
+            QLabel *miss = new QLabel();
+            miss->setPixmap(QPixmap("Assets/Images/miss.png"));
+            miss->setScaledContents(true);
+            QLabel *hit = new QLabel();
+            hit->setPixmap(QPixmap("Assets/Images/hit.png"));
+            hit->setScaledContents(true);
             switch(status1)
             {
                 case PositionStatus::Hit:
                     ui->player1Field->item(row, column)->setBackground(Qt::black);
+//                    ui->player1Field->setCellWidget(row,column,hit);
                     break;
                 case PositionStatus::Miss:
-                    ui->player1Field->item(row, column)->setBackground(Qt::red);
+//                    ui->player1Field->setCellWidget(row,column,miss);
+                      ui->player1Field->item(row, column)->setBackground(Qt::red);
                     break;
             }
 

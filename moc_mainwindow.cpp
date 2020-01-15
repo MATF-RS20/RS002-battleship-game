@@ -35,18 +35,18 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 25), // "on_startBattleBtn_clicked"
 QT_MOC_LITERAL(2, 37, 0), // ""
-QT_MOC_LITERAL(3, 38, 19), // "player1FieldClicked"
-QT_MOC_LITERAL(4, 58, 19), // "player2FieldClicked"
-QT_MOC_LITERAL(5, 78, 7), // "setShip"
+QT_MOC_LITERAL(3, 38, 7), // "setShip"
+QT_MOC_LITERAL(4, 46, 19), // "player1FieldClicked"
+QT_MOC_LITERAL(5, 66, 19), // "player2FieldClicked"
 QT_MOC_LITERAL(6, 86, 12), // "typeChanged1"
 QT_MOC_LITERAL(7, 99, 12), // "typeChanged2"
 QT_MOC_LITERAL(8, 112, 16) // "playerNameEdited"
 
     },
     "MainWindow\0on_startBattleBtn_clicked\0"
-    "\0player1FieldClicked\0player2FieldClicked\0"
-    "setShip\0typeChanged1\0typeChanged2\0"
-    "playerNameEdited"
+    "\0setShip\0player1FieldClicked\0"
+    "player2FieldClicked\0typeChanged1\0"
+    "typeChanged2\0playerNameEdited"
 };
 #undef QT_MOC_LITERAL
 
@@ -65,18 +65,18 @@ static const uint qt_meta_data_MainWindow[] = {
 
  // slots: name, argc, parameters, tag, flags
        1,    0,   49,    2, 0x08 /* Private */,
-       3,    2,   50,    2, 0x08 /* Private */,
-       4,    2,   55,    2, 0x08 /* Private */,
-       5,    3,   60,    2, 0x08 /* Private */,
+       3,    3,   50,    2, 0x08 /* Private */,
+       4,    2,   57,    2, 0x08 /* Private */,
+       5,    2,   62,    2, 0x08 /* Private */,
        6,    1,   67,    2, 0x08 /* Private */,
        7,    1,   70,    2, 0x08 /* Private */,
        8,    1,   73,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    2,    2,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    2,    2,
     QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,    2,    2,    2,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    2,    2,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    2,    2,
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::QString,    2,
@@ -91,9 +91,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_startBattleBtn_clicked(); break;
-        case 1: _t->player1FieldClicked((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 2: _t->player2FieldClicked((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 3: _t->setShip((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
+        case 1: _t->setShip((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
+        case 2: _t->player1FieldClicked((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 3: _t->player2FieldClicked((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 4: _t->typeChanged1((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 5: _t->typeChanged2((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 6: _t->playerNameEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;

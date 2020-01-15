@@ -4,6 +4,8 @@
 #include <QMessageBox>
 #include <QDebug>
 
+#include "mainwindow.h"
+
 Board::Board() :
     m_ships(),
     m_shipFactory(new ShipFactory())
@@ -256,6 +258,7 @@ QVector<Position*> Board::PlaceShipOnTable(int size)
         for(int i = 0; i < size; i++) {
             shipPosition.append(new Position(x, y+i, PositionStatus::Unknown, AvailabilityStatus::Busy));
         }
+//        MainWindow::setShip(x,y,size);
     } else { // vertical position
         for(int i = 0; i < size; i++) {
             if(GetAvailabilityStatus(x+i, y) == Busy) {
@@ -268,7 +271,6 @@ QVector<Position*> Board::PlaceShipOnTable(int size)
             shipPosition.append(new Position(x+i, y, PositionStatus::Unknown, AvailabilityStatus::Busy));
         }
     }
-//    qDebug() << shipPosition;
 
     return shipPosition;
 }
