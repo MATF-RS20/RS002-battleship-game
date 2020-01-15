@@ -21,6 +21,8 @@ public:
     void AttackOnCoordinates(int x, int y) override;
     PositionStatus GetPositionStatus(int x, int y) override;
     QVector<IShip*> GetShips() override;
+    AvailabilityStatus GetAvailabilityStatus(int x, int y);
+    QVector<Position*> PlaceShipOnTable(int size);
 
 private:
     void CheckPositionsValues(uint ship, QVector<QPair<int, int>> positions);

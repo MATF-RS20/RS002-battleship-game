@@ -58,20 +58,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     // ubacio sam staticki ove brodove samo da vidim kako ce da izgleda
-    // 1. ship, x = 3, y = 2, size = 2
-    setShip(3,2,2);
+//    // 1. ship, x = 3, y = 2, size = 2
+//    setShip(3,2,2);
 
-    // 2. ship, x = 5, y = 7, size = 3
-    setShip(5,7,3);
+//    // 2. ship, x = 5, y = 7, size = 3
+//    setShip(5,7,3);
 
-    // 2. ship, x = 5, y = 7, size = 3
-    setShip(0,1,3);
+//    // 2. ship, x = 5, y = 7, size = 3
+//    setShip(0,1,3);
 
-    // 4. ship, x = 2, y = 0, size = 4
-    setShip(2,0,4);
+//    // 4. ship, x = 2, y = 0, size = 4
+//    setShip(2,0,4);
 
-    // 5. ship, x = 8, y = 4, size = 5
-    setShip(8,4,5);
+//    // 5. ship, x = 8, y = 4, size = 5
+//    setShip(8,4,5);
 
 //    ui->player1Field->setCellWidget(1,5,ui->player1Field->cellWidget(8,4));
 //    ui->player1Field->cellWidget(8,5)

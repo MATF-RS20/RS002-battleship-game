@@ -2,6 +2,7 @@
 #include "Game/Board/Board.hpp"
 #include <QTime>
 #include <QMessageBox>
+#include <QDebug>
 
 Board::Board() :
     m_ships(),
@@ -27,41 +28,81 @@ void Board::InitializeBoard()
 void Board::CreateShips()
 {
     QVector<int> rows;
-    do {
-        int row = qrand() % 10;
-        if (rows.contains(row) == false)
-            rows.append(row);
-    } while(rows.size() < 5);
+    QVector<int> cols;
+//    do {
+//        int row = qrand() % 10;
+//        int col = qrand() % 10;
+//        if (rows.contains(row) == false)
+//            rows.append(row);
+//        rows.append(row);
+//        cols.append(col);
+//    } while(rows.size() < 5);
 
     // Battleship
-    int columnBattleship = qrand() % 6;
-    QVector<Position*> battleshipPosition = {new Position(rows[0], columnBattleship, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                             new Position(rows[0], columnBattleship+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                             new Position(rows[0], columnBattleship+2, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                             new Position(rows[0], columnBattleship+3, PositionStatus::Unknown, AvailabilityStatus::Busy)};
-    // Carrier
-    int columnCarrier = qrand() % 5;
-    QVector<Position*> carrierPosition = {new Position(rows[1], columnCarrier, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                          new Position(rows[1], columnCarrier+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                          new Position(rows[1], columnCarrier+2, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                          new Position(rows[1], columnCarrier+3, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                          new Position(rows[1], columnCarrier+4, PositionStatus::Unknown, AvailabilityStatus::Busy)};
-    // Cruiser
-    int columnCruiser = qrand() % 7;
-    QVector<Position*> cruiserPosition = {new Position(rows[2], columnCruiser, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                          new Position(rows[2], columnCruiser+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                          new Position(rows[2], columnCruiser+2, PositionStatus::Unknown, AvailabilityStatus::Busy)};
+//    int columnBattleship = qrand() % 6;
+//    QVector<Position*> battleshipPosition = {new Position(rows[0], columnBattleship, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                             new Position(rows[0], columnBattleship+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                             new Position(rows[0], columnBattleship+2, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                             new Position(rows[0], columnBattleship+3, PositionStatus::Unknown, AvailabilityStatus::Busy)};
+    // horizontal position
+    QVector<Position*> battleshipPosition = PlaceShipOnTable(4);
 
+    // Carrier
+//    int columnCarrier = qrand() % 5;
+//    QVector<Position*> carrierPosition = {new Position(rows[1], columnCarrier, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                          new Position(rows[1], columnCarrier+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                          new Position(rows[1], columnCarrier+2, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                          new Position(rows[1], columnCarrier+3, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                          new Position(rows[1], columnCarrier+4, PositionStatus::Unknown, AvailabilityStatus::Busy)};
+    QVector<Position*> carrierPosition = PlaceShipOnTable(5);
+//    if(qrand() % 10 <= 5) {
+//        while (GetAvailabilityStatus(rows[1], cols[1]) == Busy ||
+//               GetAvailabilityStatus(rows[1], cols[1]+1) == Busy ||
+//               GetAvailabilityStatus(rows[1], cols[1]+2) == Busy ||
+//               GetAvailabilityStatus(rows[1], cols[1]+3) == Busy) {
+//            rows[1] = qrand() % 10;
+//            cols[1] = qrand() % 10;
+//        }
+//        carrierPosition = {new Position(rows[1], cols[1], PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                              new Position(rows[1], cols[1]+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                              new Position(rows[1], cols[1]+2, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                              new Position(rows[1], cols[1]+3, PositionStatus::Unknown, AvailabilityStatus::Busy)};
+
+//    } else { // vertical position
+//        while (GetAvailabilityStatus(rows[1], cols[1]) == Busy ||
+//               GetAvailabilityStatus(rows[1]+1, cols[1]) == Busy ||
+//               GetAvailabilityStatus(rows[1]+2, cols[1]) == Busy ||
+//               GetAvailabilityStatus(rows[1]+3, cols[1]) == Busy) {
+//            rows[1] = qrand() % 10;
+//            cols[1] = qrand() % 10;
+//        }
+//        carrierPosition = {new Position(rows[1], cols[1], PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                              new Position(rows[1]+1, cols[1], PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                              new Position(rows[1]+2, cols[1], PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                              new Position(rows[1]+3, cols[1], PositionStatus::Unknown, AvailabilityStatus::Busy)};
+//    }
+
+
+    // Cruiser
+    QVector<Position*> cruiserPosition = PlaceShipOnTable(3);
+//    int columnCruiser = qrand() % 7;
+//    QVector<Position*> cruiserPosition = {new Position(rows[2], columnCruiser, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                          new Position(rows[2], columnCruiser+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                          new Position(rows[2], columnCruiser+2, PositionStatus::Unknown, AvailabilityStatus::Busy)};
+
+//    qDebug() << columnCruiser;
     // Submarine
-    int columnSubmarine = qrand() % 7;
-    QVector<Position*> submarinePosition = {new Position(rows[3], columnSubmarine, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                            new Position(rows[3], columnSubmarine+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                            new Position(rows[3], columnSubmarine+2, PositionStatus::Unknown, AvailabilityStatus::Busy)};
+    QVector<Position*> submarinePosition = PlaceShipOnTable(3);
+//    int columnSubmarine = qrand() % 7;
+//    QVector<Position*> submarinePosition = {new Position(rows[3], columnSubmarine, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                            new Position(rows[3], columnSubmarine+1, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                            new Position(rows[3], columnSubmarine+2, PositionStatus::Unknown, AvailabilityStatus::Busy)};
 
     // Destroyer
-    int columnDestroyer = qrand() % 8;
-    QVector<Position*> destroyerPosition = {new Position(rows[4], columnDestroyer, PositionStatus::Unknown, AvailabilityStatus::Busy),
-                                            new Position(rows[4], columnDestroyer+1, PositionStatus::Unknown, AvailabilityStatus::Busy)};
+    QVector<Position*> destroyerPosition = PlaceShipOnTable(2);
+//    int columnDestroyer = qrand() % 8;
+//    QVector<Position*> destroyerPosition = {new Position(rows[4], columnDestroyer, PositionStatus::Unknown, AvailabilityStatus::Busy),
+//                                            new Position(rows[4], columnDestroyer+1, PositionStatus::Unknown, AvailabilityStatus::Busy)};
 
     IShip* battleship = m_shipFactory->CreateShip(ShipType::BattleshipType, battleshipPosition);
     IShip* carrier = m_shipFactory->CreateShip(ShipType::CarrierType, carrierPosition);
@@ -190,4 +231,44 @@ PositionStatus Board::GetPositionStatus(int x, int y)
 QVector<IShip*> Board::GetShips()
 {
     return m_ships;
+}
+
+AvailabilityStatus Board::GetAvailabilityStatus(int x, int y)
+{
+    AvailabilityStatus status = m_boardPositions[x][y]->m_availabilityStatus;
+    return status;
+}
+
+QVector<Position*> Board::PlaceShipOnTable(int size)
+{
+    int x = qrand() % (10-size);
+    int y = qrand() % (10-size);
+    // horizontal position
+    QVector<Position*> shipPosition;
+    if(qrand() % 10 <= 5) {
+        for(int i = 0; i < size; i++) {
+            if(GetAvailabilityStatus(x, y+i) == Busy) {
+                i = 0;
+                x = qrand() % (10-size);
+                y = qrand() % (10-size);
+            }
+        }
+        for(int i = 0; i < size; i++) {
+            shipPosition.append(new Position(x, y+i, PositionStatus::Unknown, AvailabilityStatus::Busy));
+        }
+    } else { // vertical position
+        for(int i = 0; i < size; i++) {
+            if(GetAvailabilityStatus(x+i, y) == Busy) {
+                i = 0;
+                x = qrand() % (10-size);
+                y = qrand() % (10-size);
+            }
+        }
+        for(int i = 0; i < size; i++) {
+            shipPosition.append(new Position(x+i, y, PositionStatus::Unknown, AvailabilityStatus::Busy));
+        }
+    }
+//    qDebug() << shipPosition;
+
+    return shipPosition;
 }
