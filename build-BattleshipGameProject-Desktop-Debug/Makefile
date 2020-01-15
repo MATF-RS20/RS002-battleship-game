@@ -67,7 +67,11 @@ SOURCES       = ../battleship-matf/Game/Ships/FactoryMethod/ShipFactory.cpp \
 		../battleship-matf/Template/Turn.cpp \
 		../battleship-matf/Template/TurnTypes/ComputerTurn.cpp \
 		../battleship-matf/Template/TurnTypes/HumanTurn.cpp \
-		../battleship-matf/Template/Shoot.cpp moc_mainwindow.cpp
+		../battleship-matf/Template/Shoot.cpp \
+		../battleship-matf/Game/Player/Strategy/EasyMode.cpp \
+		../battleship-matf/Game/Player/Strategy/HardMode.cpp moc_mainwindow.cpp \
+		moc_EasyMode.cpp \
+		moc_HardMode.cpp
 OBJECTS       = ShipFactory.o \
 		Carrier.o \
 		main.o \
@@ -84,7 +88,11 @@ OBJECTS       = ShipFactory.o \
 		ComputerTurn.o \
 		HumanTurn.o \
 		Shoot.o \
-		moc_mainwindow.o
+		EasyMode.o \
+		HardMode.o \
+		moc_mainwindow.o \
+		moc_EasyMode.o \
+		moc_HardMode.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -182,7 +190,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../battleship-matf/Template/Turn.hpp \
 		../battleship-matf/Template/Shoot.hpp \
 		../battleship-matf/Template/TurnTypes/ComputerTurn.hpp \
-		../battleship-matf/Template/TurnTypes/HumanTurn.hpp ../battleship-matf/Game/Ships/FactoryMethod/ShipFactory.cpp \
+		../battleship-matf/Template/TurnTypes/HumanTurn.hpp \
+		../battleship-matf/Game/Player/Strategy/EasyMode.h \
+		../battleship-matf/Game/Player/Strategy/HardMode.h ../battleship-matf/Game/Ships/FactoryMethod/ShipFactory.cpp \
 		../battleship-matf/Game/Ships/ShipTypes/Carrier.cpp \
 		../battleship-matf/main.cpp \
 		../battleship-matf/mainwindow.cpp \
@@ -197,7 +207,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../battleship-matf/Template/Turn.cpp \
 		../battleship-matf/Template/TurnTypes/ComputerTurn.cpp \
 		../battleship-matf/Template/TurnTypes/HumanTurn.cpp \
-		../battleship-matf/Template/Shoot.cpp
+		../battleship-matf/Template/Shoot.cpp \
+		../battleship-matf/Game/Player/Strategy/EasyMode.cpp \
+		../battleship-matf/Game/Player/Strategy/HardMode.cpp
 QMAKE_TARGET  = BattleshipGameProject
 DESTDIR       = 
 TARGET        = BattleshipGameProject
@@ -381,8 +393,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../battleship-matf/Game/Board/IBoard.hpp ../battleship-matf/Game/IGame.hpp ../battleship-matf/Game/Player/IPlayer.hpp ../battleship-matf/Game/Ships/FactoryMethod/ShipFactory.hpp ../battleship-matf/Game/Ships/IShip.hpp ../battleship-matf/Game/Ships/ShipTypes/Carrier.hpp ../battleship-matf/mainwindow.h ../battleship-matf/Game/Ships/ShipTypes/Cruiser.hpp ../battleship-matf/Game/Ships/ShipTypes/Battleship.hpp ../battleship-matf/Game/Ships/ShipTypes/Submarine.hpp ../battleship-matf/Game/Ships/ShipTypes/Destroyer.hpp ../battleship-matf/Game/Board/Board.hpp ../battleship-matf/Game/Player/Player.hpp ../battleship-matf/Game/IGame.hpp ../battleship-matf/Game/Game.hpp ../battleship-matf/Template/FactoryMethod/TurnFactory.hpp ../battleship-matf/Game/Board/Position.hpp ../battleship-matf/Template/Turn.hpp ../battleship-matf/Template/Shoot.hpp ../battleship-matf/Template/TurnTypes/ComputerTurn.hpp ../battleship-matf/Template/TurnTypes/HumanTurn.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../battleship-matf/Game/Ships/FactoryMethod/ShipFactory.cpp ../battleship-matf/Game/Ships/ShipTypes/Carrier.cpp ../battleship-matf/main.cpp ../battleship-matf/mainwindow.cpp ../battleship-matf/Game/Ships/ShipTypes/Cruiser.cpp ../battleship-matf/Game/Ships/ShipTypes/Battleship.cpp ../battleship-matf/Game/Ships/ShipTypes/Submarine.cpp ../battleship-matf/Game/Ships/ShipTypes/Destroyer.cpp ../battleship-matf/Game/Board/Board.cpp ../battleship-matf/Game/Player/Player.cpp ../battleship-matf/Game/Game.cpp ../battleship-matf/Template/FactoryMethod/TurnFactory.cpp ../battleship-matf/Template/Turn.cpp ../battleship-matf/Template/TurnTypes/ComputerTurn.cpp ../battleship-matf/Template/TurnTypes/HumanTurn.cpp ../battleship-matf/Template/Shoot.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../battleship-matf/Game/Board/IBoard.hpp ../battleship-matf/Game/IGame.hpp ../battleship-matf/Game/Player/IPlayer.hpp ../battleship-matf/Game/Ships/FactoryMethod/ShipFactory.hpp ../battleship-matf/Game/Ships/IShip.hpp ../battleship-matf/Game/Ships/ShipTypes/Carrier.hpp ../battleship-matf/mainwindow.h ../battleship-matf/Game/Ships/ShipTypes/Cruiser.hpp ../battleship-matf/Game/Ships/ShipTypes/Battleship.hpp ../battleship-matf/Game/Ships/ShipTypes/Submarine.hpp ../battleship-matf/Game/Ships/ShipTypes/Destroyer.hpp ../battleship-matf/Game/Board/Board.hpp ../battleship-matf/Game/Player/Player.hpp ../battleship-matf/Game/IGame.hpp ../battleship-matf/Game/Game.hpp ../battleship-matf/Template/FactoryMethod/TurnFactory.hpp ../battleship-matf/Game/Board/Position.hpp ../battleship-matf/Template/Turn.hpp ../battleship-matf/Template/Shoot.hpp ../battleship-matf/Template/TurnTypes/ComputerTurn.hpp ../battleship-matf/Template/TurnTypes/HumanTurn.hpp ../battleship-matf/Game/Player/Strategy/EasyMode.h ../battleship-matf/Game/Player/Strategy/HardMode.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../battleship-matf/Game/Ships/FactoryMethod/ShipFactory.cpp ../battleship-matf/Game/Ships/ShipTypes/Carrier.cpp ../battleship-matf/main.cpp ../battleship-matf/mainwindow.cpp ../battleship-matf/Game/Ships/ShipTypes/Cruiser.cpp ../battleship-matf/Game/Ships/ShipTypes/Battleship.cpp ../battleship-matf/Game/Ships/ShipTypes/Submarine.cpp ../battleship-matf/Game/Ships/ShipTypes/Destroyer.cpp ../battleship-matf/Game/Board/Board.cpp ../battleship-matf/Game/Player/Player.cpp ../battleship-matf/Game/Game.cpp ../battleship-matf/Template/FactoryMethod/TurnFactory.cpp ../battleship-matf/Template/Turn.cpp ../battleship-matf/Template/TurnTypes/ComputerTurn.cpp ../battleship-matf/Template/TurnTypes/HumanTurn.cpp ../battleship-matf/Template/Shoot.cpp ../battleship-matf/Game/Player/Strategy/EasyMode.cpp ../battleship-matf/Game/Player/Strategy/HardMode.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../battleship-matf/mainwindow.ui $(DISTDIR)/
 
 
@@ -414,9 +426,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_EasyMode.cpp moc_HardMode.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_EasyMode.cpp moc_HardMode.cpp
 moc_mainwindow.cpp: ../battleship-matf/mainwindow.h \
 		../battleship-matf/Game/IGame.hpp \
 		../battleship-matf/Game/Player/IPlayer.hpp \
@@ -426,6 +438,16 @@ moc_mainwindow.cpp: ../battleship-matf/mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/nemanja/Git/build-BattleshipGameProject-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/nemanja/Git/battleship-matf -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include ../battleship-matf/mainwindow.h -o moc_mainwindow.cpp
+
+moc_EasyMode.cpp: ../battleship-matf/Game/Player/Strategy/EasyMode.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/nemanja/Git/build-BattleshipGameProject-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/nemanja/Git/battleship-matf -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include ../battleship-matf/Game/Player/Strategy/EasyMode.h -o moc_EasyMode.cpp
+
+moc_HardMode.cpp: ../battleship-matf/Game/Player/Strategy/HardMode.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/nemanja/Git/build-BattleshipGameProject-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/nemanja/Git/battleship-matf -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include ../battleship-matf/Game/Player/Strategy/HardMode.h -o moc_HardMode.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -584,8 +606,20 @@ Shoot.o: ../battleship-matf/Template/Shoot.cpp ../battleship-matf/Template/Shoot
 		../battleship-matf/Game/Board/Position.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Shoot.o ../battleship-matf/Template/Shoot.cpp
 
+EasyMode.o: ../battleship-matf/Game/Player/Strategy/EasyMode.cpp ../battleship-matf/Game/Player/Strategy/EasyMode.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EasyMode.o ../battleship-matf/Game/Player/Strategy/EasyMode.cpp
+
+HardMode.o: ../battleship-matf/Game/Player/Strategy/HardMode.cpp ../battleship-matf/Game/Player/Strategy/HardMode.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HardMode.o ../battleship-matf/Game/Player/Strategy/HardMode.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_EasyMode.o: moc_EasyMode.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_EasyMode.o moc_EasyMode.cpp
+
+moc_HardMode.o: moc_HardMode.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_HardMode.o moc_HardMode.cpp
 
 ####### Install
 

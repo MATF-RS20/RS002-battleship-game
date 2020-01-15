@@ -2,6 +2,7 @@
 #define IGAME_HPP
 
 #include "Game/Player/IPlayer.hpp"
+#include <memory>
 
 enum GameState
 {
@@ -14,7 +15,7 @@ class IGame
 {
 public:
     virtual ~IGame() {}
-    virtual bool AttackBy(IPlayer* player, IPlayer* defender) = 0;
+    virtual bool AttackBy(std::shared_ptr<IPlayer> player, std::shared_ptr<IPlayer> defender) = 0;
     virtual GameState GetGameState() = 0;
     virtual void SwapPlayers() = 0;
 };

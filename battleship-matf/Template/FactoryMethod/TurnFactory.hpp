@@ -5,13 +5,14 @@
 
 #include "Game/Player/IPlayer.hpp"
 #include "Turn.hpp"
+#include <memory>
 
 class TurnFactory
 {
 public:
     TurnFactory(MainWindow *ui);
 
-    Turn* CreateTurn(PlayerType playerType, IPlayer* attacker);
+    Turn* CreateTurn(PlayerType playerType, std::shared_ptr<IPlayer> attacker);
 
 private:
     MainWindow *m_ui;

@@ -1,7 +1,7 @@
 #include "Template/TurnTypes/ComputerTurn.hpp"
 #include <QTime>
 
-ComputerTurn::ComputerTurn(IPlayer* attacker)
+ComputerTurn::ComputerTurn(std::shared_ptr<IPlayer> attacker)
     : m_attacker(attacker)
 {
 

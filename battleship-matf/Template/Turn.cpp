@@ -1,6 +1,6 @@
 #include "Template/Turn.hpp"
 
-bool Turn::Play(IPlayer* attacker, IPlayer* defender)
+bool Turn::Play(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender)
 {
     Shoot* shoot = CreateShoot();
     int x = shoot->getPosition()->m_coordinateX;
@@ -10,7 +10,7 @@ bool Turn::Play(IPlayer* attacker, IPlayer* defender)
     return ExecuteShoot(attacker, defender, shoot->getPosition());
 }
 
-bool Turn::ExecuteShoot(IPlayer* attacker, IPlayer* defender, Position* shootPosition)
+bool Turn::ExecuteShoot(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender, Position* shootPosition)
 {
     bool isHit = false;
     PositionStatus status;

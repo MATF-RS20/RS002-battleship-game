@@ -4,16 +4,17 @@
 #include "Game/Player/IPlayer.hpp"
 #include "Game/Board/Position.hpp"
 #include "Template/Shoot.hpp"
+#include <memory>
 
 class Turn
 {
 public:
-    bool Play(IPlayer* attacker, IPlayer* defender);
+    bool Play(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender);
 
     virtual Shoot* CreateShoot() {}
 
 private:
-    bool ExecuteShoot(IPlayer* attacker, IPlayer* defender, Position* shootPosition);
+    bool ExecuteShoot(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender, Position* shootPosition);
 
 };
 
