@@ -19,6 +19,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
@@ -47,6 +48,10 @@ public:
     QLabel *ship3;
     QLabel *ship4;
     QLabel *ship5;
+    QWidget *horizontalLayoutWidget_2;
+    QHBoxLayout *gameDifficulty;
+    QRadioButton *radioButtonEasy;
+    QRadioButton *radioButtonHard;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -55,12 +60,12 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(933, 484);
+        MainWindow->resize(933, 492);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(40, 20, 841, 31));
+        horizontalLayoutWidget->setGeometry(QRect(10, 20, 901, 31));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -97,7 +102,7 @@ public:
         if (player1Field->rowCount() < 10)
             player1Field->setRowCount(10);
         player1Field->setObjectName(QString::fromUtf8("player1Field"));
-        player1Field->setGeometry(QRect(40, 70, 341, 341));
+        player1Field->setGeometry(QRect(10, 70, 341, 341));
         player1Field->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         player1Field->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
         player1Field->setAutoScroll(true);
@@ -111,14 +116,13 @@ public:
                 player1Field->item(i, j)->setBackground(Qt::blue);
             }
         }
-
         player2Field = new QTableWidget(centralWidget);
         if (player2Field->columnCount() < 10)
             player2Field->setColumnCount(10);
         if (player2Field->rowCount() < 10)
             player2Field->setRowCount(10);
         player2Field->setObjectName(QString::fromUtf8("player2Field"));
-        player2Field->setGeometry(QRect(540, 70, 341, 341));
+        player2Field->setGeometry(QRect(570, 70, 341, 341));
         player2Field->setRowCount(10);
         player2Field->setColumnCount(10);
         for(int i = 0; i < 10; ++i)
@@ -131,7 +135,7 @@ public:
         }
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(390, 79, 141, 201));
+        verticalLayoutWidget->setGeometry(QRect(390, 140, 141, 201));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -167,6 +171,30 @@ public:
 
         verticalLayout->addWidget(ship5);
 
+        horizontalLayoutWidget_2 = new QWidget(centralWidget);
+        horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
+        horizontalLayoutWidget_2->setGeometry(QRect(390, 60, 131, 41));
+        gameDifficulty = new QHBoxLayout(horizontalLayoutWidget_2);
+        gameDifficulty->setSpacing(6);
+        gameDifficulty->setContentsMargins(11, 11, 11, 11);
+        gameDifficulty->setObjectName(QString::fromUtf8("gameDifficulty"));
+        gameDifficulty->setContentsMargins(0, 0, 0, 0);
+        radioButtonEasy = new QRadioButton(horizontalLayoutWidget_2);
+        radioButtonEasy->setObjectName(QString::fromUtf8("radioButtonEasy"));
+
+        gameDifficulty->addWidget(radioButtonEasy);
+
+        radioButtonHard = new QRadioButton(horizontalLayoutWidget_2);
+        radioButtonHard->setObjectName(QString::fromUtf8("radioButtonHard"));
+        radioButtonHard->setEnabled(true);
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(radioButtonHard->sizePolicy().hasHeightForWidth());
+        radioButtonHard->setSizePolicy(sizePolicy);
+
+        gameDifficulty->addWidget(radioButtonHard);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -197,6 +225,8 @@ public:
         ship3->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         ship4->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         ship5->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        radioButtonEasy->setText(QCoreApplication::translate("MainWindow", "Easy", nullptr));
+        radioButtonHard->setText(QCoreApplication::translate("MainWindow", "Hard", nullptr));
     } // retranslateUi
 
 };
