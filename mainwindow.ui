@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>933</width>
-    <height>492</height>
+    <width>950</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
+      <y>60</y>
       <width>901</width>
       <height>32</height>
      </rect>
@@ -63,7 +63,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>70</y>
+      <y>120</y>
       <width>341</width>
       <height>341</height>
      </rect>
@@ -76,6 +76,9 @@
     </property>
     <property name="autoScroll">
      <bool>true</bool>
+    </property>
+    <property name="gridStyle">
+     <enum>Qt::SolidLine</enum>
     </property>
     <property name="rowCount">
      <number>10</number>
@@ -108,7 +111,7 @@
     <property name="geometry">
      <rect>
       <x>570</x>
-      <y>70</y>
+      <y>120</y>
       <width>341</width>
       <height>341</height>
      </rect>
@@ -144,7 +147,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>140</y>
+      <y>160</y>
       <width>141</width>
       <height>201</height>
      </rect>
@@ -221,7 +224,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>60</y>
+      <y>100</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -258,8 +261,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>933</width>
-     <height>26</height>
+     <width>950</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>

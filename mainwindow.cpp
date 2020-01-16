@@ -21,6 +21,17 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    for(int i = 0; i < 10; ++i)
+    {
+        for(int j = 0; j < 10; ++j)
+        {
+            ui->player1Field->setItem(i, j, new QTableWidgetItem);
+            ui->player1Field->item(i, j)->setBackground(Qt::blue);
+            ui->player2Field->setItem(i, j, new QTableWidgetItem);
+            ui->player2Field->item(i, j)->setBackground(Qt::blue);
+        }
+    }
+
     connect(ui->player1Field, SIGNAL(cellClicked(int, int)), this, SLOT(player1FieldClicked(int, int)));
     connect(ui->player2Field, SIGNAL(cellClicked(int, int)), this, SLOT(player2FieldClicked(int, int)));
 
@@ -87,6 +98,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->player1Field->setEnabled(false);
     ui->player2Field->setEnabled(false);
+
+//    QPixmap background("Assets/Images/background.jpg");
+
+    this->centralWidget()->setStyleSheet(
+             "background-image:url(\"Assets/Images/background.jpg\"); background-position: center;" );
+    ui->player1Field->setStyleSheet("background:none");
+    ui->player2Field->setStyleSheet("background:none");
+
 }
 
 MainWindow::~MainWindow()

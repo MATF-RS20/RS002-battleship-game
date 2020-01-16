@@ -60,12 +60,12 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(933, 492);
+        MainWindow->resize(950, 600);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(10, 20, 901, 31));
+        horizontalLayoutWidget->setGeometry(QRect(10, 60, 901, 32));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -102,40 +102,25 @@ public:
         if (player1Field->rowCount() < 10)
             player1Field->setRowCount(10);
         player1Field->setObjectName(QString::fromUtf8("player1Field"));
-        player1Field->setGeometry(QRect(10, 70, 341, 341));
+        player1Field->setGeometry(QRect(10, 120, 341, 341));
         player1Field->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         player1Field->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
         player1Field->setAutoScroll(true);
+        player1Field->setGridStyle(Qt::SolidLine);
         player1Field->setRowCount(10);
         player1Field->setColumnCount(10);
-        for(int i = 0; i < 10; ++i)
-        {
-            for(int j = 0; j < 10; ++j)
-            {
-                player1Field->setItem(i, j, new QTableWidgetItem);
-                player1Field->item(i, j)->setBackground(Qt::blue);
-            }
-        }
         player2Field = new QTableWidget(centralWidget);
         if (player2Field->columnCount() < 10)
             player2Field->setColumnCount(10);
         if (player2Field->rowCount() < 10)
             player2Field->setRowCount(10);
         player2Field->setObjectName(QString::fromUtf8("player2Field"));
-        player2Field->setGeometry(QRect(570, 70, 341, 341));
+        player2Field->setGeometry(QRect(570, 120, 341, 341));
         player2Field->setRowCount(10);
         player2Field->setColumnCount(10);
-        for(int i = 0; i < 10; ++i)
-        {
-            for(int j = 0; j < 10; ++j)
-            {
-                player2Field->setItem(i, j, new QTableWidgetItem);
-                player2Field->item(i, j)->setBackground(Qt::blue);
-            }
-        }
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(390, 140, 141, 201));
+        verticalLayoutWidget->setGeometry(QRect(390, 160, 141, 201));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -173,7 +158,7 @@ public:
 
         horizontalLayoutWidget_2 = new QWidget(centralWidget);
         horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(390, 60, 131, 41));
+        horizontalLayoutWidget_2->setGeometry(QRect(390, 100, 131, 41));
         gameDifficulty = new QHBoxLayout(horizontalLayoutWidget_2);
         gameDifficulty->setSpacing(6);
         gameDifficulty->setContentsMargins(11, 11, 11, 11);
@@ -198,7 +183,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 933, 25));
+        menuBar->setGeometry(QRect(0, 0, 950, 25));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -214,7 +199,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Battleship Game", nullptr));
         player1NameInput->setText(QString());
         player1NameInput->setPlaceholderText(QCoreApplication::translate("MainWindow", "Player1", nullptr));
         startBattleBtn->setText(QCoreApplication::translate("MainWindow", "Start Battle", nullptr));
