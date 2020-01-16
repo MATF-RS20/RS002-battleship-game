@@ -14,7 +14,6 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -43,11 +42,11 @@ public:
     QTableWidget *player2Field;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
-    QLabel *ship1;
-    QLabel *ship2;
-    QLabel *ship3;
-    QLabel *ship4;
-    QLabel *ship5;
+    QPushButton *ship1Btn;
+    QPushButton *ship2Btn;
+    QPushButton *ship3Btn;
+    QPushButton *ship4Btn;
+    QPushButton *ship5Btn;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *gameDifficulty;
     QRadioButton *radioButtonEasy;
@@ -120,41 +119,41 @@ public:
         player2Field->setColumnCount(10);
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(390, 160, 141, 201));
+        verticalLayoutWidget->setGeometry(QRect(390, 160, 141, 276));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        ship1 = new QLabel(verticalLayoutWidget);
-        ship1->setObjectName(QString::fromUtf8("ship1"));
-        ship1->setMaximumSize(QSize(60, 30));
+        ship1Btn = new QPushButton(verticalLayoutWidget);
+        ship1Btn->setObjectName(QString::fromUtf8("ship1Btn"));
+        ship1Btn->setFlat(true);
 
-        verticalLayout->addWidget(ship1);
+        verticalLayout->addWidget(ship1Btn);
 
-        ship2 = new QLabel(verticalLayoutWidget);
-        ship2->setObjectName(QString::fromUtf8("ship2"));
-        ship2->setMaximumSize(QSize(90, 30));
+        ship2Btn = new QPushButton(verticalLayoutWidget);
+        ship2Btn->setObjectName(QString::fromUtf8("ship2Btn"));
+        ship2Btn->setFlat(true);
 
-        verticalLayout->addWidget(ship2);
+        verticalLayout->addWidget(ship2Btn);
 
-        ship3 = new QLabel(verticalLayoutWidget);
-        ship3->setObjectName(QString::fromUtf8("ship3"));
-        ship3->setMaximumSize(QSize(90, 30));
+        ship3Btn = new QPushButton(verticalLayoutWidget);
+        ship3Btn->setObjectName(QString::fromUtf8("ship3Btn"));
+        ship3Btn->setFlat(true);
 
-        verticalLayout->addWidget(ship3);
+        verticalLayout->addWidget(ship3Btn);
 
-        ship4 = new QLabel(verticalLayoutWidget);
-        ship4->setObjectName(QString::fromUtf8("ship4"));
-        ship4->setMaximumSize(QSize(120, 30));
+        ship4Btn = new QPushButton(verticalLayoutWidget);
+        ship4Btn->setObjectName(QString::fromUtf8("ship4Btn"));
+        ship4Btn->setFlat(true);
 
-        verticalLayout->addWidget(ship4);
+        verticalLayout->addWidget(ship4Btn);
 
-        ship5 = new QLabel(verticalLayoutWidget);
-        ship5->setObjectName(QString::fromUtf8("ship5"));
-        ship5->setMaximumSize(QSize(150, 30));
+        ship5Btn = new QPushButton(verticalLayoutWidget);
+        ship5Btn->setObjectName(QString::fromUtf8("ship5Btn"));
+        ship5Btn->setFlat(true);
 
-        verticalLayout->addWidget(ship5);
+        verticalLayout->addWidget(ship5Btn);
 
         horizontalLayoutWidget_2 = new QWidget(centralWidget);
         horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
@@ -205,11 +204,11 @@ public:
         startBattleBtn->setText(QCoreApplication::translate("MainWindow", "Start Battle", nullptr));
         player2NameInput->setText(QString());
         player2NameInput->setPlaceholderText(QCoreApplication::translate("MainWindow", "Player2", nullptr));
-        ship1->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        ship2->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        ship3->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        ship4->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        ship5->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        ship1Btn->setText(QString());
+        ship2Btn->setText(QString());
+        ship3Btn->setText(QString());
+        ship4Btn->setText(QString());
+        ship5Btn->setText(QString());
         radioButtonEasy->setText(QCoreApplication::translate("MainWindow", "Easy", nullptr));
         radioButtonHard->setText(QCoreApplication::translate("MainWindow", "Hard", nullptr));
     } // retranslateUi

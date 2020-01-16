@@ -149,72 +149,57 @@
       <x>390</x>
       <y>160</y>
       <width>141</width>
-      <height>201</height>
+      <height>276</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLabel" name="ship1">
-       <property name="maximumSize">
-        <size>
-         <width>60</width>
-         <height>30</height>
-        </size>
-       </property>
+      <widget class="QPushButton" name="ship1Btn">
        <property name="text">
-        <string>TextLabel</string>
+        <string/>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="ship2">
-       <property name="maximumSize">
-        <size>
-         <width>90</width>
-         <height>30</height>
-        </size>
-       </property>
+      <widget class="QPushButton" name="ship2Btn">
        <property name="text">
-        <string>TextLabel</string>
+        <string/>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="ship3">
-       <property name="maximumSize">
-        <size>
-         <width>90</width>
-         <height>30</height>
-        </size>
-       </property>
+      <widget class="QPushButton" name="ship3Btn">
        <property name="text">
-        <string>TextLabel</string>
+        <string/>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="ship4">
-       <property name="maximumSize">
-        <size>
-         <width>120</width>
-         <height>30</height>
-        </size>
-       </property>
+      <widget class="QPushButton" name="ship4Btn">
        <property name="text">
-        <string>TextLabel</string>
+        <string/>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="ship5">
-       <property name="maximumSize">
-        <size>
-         <width>150</width>
-         <height>30</height>
-        </size>
-       </property>
+      <widget class="QPushButton" name="ship5Btn">
        <property name="text">
-        <string>TextLabel</string>
+        <string/>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

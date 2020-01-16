@@ -56,13 +56,31 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->player2Field->setRowHeight(i,30);
     }
 
+//    connect(ui->ship1, SIGNAL(clicked(const QString& text)), &lineEdit, SLOT(setText(const QString& text)));
+//    connect(ui->ship1, &QLabel::, &lineEdit, SLOT(setText(const QString& text)));
+
+//    QPixmap pixmap("image_path");
+//    QIcon ButtonIcon(pixmap);
+//    button->setIcon(ButtonIcon);
+    QPixmap pixmap("Assets/Images/2.png");
+    ui->ship1Btn->setIcon(QIcon(QPixmap("Assets/Images/2.png")));
+    ui->ship1Btn->setIconSize(QSize(60, 30));
+    ui->ship2Btn->setIcon(QIcon(QPixmap("Assets/Images/3.png")));
+    ui->ship2Btn->setIconSize(QSize(90, 30));
+    ui->ship3Btn->setIcon(QIcon(QPixmap("Assets/Images/3.png")));
+    ui->ship3Btn->setIconSize(QSize(90, 30));
+    ui->ship4Btn->setIcon(QIcon(QPixmap("Assets/Images/4.png")));
+    ui->ship4Btn->setIconSize(QSize(120, 30));
+    ui->ship5Btn->setIcon(QIcon(QPixmap("Assets/Images/5.png")));
+    ui->ship5Btn->setIconSize(QSize(150, 30));
+
     // prikaz i odabir brodova
     // TODO: napraviti draggable elemente koje mozemo pomerati u tabelu
-    ui->ship1->setPixmap(QPixmap("Assets/Images/2.png"));
-    ui->ship2->setPixmap(QPixmap("Assets/Images/3.png"));
-    ui->ship3->setPixmap(QPixmap("Assets/Images/3.png"));
-    ui->ship4->setPixmap(QPixmap("Assets/Images/4.png"));
-    ui->ship5->setPixmap(QPixmap("Assets/Images/5.png"));
+//    ui->ship1->setPixmap(QPixmap("Assets/Images/2.png"));
+//    ui->ship2->setPixmap(QPixmap("Assets/Images/3.png"));
+//    ui->ship3->setPixmap(QPixmap("Assets/Images/3.png"));
+//    ui->ship4->setPixmap(QPixmap("Assets/Images/4.png"));
+//    ui->ship5->setPixmap(QPixmap("Assets/Images/5.png"));
 
     connect(ui->startBattleBtn, &QPushButton::clicked, this, [this](){
         ui->player1NameInput->setDisabled(true);
