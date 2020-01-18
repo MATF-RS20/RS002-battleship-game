@@ -72,6 +72,30 @@ HEADERS += \
 FORMS += \
         mainwindow.ui
 
+
+RESOURCES += "Assets/Images/hit.png" \
+                "Assets/Images/miss.png" \
+                "Assets/Images/2.png" \
+                "Assets/Images/3.png" \
+                "Assets/Images/3(2).png" \
+                "Assets/Images/4.png" \
+                "Assets/Images/5.png" \
+                "Assets/Images/background.jpg" \
+                "Assets/Images/2_1.png" \
+                "Assets/Images/2_2.png" \
+                "Assets/Images/3_1.png" \
+                "Assets/Images/3_2.png" \
+                "Assets/Images/3_3.png" \
+                "Assets/Images/4_1.png" \
+                "Assets/Images/4_2.png" \
+                "Assets/Images/4_3.png" \
+                "Assets/Images/4_4.png" \
+                "Assets/Images/5_1.png" \
+                "Assets/Images/5_2.png" \
+                "Assets/Images/5_3.png" \
+                "Assets/Images/5_4.png" \
+                "Assets/Images/5_5.png"
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
