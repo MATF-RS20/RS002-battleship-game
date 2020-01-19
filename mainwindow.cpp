@@ -240,7 +240,12 @@ void MainWindow::on_startBattleBtn_clicked()
     if (m_game->GetGameState() == GameState::GameOver)
     {
         QMessageBox gameOverMsgBox;
-        gameOverMsgBox.setText(QString("Game over!"));
+        int status1 = m_player1->GetBoard()->NumberOfAvailableShips();
+        int status2 = m_player2->GetBoard()->NumberOfAvailableShips();
+        if (status1 == 0)
+            gameOverMsgBox.setText(QString("Game over! Player 2 won the game!"));
+        if (status2 == 0)
+            gameOverMsgBox.setText(QString("Game over! Player 1 won the game!"));
         gameOverMsgBox.exec();
     }
 }
