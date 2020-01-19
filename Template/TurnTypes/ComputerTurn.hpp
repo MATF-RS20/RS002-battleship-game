@@ -2,6 +2,7 @@
 #define COMPUTERTURN_HPP
 
 #include "Template/Turn.hpp"
+#include "Game/Player/Strategy/IShootingStrategy.hpp"
 #include <memory>
 
 class ComputerTurn : public Turn
@@ -12,6 +13,7 @@ public:
 
 private:
     std::shared_ptr<IPlayer> m_attacker;
+    std::shared_ptr<IShootingStrategy> m_strategy;
 };
 
 #endif // COMPUTERTURN_HPP

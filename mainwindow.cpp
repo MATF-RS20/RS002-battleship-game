@@ -196,13 +196,16 @@ void MainWindow::on_startBattleBtn_clicked()
     if(ui->player2Type->currentText() == "Computer")
             player2Type = PlayerType::Computer;
 
-    m_player1 = std::make_shared<Player>(player1Name, player1Type, ui->radioButtonHard1->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
-    m_player2 = std::make_shared<Player>(player2Name, player2Type, ui->radioButtonHard2->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
+    //m_player1 = std::make_shared<Player>(player1Name, player1Type, ui->radioButtonHard1->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
+    //m_player2 = std::make_shared<Player>(player2Name, player2Type, ui->radioButtonHard2->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
+    m_player1 = std::make_shared<Player>(player1Name, player1Type, PlayerStrategy::Easy);
+    m_player2 = std::make_shared<Player>(player2Name, player2Type, PlayerStrategy::Easy);
 
     m_game = new Game(this, m_player1, m_player2);
 
     ui->player1Field->setEnabled(false);
     ui->player2Field->setEnabled(true);
+    QThread::msleep(5000);
     UpdateFields();
     QApplication::processEvents();
 
@@ -213,13 +216,13 @@ void MainWindow::on_startBattleBtn_clicked()
 
             ui->player1Field->setEnabled(false);
             ui->player2Field->setEnabled(true);
-            QApplication::processEvents();
+            //QApplication::processEvents();
             do
             {
                 playAgain = m_game->AttackBy(m_player1, m_player2);
                 UpdateFields();
                 QApplication::processEvents();
-                QThread::msleep(50);
+                QThread::msleep(100);
             }
             while(playAgain);
 
@@ -231,7 +234,7 @@ void MainWindow::on_startBattleBtn_clicked()
                 playAgain = m_game->AttackBy(m_player2, m_player1);
                 UpdateFields();
                 QApplication::processEvents();
-                QThread::msleep(50);
+                QThread::msleep(100);
             }
             while(playAgain);
         }

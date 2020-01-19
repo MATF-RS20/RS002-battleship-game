@@ -7,17 +7,17 @@ ShootingStrategyFactory::ShootingStrategyFactory()
 
 }
 
-IShootingStrategy* ShootingStrategyFactory::CreateComputerStrategy(PlayerStrategy computerStrategy)
+std::shared_ptr<IShootingStrategy> ShootingStrategyFactory::CreateComputerStrategy(PlayerStrategy computerStrategy)
 {
     switch(computerStrategy)
     {
         case PlayerStrategy::Easy:
         {
-            return new EasyMode();
+            return std::make_shared<EasyMode>();
         }
         case PlayerStrategy::Hard:
         {
-            return new HardMode();
+            return std::make_shared<HardMode>();
         }
     }
 }

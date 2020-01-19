@@ -1,25 +1,22 @@
 #include "Template/TurnTypes/ComputerTurn.hpp"
+#include "Game/Player/Strategy/ShootingStrategyFactory.hpp"
 #include <QTime>
 
 ComputerTurn::ComputerTurn(std::shared_ptr<IPlayer> attacker)
-    : m_attacker(attacker)
+    : m_attacker(attacker),
+      m_strategy()
 {
-
+    //ShootingStrategyFactory shootingStrategyFactory;
+    //m_strategy = shootingStrategyFactory.CreateComputerStrategy(attacker->GetPlayerStrategy());
 }
 
 Shoot* ComputerTurn::CreateShoot()
 {
-    QVector<QPair<int, int>> attackedPositions = m_attacker->GetAttackedPositions();
-    int randX = 0;
-    int randY = 0;
-    QPair<int, int> position;
-    do {
-        randX = qrand() % 10;
-        randY = qrand() % 10;
-        position.first = randX;
-        position.second = randY;
-    } while(attackedPositions.contains(position));
+    ShootingStrategyFactory shootingStrategyFactory;
+    m_strategy = shootingStrategyFactory.CreateComputerStrategy(m_attacker->GetPlayerStrategy());
 
-    Shoot* shoot = new Shoot(randX, randY);
+    QPair<int, int> position = m_strategy->GetAttackingPosition(m_attacker);
+
+    Shoot* shoot = new Shoot(position.first, position.second);
     return shoot;
 }
