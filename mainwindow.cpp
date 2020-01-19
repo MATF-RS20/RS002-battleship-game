@@ -35,8 +35,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->player1Field, SIGNAL(cellClicked(int, int)), this, SLOT(player1FieldClicked(int, int)));
     connect(ui->player2Field, SIGNAL(cellClicked(int, int)), this, SLOT(player2FieldClicked(int, int)));
 
-    ui->radioButtonEasy->setHidden(true);
-    ui->radioButtonHard->setHidden(true);
+    ui->radioButtonEasy1->setHidden(true);
+    ui->radioButtonHard1->setHidden(true);
+    ui->radioButtonEasy2->setHidden(true);
+    ui->radioButtonHard2->setHidden(true);
 
     ui->player1Type->addItems({"Player", "Computer"});
     ui->player2Type->addItems({"Player", "Computer"});
@@ -303,8 +305,8 @@ void MainWindow::typeChanged1(const QString& name)
 {
     if (name.toStdString().compare("Computer") == 0) {
         ui->player1NameInput->hide();
-        ui->radioButtonEasy->setVisible(true);
-        ui->radioButtonHard->setVisible(true);
+        ui->radioButtonEasy1->setVisible(true);
+        ui->radioButtonHard1->setVisible(true);
         if (!ui->player2NameInput->text().isEmpty())
             ui->startBattleBtn->setEnabled(true);
         if (ui->player2Type->currentText().toStdString().compare("Computer") == 0)
@@ -312,14 +314,14 @@ void MainWindow::typeChanged1(const QString& name)
     }
     else if (name.toStdString().compare("Player") == 0) {
         ui->player1NameInput->show();
-        ui->radioButtonEasy->setHidden(true);
-        ui->radioButtonHard->setHidden(true);
+        ui->radioButtonEasy1->setHidden(true);
+        ui->radioButtonHard1->setHidden(true);
         if (ui->player2NameInput->text().isEmpty() || ui->player1NameInput->text().isEmpty())
             ui->startBattleBtn->setDisabled(true);
 
         if (ui->player2Type->currentText().toStdString().compare("Computer") == 0) {
-            ui->radioButtonEasy->setVisible(true);
-            ui->radioButtonHard->setVisible(true);
+            ui->radioButtonEasy1->setVisible(true);
+            ui->radioButtonHard1->setVisible(true);
         }
     }
 }
@@ -328,8 +330,8 @@ void MainWindow::typeChanged2(const QString& name)
 {
     if (name.toStdString().compare("Computer") == 0) {
         ui->player2NameInput->hide();
-        ui->radioButtonEasy->setVisible(true);
-        ui->radioButtonHard->setVisible(true);
+        ui->radioButtonEasy2->setVisible(true);
+        ui->radioButtonHard2->setVisible(true);
         if (!ui->player1NameInput->text().isEmpty())
             ui->startBattleBtn->setEnabled(true);
 
@@ -338,14 +340,14 @@ void MainWindow::typeChanged2(const QString& name)
     }
     else if (name.toStdString().compare("Player") == 0) {
         ui->player2NameInput->show();
-        ui->radioButtonEasy->setHidden(true);
-        ui->radioButtonHard->setHidden(true);
+        ui->radioButtonEasy2->setHidden(true);
+        ui->radioButtonHard2->setHidden(true);
         if (ui->player2NameInput->text().isEmpty() || ui->player1NameInput->text().isEmpty())
             ui->startBattleBtn->setDisabled(true);
 
         if (ui->player1Type->currentText().toStdString().compare("Computer") == 0) {
-            ui->radioButtonEasy->setVisible(true);
-            ui->radioButtonHard->setVisible(true);
+            ui->radioButtonEasy2->setVisible(true);
+            ui->radioButtonHard2->setVisible(true);
         }
     }
 }

@@ -25,37 +25,89 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QComboBox" name="player1Type"/>
+      <layout class="QHBoxLayout" name="horizontalLayout_StartBtn">
+       <item>
+        <widget class="QComboBox" name="player1Type"/>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButtonEasy1">
+         <property name="text">
+          <string>Easy</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButtonHard1">
+         <property name="text">
+          <string>Hard</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="player1NameInput">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>Player1</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
-      <widget class="QLineEdit" name="player1NameInput">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="placeholderText">
-        <string>Player1</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_Player1">
+       <item>
+        <widget class="QPushButton" name="startBattleBtn">
+         <property name="text">
+          <string>Start Battle</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
-      <widget class="QPushButton" name="startBattleBtn">
-       <property name="text">
-        <string>Start Battle</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="player2Type"/>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="player2NameInput">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="placeholderText">
-        <string>Player2</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_Pleyer2">
+       <item>
+        <widget class="QComboBox" name="player2Type"/>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButtonEasy2">
+         <property name="text">
+          <string>Easy</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButtonHard2">
+         <property name="text">
+          <string>Hard</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="player2NameInput">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>Player2</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
@@ -200,41 +252,6 @@
        </property>
        <property name="flat">
         <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>100</y>
-      <width>131</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="gameDifficulty">
-     <item>
-      <widget class="QRadioButton" name="radioButtonEasy">
-       <property name="text">
-        <string>Easy</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QRadioButton" name="radioButtonHard">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Hard</string>
        </property>
       </widget>
      </item>
