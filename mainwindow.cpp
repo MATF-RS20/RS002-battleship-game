@@ -196,16 +196,14 @@ void MainWindow::on_startBattleBtn_clicked()
     if(ui->player2Type->currentText() == "Computer")
             player2Type = PlayerType::Computer;
 
-    //m_player1 = std::make_shared<Player>(player1Name, player1Type, ui->radioButtonHard1->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
-    //m_player2 = std::make_shared<Player>(player2Name, player2Type, ui->radioButtonHard2->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
-    m_player1 = std::make_shared<Player>(player1Name, player1Type, PlayerStrategy::Easy);
-    m_player2 = std::make_shared<Player>(player2Name, player2Type, PlayerStrategy::Easy);
+    m_player1 = std::make_shared<Player>(player1Name, player1Type, ui->radioButtonHard1->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
+    m_player2 = std::make_shared<Player>(player2Name, player2Type, ui->radioButtonHard2->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
 
     m_game = new Game(this, m_player1, m_player2);
 
     ui->player1Field->setEnabled(false);
     ui->player2Field->setEnabled(true);
-    QThread::msleep(5000);
+    QThread::msleep(100);
     UpdateFields();
     QApplication::processEvents();
 
@@ -216,7 +214,7 @@ void MainWindow::on_startBattleBtn_clicked()
 
             ui->player1Field->setEnabled(false);
             ui->player2Field->setEnabled(true);
-            //QApplication::processEvents();
+            QApplication::processEvents();
             do
             {
                 playAgain = m_game->AttackBy(m_player1, m_player2);
@@ -309,6 +307,7 @@ void MainWindow::typeChanged1(const QString& name)
     if (name.toStdString().compare("Computer") == 0) {
         ui->player1NameInput->hide();
         ui->radioButtonEasy1->setVisible(true);
+        ui->radioButtonEasy1->setChecked(true);
         ui->radioButtonHard1->setVisible(true);
         if (!ui->player2NameInput->text().isEmpty())
             ui->startBattleBtn->setEnabled(true);
@@ -334,6 +333,7 @@ void MainWindow::typeChanged2(const QString& name)
     if (name.toStdString().compare("Computer") == 0) {
         ui->player2NameInput->hide();
         ui->radioButtonEasy2->setVisible(true);
+        ui->radioButtonEasy2->setChecked(true);
         ui->radioButtonHard2->setVisible(true);
         if (!ui->player1NameInput->text().isEmpty())
             ui->startBattleBtn->setEnabled(true);
