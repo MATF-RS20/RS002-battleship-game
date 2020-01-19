@@ -1,9 +1,10 @@
 #include "Game/Player/Player.hpp"
 #include "Game/Board/Board.hpp"
 
-Player::Player(QString playerName, PlayerType playerType)
-    : m_playerType(playerType),
-      m_playerName(playerName),
+Player::Player(QString playerName, PlayerType playerType, PlayerStrategy playerStrategy)
+    : m_playerName(playerName),
+      m_playerType(playerType),
+      m_playerStrategy(playerStrategy),
       m_board(new Board()),
       m_attackedPositions()
 {
@@ -20,6 +21,11 @@ QString Player::GetPlayerName()
 PlayerType Player::GetPlayerType()
 {
     return m_playerType;
+}
+
+PlayerStrategy Player::GetPlayerStrategy()
+{
+    return m_playerStrategy;
 }
 
 IBoard* Player::GetBoard()
