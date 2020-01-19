@@ -1,6 +1,6 @@
 #include "Game/Ships/ShipTypes/Destroyer.hpp"
 
-Destroyer::Destroyer(QVector<Position*> coordinates)
+Destroyer::Destroyer(QVector<std::shared_ptr<Position>> coordinates)
     : m_shipType(ShipType::DestroyerType),
       m_shipSize(DESTROYER_SIZE)
 {
@@ -38,12 +38,12 @@ ShipStatus Destroyer::GetShipStatus()
 {
     ShipStatus status = ShipStatus::OK;
 
-    foreach (Position* shipPosition, m_shipCoordinates) {
+    foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
         if(shipPosition->m_status == PositionStatus::Hit)
             status = ShipStatus::Sunken;
     }
 
-    foreach (Position* shipPosition, m_shipCoordinates) {
+    foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
         if(shipPosition->m_status == PositionStatus::Unknown)
             status = ShipStatus::Damaged;
     }
@@ -51,7 +51,7 @@ ShipStatus Destroyer::GetShipStatus()
     return status;
 }
 
-QVector<Position*> Destroyer::getShipPositions()
+QVector<std::shared_ptr<Position>> Destroyer::getShipPositions()
 {
     return m_shipCoordinates;
 }

@@ -1,6 +1,6 @@
 #include "Game/Ships/ShipTypes/Carrier.hpp"
 
-Carrier::Carrier(QVector<Position*> coordinates) :
+Carrier::Carrier(QVector<std::shared_ptr<Position>> coordinates) :
     m_shipType(ShipType::CarrierType),
     m_shipSize(CARRIER_SIZE)
 {
@@ -38,12 +38,12 @@ ShipStatus Carrier::GetShipStatus()
 {
     ShipStatus status = ShipStatus::OK;
 
-    foreach (Position* shipPosition, m_shipCoordinates) {
+    foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
         if(shipPosition->m_status == PositionStatus::Hit)
             status = ShipStatus::Sunken;
     }
 
-    foreach (Position* shipPosition, m_shipCoordinates) {
+    foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
         if(shipPosition->m_status == PositionStatus::Unknown)
             status = ShipStatus::Damaged;
     }
@@ -52,7 +52,7 @@ ShipStatus Carrier::GetShipStatus()
 }
 
 
-QVector<Position*> Carrier::getShipPositions()
+QVector<std::shared_ptr<Position>> Carrier::getShipPositions()
 {
     return m_shipCoordinates;
 }

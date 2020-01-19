@@ -8,7 +8,7 @@
 ShipFactory::ShipFactory()
 {}
 
-IShip* ShipFactory::CreateShip(ShipType shipType, QVector<Position*> shipCoordinates)
+IShip* ShipFactory::CreateShip(ShipType shipType, QVector<std::shared_ptr<Position>> shipCoordinates)
 {
     IShip* pShip = nullptr;
     switch (shipType) {

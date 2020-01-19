@@ -22,13 +22,13 @@ public:
     PositionStatus GetPositionStatus(int x, int y) override;
     QVector<IShip*> GetShips() override;
     AvailabilityStatus GetAvailabilityStatus(int x, int y) override;
-    QVector<Position*> PlaceShipOnTable(int size);
+    QVector<std::shared_ptr<Position>> PlaceShipOnTable(int size);
 
 private:
     void CheckPositionsValues(uint ship, QVector<QPair<int, int>> positions);
 
     QVector<IShip*> m_ships;
-    Position* m_boardPositions[BOARD_SIZE][BOARD_SIZE];
+    std::shared_ptr<Position> m_boardPositions[BOARD_SIZE][BOARD_SIZE];
     ShipFactory* m_shipFactory;
 
 };

@@ -11,7 +11,7 @@ class ShipFactory
 public:
     ShipFactory();
 
-    IShip* CreateShip(ShipType shipType, QVector<Position*> shipCoordinates);
+    IShip* CreateShip(ShipType shipType, QVector<std::shared_ptr<Position>> shipCoordinates);
 };
 
 

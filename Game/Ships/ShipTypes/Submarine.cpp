@@ -1,6 +1,6 @@
 #include "Game/Ships/ShipTypes/Submarine.hpp"
 
-Submarine::Submarine(QVector<Position*> coordinates) :
+Submarine::Submarine(QVector<std::shared_ptr<Position>> coordinates) :
     m_shipType(ShipType::SubmarineType),
     m_shipSize(SUBMARINE_SIZE)
 {
@@ -38,12 +38,12 @@ ShipStatus Submarine::GetShipStatus()
 {
     ShipStatus status = ShipStatus::OK;
 
-    foreach (Position* shipPosition, m_shipCoordinates) {
+    foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
         if(shipPosition->m_status == PositionStatus::Hit)
             status = ShipStatus::Sunken;
     }
 
-    foreach (Position* shipPosition, m_shipCoordinates) {
+    foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
         if(shipPosition->m_status == PositionStatus::Unknown)
             status = ShipStatus::Damaged;
     }
@@ -51,7 +51,7 @@ ShipStatus Submarine::GetShipStatus()
     return status;
 }
 
-QVector<Position*> Submarine::getShipPositions()
+QVector<std::shared_ptr<Position>> Submarine::getShipPositions()
 {
     return m_shipCoordinates;
 }
