@@ -42,7 +42,8 @@ SOURCES += \
     Template/TurnTypes/HumanTurn.cpp \
     Template/Shoot.cpp \
     Game/Player/Strategy/EasyMode.cpp \
-    Game/Player/Strategy/HardMode.cpp
+    Game/Player/Strategy/HardMode.cpp \
+    Game/Player/Strategy/ShootingStrategyFactory.cpp
 
 HEADERS += \
         Game/Board/IBoard.hpp \
@@ -66,8 +67,10 @@ HEADERS += \
     Template/Shoot.hpp \
     Template/TurnTypes/ComputerTurn.hpp \
     Template/TurnTypes/HumanTurn.hpp \
-    Game/Player/Strategy/EasyMode.h \
-    Game/Player/Strategy/HardMode.h
+    Game/Player/Strategy/EasyMode.hpp \
+    Game/Player/Strategy/HardMode.hpp \
+    Game/Player/Strategy/IShootingStrategy.hpp \
+    Game/Player/Strategy/ShootingStrategyFactory.hpp
 
 FORMS += \
         mainwindow.ui

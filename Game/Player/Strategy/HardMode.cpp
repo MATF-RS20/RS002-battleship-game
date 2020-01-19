@@ -1,6 +1,11 @@
-#include "HardMode.h"
+#include "HardMode.hpp"
 
-HardMode::HardMode(QObject *parent) : QObject(parent)
+HardMode::HardMode()
 {
 
+}
+
+QPair<int, int> HardMode::GetAttackingPosition(std::shared_ptr<IPlayer> attacker)
+{
+    return QPair<int, int>(1, 1);
 }

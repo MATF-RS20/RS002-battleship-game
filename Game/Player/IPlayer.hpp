@@ -11,6 +11,11 @@ enum PlayerType {
     Computer
 };
 
+enum PlayerStrategy {
+    Easy = 0,
+    Hard
+};
+
 class IPlayer
 {
 public:
