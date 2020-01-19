@@ -9,7 +9,7 @@ class ComputerTurn : public Turn
 {
 public:
     ComputerTurn(std::shared_ptr<IPlayer> attacker);
-    Shoot* CreateShoot();
+    std::shared_ptr<Shoot> CreateShoot();
 
 private:
     std::shared_ptr<IPlayer> m_attacker;

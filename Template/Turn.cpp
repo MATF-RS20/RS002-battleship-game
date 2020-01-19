@@ -2,7 +2,7 @@
 
 bool Turn::Play(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender)
 {
-    Shoot* shoot = CreateShoot();
+    std::shared_ptr<Shoot> shoot = CreateShoot();
     int x = shoot->getPosition()->m_coordinateX;
     int y = shoot->getPosition()->m_coordinateY;
 

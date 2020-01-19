@@ -11,7 +11,7 @@ class Turn
 public:
     bool Play(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender);
 
-    virtual Shoot* CreateShoot() {}
+    virtual std::shared_ptr<Shoot> CreateShoot() {}
 
 private:
     bool ExecuteShoot(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender, Position* shootPosition);

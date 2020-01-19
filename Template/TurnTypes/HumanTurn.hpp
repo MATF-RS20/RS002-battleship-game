@@ -8,7 +8,7 @@ class HumanTurn : public Turn
 {
 public:
     HumanTurn(MainWindow *ui);
-    Shoot* CreateShoot();
+    std::shared_ptr<Shoot> CreateShoot();
 
 private:
     MainWindow *m_ui;

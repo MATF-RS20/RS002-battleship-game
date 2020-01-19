@@ -10,13 +10,13 @@ ComputerTurn::ComputerTurn(std::shared_ptr<IPlayer> attacker)
     //m_strategy = shootingStrategyFactory.CreateComputerStrategy(attacker->GetPlayerStrategy());
 }
 
-Shoot* ComputerTurn::CreateShoot()
+std::shared_ptr<Shoot> ComputerTurn::CreateShoot()
 {
     ShootingStrategyFactory shootingStrategyFactory;
     m_strategy = shootingStrategyFactory.CreateComputerStrategy(m_attacker->GetPlayerStrategy());
 
     QPair<int, int> position = m_strategy->GetAttackingPosition(m_attacker);
 
-    Shoot* shoot = new Shoot(position.first, position.second);
+    std::shared_ptr<Shoot> shoot = std::make_shared<Shoot>(position.first, position.second);
     return shoot;
 }
