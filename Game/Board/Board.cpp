@@ -157,7 +157,8 @@ void Board::AttackOnCoordinates(int x, int y)
         }
     }
 
-    m_boardPositions[x][y]->m_status = attackStatus;
+    if (m_boardPositions[x][y]->m_status != PositionStatus::Hit)
+        m_boardPositions[x][y]->m_status = attackStatus;
 }
 
 PositionStatus Board::GetPositionStatus(int x, int y)
