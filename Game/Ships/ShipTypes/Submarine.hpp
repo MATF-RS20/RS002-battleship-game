@@ -17,8 +17,9 @@ public:
     ShipStatus GetShipStatus() override;
     QVector<std::shared_ptr<Position>> getShipPositions() override;
 
-
 private:
+    void UpdateShipPositions(ShipStatus status);
+
     ShipType m_shipType;
     int m_shipSize;
     QVector<std::shared_ptr<Position>> m_shipCoordinates;

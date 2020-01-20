@@ -6,7 +6,8 @@ bool Turn::Play(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defe
     int x = shoot->getPosition()->m_coordinateX;
     int y = shoot->getPosition()->m_coordinateY;
 
-    attacker->AddAttackedPosition(QPair<int, int>(x, y));
+    std::shared_ptr<Position> attackedPosition = std::make_shared<Position>(x, y, PositionStatus::Hit, AvailabilityStatus::Busy);
+    attacker->AddAttackedPosition(attackedPosition);
     return ExecuteShoot(attacker, defender, shoot->getPosition());
 }
 

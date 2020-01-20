@@ -5,7 +5,8 @@ enum PositionStatus
 {
     Unknown = 0,
     Hit,
-    Miss
+    Miss,
+    Destroyed
 };
 
 enum AvailabilityStatus
@@ -15,6 +16,7 @@ enum AvailabilityStatus
 };
 
 struct Position {
+    Position() {}
     Position(int x, int y, PositionStatus status, AvailabilityStatus availabilityStatus)
     {
         m_coordinateX = x;

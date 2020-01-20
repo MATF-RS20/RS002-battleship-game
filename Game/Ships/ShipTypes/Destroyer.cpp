@@ -55,3 +55,12 @@ QVector<std::shared_ptr<Position>> Destroyer::getShipPositions()
 {
     return m_shipCoordinates;
 }
+
+void Destroyer::UpdateShipPositions(ShipStatus status)
+{
+    if(status == ShipStatus::Sunken) {
+        foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
+            shipPosition->m_status = PositionStatus::Destroyed;
+        }
+    }
+}

@@ -51,8 +51,16 @@ ShipStatus Carrier::GetShipStatus()
     return status;
 }
 
-
 QVector<std::shared_ptr<Position>> Carrier::getShipPositions()
 {
     return m_shipCoordinates;
+}
+
+void Carrier::UpdateShipPositions(ShipStatus status)
+{
+    if(status == ShipStatus::Sunken) {
+        foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
+            shipPosition->m_status = PositionStatus::Destroyed;
+        }
+    }
 }

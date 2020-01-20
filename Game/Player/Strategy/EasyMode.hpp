@@ -8,7 +8,7 @@ class EasyMode : public IShootingStrategy
 public:
     EasyMode();
 
-    virtual QPair<int, int> GetAttackingPosition(std::shared_ptr<IPlayer> attacker) override;
+    virtual std::shared_ptr<Position> GetAttackingPosition(std::shared_ptr<IPlayer> attacker) override;
 };
 
 #endif // EASYMODE_H

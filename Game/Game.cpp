@@ -9,11 +9,6 @@ Game::Game(MainWindow *ui, std::shared_ptr<IPlayer> player1, std::shared_ptr<IPl
       m_turnFactory(new TurnFactory(ui))
 {}
 
-/*bool Game::PlaceShipOnBoard(IPlayer* player)
-{
-    player->
-}*/
-
 bool Game::AttackBy(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender)
 {
     bool playAgain = false;

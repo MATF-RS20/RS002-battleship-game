@@ -48,10 +48,20 @@ ShipStatus Battleship::GetShipStatus()
             status = ShipStatus::Damaged;
     }
 
+    UpdateShipPositions(status);
     return status;
 }
 
 QVector<std::shared_ptr<Position>> Battleship::getShipPositions()
 {
     return m_shipCoordinates;
+}
+
+void Battleship::UpdateShipPositions(ShipStatus status)
+{
+    if(status == ShipStatus::Sunken) {
+        foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
+            shipPosition->m_status = PositionStatus::Destroyed;
+        }
+    }
 }

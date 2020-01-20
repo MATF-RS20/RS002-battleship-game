@@ -10,7 +10,7 @@ class IShootingStrategy
 public:
     virtual ~IShootingStrategy() {}
 
-    virtual QPair<int, int> GetAttackingPosition(std::shared_ptr<IPlayer> attacker) = 0;
+    virtual std::shared_ptr<Position> GetAttackingPosition(std::shared_ptr<IPlayer> attacker) = 0;
 };
 
 #endif // ISHOOTINGSTRATEGY_HPP

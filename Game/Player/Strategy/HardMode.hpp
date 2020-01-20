@@ -8,7 +8,10 @@ class HardMode : public IShootingStrategy
 public:
     HardMode();
 
-    virtual QPair<int, int> GetAttackingPosition(std::shared_ptr<IPlayer> attacker) override;
+    virtual std::shared_ptr<Position> GetAttackingPosition(std::shared_ptr<IPlayer> attacker) override;
+
+private:
+    std::shared_ptr<Position> RandomAttack(std::shared_ptr<IPlayer> attacker);
 };
 
 #endif // HARDMODE_H

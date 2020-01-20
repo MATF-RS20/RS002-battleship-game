@@ -203,7 +203,7 @@ void MainWindow::on_startBattleBtn_clicked()
 
     ui->player1Field->setEnabled(false);
     ui->player2Field->setEnabled(true);
-    QThread::msleep(100);
+    QThread::msleep(200);
     UpdateFields();
     QApplication::processEvents();
 
@@ -220,7 +220,7 @@ void MainWindow::on_startBattleBtn_clicked()
                 playAgain = m_game->AttackBy(m_player1, m_player2);
                 UpdateFields();
                 QApplication::processEvents();
-                QThread::msleep(100);
+                QThread::msleep(200);
             }
             while(playAgain);
 
@@ -232,7 +232,7 @@ void MainWindow::on_startBattleBtn_clicked()
                 playAgain = m_game->AttackBy(m_player2, m_player1);
                 UpdateFields();
                 QApplication::processEvents();
-                QThread::msleep(100);
+                QThread::msleep(200);
             }
             while(playAgain);
         }

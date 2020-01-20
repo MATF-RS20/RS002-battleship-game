@@ -6,18 +6,32 @@ EasyMode::EasyMode()
 
 }
 
-QPair<int, int> EasyMode::GetAttackingPosition(std::shared_ptr<IPlayer> attacker)
+std::shared_ptr<Position> EasyMode::GetAttackingPosition(std::shared_ptr<IPlayer> attacker)
 {
-    QVector<QPair<int, int>> attackedPositions = attacker->GetAttackedPositions();
+    QVector<std::shared_ptr<Position>> attackedPositions = attacker->GetAttackedPositions();
     int randX = 0;
     int randY = 0;
-    QPair<int, int> position;
+    std::shared_ptr<Position> position = std::make_shared<Position>();
+
+    bool playAgain = false;
     do {
         randX = qrand() % 10;
         randY = qrand() % 10;
-        position.first = randX;
-        position.second = randY;
-    } while(attackedPositions.contains(position));
+        position->m_coordinateX = randX;
+        position->m_coordinateY = randY;
 
-    return QPair<int, int>(randX, randY);
+        for(int i=0; i<attackedPositions.size(); ++i) {
+            if(attackedPositions[i]->m_coordinateX != position->m_coordinateX ||
+               attackedPositions[i]->m_coordinateY != position->m_coordinateY)
+            {
+                playAgain = false;
+                break;
+            }
+            playAgain = true;
+        }
+        position->m_status = PositionStatus::Hit;
+
+    } while(playAgain == true);
+
+    return position;
 }

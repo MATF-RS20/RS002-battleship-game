@@ -33,12 +33,12 @@ IBoard* Player::GetBoard()
     return m_board;
 }
 
-void Player::AddAttackedPosition(QPair<int, int> attackedPosition)
+void Player::AddAttackedPosition(std::shared_ptr<Position> attackedPosition)
 {
     m_attackedPositions.append(attackedPosition);
 }
 
-QVector<QPair<int, int>> Player::GetAttackedPositions()
+QVector<std::shared_ptr<Position>> Player::GetAttackedPositions()
 {
     return m_attackedPositions;
 }
