@@ -17,7 +17,6 @@ public:
     virtual ~IGame() {}
     virtual bool AttackBy(std::shared_ptr<IPlayer> player, std::shared_ptr<IPlayer> defender) = 0;
     virtual GameState GetGameState() = 0;
-    virtual void SwapPlayers() = 0;
 };
 
 #endif // IGAME_HPP

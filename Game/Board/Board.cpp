@@ -16,10 +16,6 @@ Board::Board() :
     m_shipFactory(new ShipFactory())
 {}
 
-Board::~Board()
-{
-}
-
 void Board::InitializeBoard()
 {
     for(int i = 0 ; i < BOARD_SIZE; i++)
@@ -34,13 +30,9 @@ void Board::InitializeBoard()
 void Board::CreateShips()
 {
     QVector<std::shared_ptr<Position>> battleshipPosition = PlaceShipOnTable(4);
-
     QVector<std::shared_ptr<Position>> carrierPosition = PlaceShipOnTable(5);
-
     QVector<std::shared_ptr<Position>> cruiserPosition = PlaceShipOnTable(3);
-
     QVector<std::shared_ptr<Position>> submarinePosition = PlaceShipOnTable(3);
-
     QVector<std::shared_ptr<Position>> destroyerPosition = PlaceShipOnTable(2);
 
     IShip* battleship = m_shipFactory->CreateShip(ShipType::BattleshipType, battleshipPosition);

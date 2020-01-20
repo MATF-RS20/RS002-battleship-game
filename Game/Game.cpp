@@ -31,10 +31,3 @@ GameState Game::GetGameState()
 {
     return m_state;
 }
-
-void Game::SwapPlayers()
-{
-    std::shared_ptr<IPlayer> tmp = m_attacker;
-    m_attacker = m_defender;
-    m_defender = tmp;
-}

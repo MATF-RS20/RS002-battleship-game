@@ -12,7 +12,6 @@ public:
     Game(MainWindow *ui, std::shared_ptr<IPlayer> player1, std::shared_ptr<IPlayer> player2);
     bool AttackBy(std::shared_ptr<IPlayer> player, std::shared_ptr<IPlayer> defender) override;
     GameState GetGameState() override;
-    void SwapPlayers() override;
 
 private:
     std::shared_ptr<IPlayer> m_attacker;

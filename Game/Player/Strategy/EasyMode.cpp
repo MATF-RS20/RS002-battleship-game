@@ -13,25 +13,25 @@ std::shared_ptr<Position> EasyMode::GetAttackingPosition(std::shared_ptr<IPlayer
     int randY = 0;
     std::shared_ptr<Position> position = std::make_shared<Position>();
 
-    bool playAgain = false;
+    bool playAgain;
     do {
+        playAgain = false;
         randX = qrand() % 10;
         randY = qrand() % 10;
-        position->m_coordinateX = randX;
-        position->m_coordinateY = randY;
 
         for(int i=0; i<attackedPositions.size(); ++i) {
-            if(attackedPositions[i]->m_coordinateX != position->m_coordinateX ||
-               attackedPositions[i]->m_coordinateY != position->m_coordinateY)
+            if(attackedPositions[i]->m_coordinateX == randX &&
+               attackedPositions[i]->m_coordinateY == randY)
             {
-                playAgain = false;
-                attacker->AddAttackedPosition(position);
+                playAgain = true;
                 break;
             }
-            playAgain = true;
         }
-
     } while(playAgain == true);
+
+    position->m_coordinateX = randX;
+    position->m_coordinateY = randY;
+    attacker->AddAttackedPosition(position);
 
     return position;
 }

@@ -10,9 +10,7 @@
 class Board : public IBoard
 {
 public:
-
     Board();
-    ~Board();
 
     void InitializeBoard() override;
     void CreateShips() override;    
