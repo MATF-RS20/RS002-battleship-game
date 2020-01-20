@@ -2,6 +2,7 @@
 #define PLAYER_HPP
 
 #include "Game/Player/IPlayer.hpp"
+#include <QMutexLocker>
 #include <memory>
 
 class Player : public IPlayer
@@ -18,6 +19,7 @@ public:
     QVector<std::shared_ptr<Position>> GetAttackedPositions() override;
 
 private:
+    QMutex m_mutex;
     QString m_playerName;
     PlayerType m_playerType;
     PlayerStrategy m_playerStrategy;

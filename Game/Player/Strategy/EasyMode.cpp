@@ -25,6 +25,7 @@ std::shared_ptr<Position> EasyMode::GetAttackingPosition(std::shared_ptr<IPlayer
                attackedPositions[i]->m_coordinateY != position->m_coordinateY)
             {
                 playAgain = false;
+                attacker->AddAttackedPosition(position);
                 break;
             }
             playAgain = true;

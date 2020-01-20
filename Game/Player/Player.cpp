@@ -2,7 +2,8 @@
 #include "Game/Board/Board.hpp"
 
 Player::Player(QString playerName, PlayerType playerType, PlayerStrategy playerStrategy)
-    : m_playerName(playerName),
+    : m_mutex(),
+      m_playerName(playerName),
       m_playerType(playerType),
       m_playerStrategy(playerStrategy),
       m_board(new Board()),
@@ -35,10 +36,12 @@ IBoard* Player::GetBoard()
 
 void Player::AddAttackedPosition(std::shared_ptr<Position> attackedPosition)
 {
+    QMutexLocker lock(&m_mutex);
     m_attackedPositions.append(attackedPosition);
 }
 
 QVector<std::shared_ptr<Position>> Player::GetAttackedPositions()
 {
+    QMutexLocker lock(&m_mutex);
     return m_attackedPositions;
 }
