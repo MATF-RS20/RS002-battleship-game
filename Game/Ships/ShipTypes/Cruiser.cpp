@@ -40,14 +40,19 @@ ShipStatus Cruiser::GetShipStatus()
 
     foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
         if(shipPosition->m_status == PositionStatus::Hit)
-            status = ShipStatus::Sunken;
-    }
-
-    foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
-        if(shipPosition->m_status == PositionStatus::Unknown)
             status = ShipStatus::Damaged;
     }
 
+    bool shipIsDestroyed = true;
+    foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
+        if(shipPosition->m_status != PositionStatus::Hit) {
+            shipIsDestroyed = false;
+        }
+    }
+    if (shipIsDestroyed)
+        status = ShipStatus::Sunken;
+
+    UpdateShipPositions(status);
     return status;
 }
 

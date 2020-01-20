@@ -21,10 +21,7 @@ std::shared_ptr<Position> HardMode::GetAttackingPosition(std::shared_ptr<IPlayer
         if (attackedPositions[i]->m_status == PositionStatus::Hit) {
             //if(CheckIfPositionIsAttacked)
         }
-
     }
-
-
 
     return positionToAttack;
 }

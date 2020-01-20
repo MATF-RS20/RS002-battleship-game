@@ -142,7 +142,6 @@ int Board::NumberOfAvailableShips()
 void Board::AttackOnCoordinates(int x, int y)
 {
     PositionStatus attackStatus = PositionStatus::Miss;
-
     foreach (IShip* ship, m_ships) {
 
         QVector<std::shared_ptr<Position>> shipPositions;

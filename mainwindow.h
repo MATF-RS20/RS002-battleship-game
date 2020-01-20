@@ -22,19 +22,19 @@ public:
 
 private slots:
     void on_startBattleBtn_clicked();
-    void playGame();
 
     void setShip(int, int, int);
     void player1FieldClicked(int, int);
     void player2FieldClicked(int, int);    
-
 
     void typeChanged1(const QString&);
     void typeChanged2(const QString&);
     void playerNameEdited(const QString &);
 
 private:
-    void UpdateFields();
+    void autoplayCompVsComp();
+    void updateFields();
+    void checkGameStatus();
 
     Ui::MainWindow *ui;
     IGame* m_game;

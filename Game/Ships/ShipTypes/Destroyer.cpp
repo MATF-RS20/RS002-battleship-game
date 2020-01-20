@@ -48,6 +48,16 @@ ShipStatus Destroyer::GetShipStatus()
             status = ShipStatus::Damaged;
     }
 
+    bool shipIsDestroyed = true;
+    foreach (std::shared_ptr<Position> shipPosition, m_shipCoordinates) {
+        if(shipPosition->m_status != PositionStatus::Hit) {
+            shipIsDestroyed = false;
+        }
+    }
+    if (shipIsDestroyed)
+        status = ShipStatus::Sunken;
+
+    UpdateShipPositions(status);
     return status;
 }
 
