@@ -30,7 +30,6 @@ std::shared_ptr<Position> EasyMode::GetAttackingPosition(std::shared_ptr<IPlayer
             }
             playAgain = true;
         }
-        position->m_status = PositionStatus::Hit;
 
     } while(playAgain == true);
 
