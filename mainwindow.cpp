@@ -135,14 +135,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::player1FieldClicked(int x, int y)
 {
+    QApplication::processEvents();
+    if (m_game->GetGameState() != GameState::InProgress)
+        //return;
+
     selectedRow = x;
     selectedColumn = y;
 
     bool playAgain = false;
 
-    if (m_game->GetGameState() != GameState::GameOver) {
-        playAgain = m_game->AttackBy(m_player1, m_player2);
-    }
+    //if (m_game->GetGameState() != GameState::GameOver) {
+        playAgain = m_game->AttackBy(m_player2, m_player1);
+    //}
+
+    UpdateFields();
+    QApplication::processEvents();
 
     if (playAgain == false) {
         ui->player1Field->setEnabled(false);
@@ -152,34 +159,56 @@ void MainWindow::player1FieldClicked(int x, int y)
 
 void MainWindow::player2FieldClicked(int x, int y)
 {
+    QApplication::processEvents();
+    if (m_game->GetGameState() != GameState::InProgress)
+        //return;
+
     selectedRow = x;
     selectedColumn = y;
 
     bool playAgain = false;
 
-    if (m_game->GetGameState() != GameState::GameOver) {
-        playAgain = m_game->AttackBy(m_player2, m_player1);
-    }
+    //if (m_game->GetGameState() != GameState::GameOver) {
+        playAgain = m_game->AttackBy(m_player1, m_player2);
+    //}
+
+    UpdateFields();
+    QApplication::processEvents();
 
     if (playAgain == false) {
         ui->player1Field->setEnabled(true);
         ui->player2Field->setEnabled(false);
     }
-
-    //IBoard* p1Board = m_player1->GetBoard();
-    //QVector<ShipCoordinates*> p1ShipCoordinates = p1Board->GetShips();
-
-    //IBoard* p2Board = m_player2->GetBoard();
-    //QVector<ShipCoordinates*> p2ShipCoordinates = p2Board->GetShips();
+    QApplication::processEvents();
 }
 
 int MainWindow::getSelectedRow()
 {
+    QApplication::processEvents();
+    int selectedRow = 0;
+    if(ui->player1Field->isEnabled() == true) {
+        selectedRow = ui->player1Field->selectedItems().first()->row();
+    }
+
+    if(ui->player2Field->isEnabled() == true) {
+        selectedRow = ui->player2Field->selectedItems().first()->row();
+    }
+
     return selectedRow;
 }
 
 int MainWindow::getSelectedColumn()
 {
+    QApplication::processEvents();
+    int selectedColumn = 0;
+    if(ui->player1Field->isEnabled() == true) {
+        selectedColumn = ui->player1Field->selectedItems().first()->column();
+    }
+
+    if(ui->player2Field->isEnabled() == true) {
+        selectedColumn = ui->player2Field->selectedItems().first()->column();
+    }
+
     return selectedColumn;
 }
 
@@ -210,31 +239,7 @@ void MainWindow::on_startBattleBtn_clicked()
     if (player1Type == PlayerType::Computer && player2Type == PlayerType::Computer)
         while(m_game->GetGameState() != GameOver)
         {
-            bool playAgain = false;
-
-            ui->player1Field->setEnabled(false);
-            ui->player2Field->setEnabled(true);
-            QApplication::processEvents();
-            do
-            {
-                playAgain = m_game->AttackBy(m_player1, m_player2);
-                UpdateFields();
-                QApplication::processEvents();
-                QThread::msleep(200);
-            }
-            while(playAgain);
-
-            ui->player1Field->setEnabled(true);
-            ui->player2Field->setEnabled(false);
-            QApplication::processEvents();
-            do
-            {
-                playAgain = m_game->AttackBy(m_player2, m_player1);
-                UpdateFields();
-                QApplication::processEvents();
-                QThread::msleep(200);
-            }
-            while(playAgain);
+            playGame();
         }
 
     if (m_game->GetGameState() == GameState::GameOver)
@@ -248,6 +253,35 @@ void MainWindow::on_startBattleBtn_clicked()
             gameOverMsgBox.setText(QString("Game over! Player 1 won the game!"));
         gameOverMsgBox.exec();
     }
+}
+
+void MainWindow::playGame()
+{
+    bool playAgain = false;
+
+    ui->player1Field->setEnabled(false);
+    ui->player2Field->setEnabled(true);
+    QApplication::processEvents();
+    do
+    {
+        playAgain = m_game->AttackBy(m_player1, m_player2);
+        UpdateFields();
+        QApplication::processEvents();
+        QThread::msleep(200);
+    }
+    while(playAgain);
+
+    ui->player1Field->setEnabled(true);
+    ui->player2Field->setEnabled(false);
+    QApplication::processEvents();
+    do
+    {
+        playAgain = m_game->AttackBy(m_player2, m_player1);
+        UpdateFields();
+        QApplication::processEvents();
+        QThread::msleep(200);
+    }
+    while(playAgain);
 }
 
 void MainWindow::UpdateFields()

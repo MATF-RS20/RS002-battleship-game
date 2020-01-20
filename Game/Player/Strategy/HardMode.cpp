@@ -18,7 +18,9 @@ std::shared_ptr<Position> HardMode::GetAttackingPosition(std::shared_ptr<IPlayer
     QVector<std::shared_ptr<Position>> attackedPositions = attacker->GetAttackedPositions();
     for (int i=0; i<attackedPositions.size(); ++i) {
         // Prodji kroz sve prethodne napade i proveri da li postoji neki koji je Hit
-        //if (attackedPositions[i]. == )
+        if (attackedPositions[i]->m_status == PositionStatus::Hit) {
+            //if(CheckIfPositionIsAttacked)
+        }
 
     }
 
@@ -43,7 +45,7 @@ std::shared_ptr<Position> HardMode::RandomAttack(std::shared_ptr<IPlayer> attack
 
         for(int i=0; i<attackedPositions.size(); ++i) {
             if(attackedPositions[i]->m_coordinateX != position->m_coordinateX ||
-               attackedPositions[i]->m_coordinateY != position->m_coordinateY)
+                attackedPositions[i]->m_coordinateY != position->m_coordinateY)
             {
                 playAgain = false;
                 break;
@@ -56,3 +58,23 @@ std::shared_ptr<Position> HardMode::RandomAttack(std::shared_ptr<IPlayer> attack
 
     return position;
 }
+
+bool HardMode::CheckIfPositionIsAttacked(std::shared_ptr<IPlayer> attacker, std::shared_ptr<Position> positionToCheck) {
+    QVector<std::shared_ptr<Position>> attackedPositions = attacker->GetAttackedPositions();
+    foreach(auto position, attackedPositions) {
+        if (position->m_coordinateX == positionToCheck->m_coordinateX &&
+             position->m_coordinateY == positionToCheck->m_coordinateY)
+            return true;
+    }
+    return false;
+}
+
+/*bool HardMode::CheckIfNextPositionIsAttacked(std::shared_ptr<IPlayer> attacker, std::shared_ptr<Position> positionToCheck) {
+    QVector<std::shared_ptr<Position>> attackedPositions = attacker->GetAttackedPositions();
+    foreach(auto position, attackedPositions) {
+        if (position->m_coordinateX == positionToCheck->m_coordinateX &&
+             position->m_coordinateY == positionToCheck->m_coordinateY)
+            return true;
+    }
+    return false;
+}*/

@@ -22,6 +22,8 @@ public:
 
 private slots:
     void on_startBattleBtn_clicked();
+    void playGame();
+
     void setShip(int, int, int);
     void player1FieldClicked(int, int);
     void player2FieldClicked(int, int);    
