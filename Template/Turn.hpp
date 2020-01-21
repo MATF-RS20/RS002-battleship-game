@@ -14,7 +14,7 @@ public:
     virtual std::shared_ptr<Shoot> CreateShoot() {}
 
 private:
-    bool ExecuteShoot(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender, Position* shootPosition);
+    bool ExecuteShoot(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender, std::shared_ptr<Position> attackedPosition);
 
 };
 

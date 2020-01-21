@@ -230,8 +230,10 @@ void MainWindow::on_startBattleBtn_clicked()
     if(ui->player2Type->currentText() == "Computer")
             player2Type = PlayerType::Computer;
 
-    m_player1 = std::make_shared<Player>(player1Name, player1Type, ui->radioButtonHard1->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
-    m_player2 = std::make_shared<Player>(player2Name, player2Type, ui->radioButtonHard2->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
+    //m_player1 = std::make_shared<Player>(player1Name, player1Type, ui->radioButtonHard1->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
+    //m_player2 = std::make_shared<Player>(player2Name, player2Type, ui->radioButtonHard2->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
+    m_player1 = std::make_shared<Player>(player1Name, player1Type, PlayerStrategy::Easy);
+    m_player2 = std::make_shared<Player>(player2Name, player2Type, PlayerStrategy::Hard);
 
     m_game = new Game(this, m_player1, m_player2);
 

@@ -13,6 +13,7 @@ public:
 private:
     std::shared_ptr<Position> RandomAttack(std::shared_ptr<IPlayer> attacker);
     bool CheckIfPositionIsAttacked(std::shared_ptr<IPlayer> attacker, std::shared_ptr<Position> positionToCheck);
+    bool CheckIfNextPositionIsAttacked(std::shared_ptr<IPlayer> attacker, std::shared_ptr<Position> positionToCheck, std::shared_ptr<Position> &positionToAttack);
 };
 
 #endif // HARDMODE_H
