@@ -21,10 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    for(int i = 0; i < 10; ++i)
-    {
-        for(int j = 0; j < 10; ++j)
-        {
+    for(int i = 0; i < 10; ++i) {
+        for(int j = 0; j < 10; ++j) {
             ui->player1Field->setItem(i, j, new QTableWidgetItem);
             ui->player1Field->item(i, j)->setBackground(Qt::blue);
             ui->player2Field->setItem(i, j, new QTableWidgetItem);

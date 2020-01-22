@@ -174,31 +174,46 @@ QVector<std::shared_ptr<Position>> Board::PlaceShipOnTable(int size)
 {
     int x,y;
     // horizontal position
+
     QVector<std::shared_ptr<Position>> shipPosition;
     if(qrand() % 10 <= 5) {
+        bool isFail = true;
         x = qrand() % 10;
         y = qrand() % (10-size);
-        for(int i = 0; i < size; i++) {
-            if(GetAvailabilityStatus(x, y+i) == AvailabilityStatus::Busy) {
-                i = 0;
-                x = qrand() % (10-size);
-                y = qrand() % (10-size);
+
+        do {
+            for(int i = 0; i < size; i++) {
+                if(GetAvailabilityStatus(x, y+i) == AvailabilityStatus::Busy) {
+                    i = 0;
+                    x = qrand() % (10-size);
+                    y = qrand() % (10-size);
+                    isFail = true;
+                } else {
+                    isFail = false;
+                }
             }
-        }
+        } while(isFail);
+
         for(int i = 0; i < size; i++) {
             shipPosition.append(std::make_shared<Position>(x, y+i, PositionStatus::Unknown, AvailabilityStatus::Busy));
             m_boardPositions[x][y+i]->m_availabilityStatus = AvailabilityStatus::Busy;
         }
     } else { // vertical position
+        bool isFail = true;
         x = qrand() % (10-size);
         y = qrand() % 10;
-        for(int i = 0; i < size; ++i) {
-            if(GetAvailabilityStatus(x+i, y) == AvailabilityStatus::Busy) {
-                i = 0;
-                x = qrand() % (10-size);
-                y = qrand() % (10-size);
+        do {
+            for(int i = 0; i < size; ++i) {
+                if(GetAvailabilityStatus(x+i, y) == AvailabilityStatus::Busy) {
+                    i = 0;
+                    x = qrand() % (10-size);
+                    y = qrand() % (10-size);
+                    isFail = true;
+                } else {
+                    isFail = false;
+                }
             }
-        }
+        } while(isFail);
         for(int i = 0; i < size; ++i) {
             shipPosition.append(std::make_shared<Position>(x+i, y, PositionStatus::Unknown, AvailabilityStatus::Busy));
             m_boardPositions[x+i][y]->m_availabilityStatus = AvailabilityStatus::Busy;
