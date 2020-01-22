@@ -238,8 +238,28 @@ void MainWindow::on_startBattleBtn_clicked()
     QThread::msleep(200);
     updateFields();
 
+    if(player1Type == PlayerType::Human)
+    {
+        QString player1Name = ui->player1NameInput->text();
+        ui->player1Name->setText(player1Name + ":");
+        ui->player1Name->setStyleSheet("font-weight: bold");
+
+        QString player2Name = "Computer";
+        ui->player2Name->setText(player2Name +":");
+        ui->player2Name->setStyleSheet("font-weight: bold");
+    }
+
     if (player1Type == PlayerType::Computer && player2Type == PlayerType::Computer)
+    {
+        QString player1Name = "Computer 1";
+        ui->player1Name->setText(player1Name + ":");
+        ui->player1Name->setStyleSheet("font-weight: bold");
+        QString player2Name = "Computer 2";
+        ui->player2Name->setText(player2Name + ":");
+        ui->player2Name->setStyleSheet("font-weight: bold");
+
         autoplayCompVsComp();
+    }
 }
 
 void MainWindow::autoplayCompVsComp()
