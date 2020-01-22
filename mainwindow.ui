@@ -29,11 +29,14 @@
        <item>
         <widget class="QComboBox" name="player1Type"/>
        </item>
-       <item>
+       <item alignment="Qt::AlignLeft">
         <widget class="QRadioButton" name="radioButtonEasy1">
          <property name="text">
           <string>Easy</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -41,6 +44,9 @@
          <property name="text">
           <string>Hard</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -82,6 +88,9 @@
          <property name="text">
           <string>Easy</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup_2</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -89,6 +98,9 @@
          <property name="text">
           <string>Hard</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup_2</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -323,4 +335,8 @@
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+ </buttongroups>
 </ui>
