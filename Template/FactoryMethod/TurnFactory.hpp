@@ -15,6 +15,7 @@ public:
     Turn* CreateTurn(PlayerType playerType, std::shared_ptr<IPlayer> attacker);
 
 private:
+    // HumanTurn needs the selected field coordinates
     MainWindow *m_ui;
 };
 

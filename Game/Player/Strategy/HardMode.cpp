@@ -5,20 +5,23 @@ HardMode::HardMode()
 
 }
 
+// HardMode has a more serious strategy: It remebers positions that are already hit
+// and then searches for positions nearby to attack
 std::shared_ptr<Position> HardMode::GetAttackingPosition(std::shared_ptr<IPlayer> attacker)
 {
     std::shared_ptr<Position> positionToAttack;
-
+    // If it's the first move
     if (attacker->GetAttackedPositions().size() == 0) {
-        // Prvi napad je uvek random
+        // First attack is always random
         positionToAttack = RandomAttack(attacker);
         return positionToAttack;
     }
 
     QVector<std::shared_ptr<Position>> attackedPositions = attacker->GetAttackedPositions();
     for (int i=0; i<attackedPositions.size(); ++i) {
-        // Prodji kroz sve prethodne napade i proveri da li postoji neki koji je Hit
+        // Go through every attacked position and check if any is hit (not miss)
         if (attackedPositions[i]->m_status == PositionStatus::Hit) {
+            // Then check if there is some position nearby that has not been attacked already
             if(CheckIfNextPositionIsAttacked(attacker, attackedPositions[i], positionToAttack) == false) {                
                 return positionToAttack;
             }
@@ -29,6 +32,8 @@ std::shared_ptr<Position> HardMode::GetAttackingPosition(std::shared_ptr<IPlayer
     return positionToAttack;
 }
 
+// Same as in EasyMode - searches for random position to attack, but not the
+// the ones which are already hit
 std::shared_ptr<Position> HardMode::RandomAttack(std::shared_ptr<IPlayer> attacker)
 {
     QVector<std::shared_ptr<Position>> attackedPositions = attacker->GetAttackedPositions();
@@ -58,6 +63,7 @@ std::shared_ptr<Position> HardMode::RandomAttack(std::shared_ptr<IPlayer> attack
     return position;
 }
 
+// Checks if given position has been attacked - if it's in vector of attacked positions
 bool HardMode::CheckIfPositionIsAttacked(std::shared_ptr<IPlayer> attacker, std::shared_ptr<Position> positionToCheck) {
     QVector<std::shared_ptr<Position>> attackedPositions = attacker->GetAttackedPositions();
     foreach(auto position, attackedPositions) {
@@ -72,13 +78,16 @@ bool HardMode::CheckIfNextPositionIsAttacked(std::shared_ptr<IPlayer> attacker, 
                                              std::shared_ptr<Position>& positionToAttack) {
     QVector<std::shared_ptr<Position>> attackedPositions = attacker->GetAttackedPositions();
     foreach(auto position, attackedPositions) {
+            // check if position in the next row has been attacked
             if(positionToCheck->m_coordinateX+1<10)
                 if (position->m_coordinateX != positionToCheck->m_coordinateX+1) {
+                    // make new position to attack from this neighbor
                     positionToAttack = std::make_shared<Position>(positionToCheck->m_coordinateX+1, positionToCheck->m_coordinateY,
                                                                   PositionStatus::Unknown, AvailabilityStatus::Busy);
                     if(CheckIfPositionIsAttacked(attacker, positionToAttack) == false)
                        return false;
                 }
+            // check if position in the previous row has been attacked
             if(positionToCheck->m_coordinateX-1>=0)
                 if (position->m_coordinateX != positionToCheck->m_coordinateX-1) {
                     positionToAttack = std::make_shared<Position>(positionToCheck->m_coordinateX-1, positionToCheck->m_coordinateY,
@@ -86,7 +95,7 @@ bool HardMode::CheckIfNextPositionIsAttacked(std::shared_ptr<IPlayer> attacker, 
                     if(CheckIfPositionIsAttacked(attacker, positionToAttack) == false)
                         return false;
                 }
-
+            // check if position in the next column has been attacked
             if(positionToCheck->m_coordinateY+1<10)
                 if (position->m_coordinateY != positionToCheck->m_coordinateY+1) {
                     positionToAttack = std::make_shared<Position>(positionToCheck->m_coordinateX, positionToCheck->m_coordinateY+1,
@@ -94,7 +103,7 @@ bool HardMode::CheckIfNextPositionIsAttacked(std::shared_ptr<IPlayer> attacker, 
                     if(CheckIfPositionIsAttacked(attacker, positionToAttack) == false)
                         return false;
                 }
-
+            // check if position in the previous column has been attacked
             if(positionToCheck->m_coordinateY-1>=0)
                 if (position->m_coordinateY != positionToCheck->m_coordinateY-1) {
                     positionToAttack = std::make_shared<Position>(positionToCheck->m_coordinateX, positionToCheck->m_coordinateY-1,

@@ -7,7 +7,6 @@ class Shoot
 {
 public:
     Shoot(int x, int y);
-    void SearchPosition();
     Position* getPosition();
 
 private:

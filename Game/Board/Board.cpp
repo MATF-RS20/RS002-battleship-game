@@ -131,6 +131,10 @@ int Board::NumberOfAvailableShips()
     return m_ships.size();
 }
 
+// We change position status here
+// If attacking coordinates are the ones where the ship is
+// then position is hit
+// else position is miss
 void Board::AttackOnCoordinates(int x, int y)
 {
     PositionStatus attackStatus = PositionStatus::Miss;
@@ -149,6 +153,8 @@ void Board::AttackOnCoordinates(int x, int y)
         }
     }
 
+    // if we didn't attack on ship, we change position status to miss
+    // so we can add them to the attacked positions vector
     if (m_boardPositions[x][y]->m_status != PositionStatus::Hit)
         m_boardPositions[x][y]->m_status = attackStatus;
 }

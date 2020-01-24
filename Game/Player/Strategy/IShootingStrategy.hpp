@@ -5,6 +5,7 @@
 #include "Game/Board/Position.hpp"
 #include <memory>
 
+// Same interface for two different implementations - strategy design pattern
 class IShootingStrategy
 {
 public:

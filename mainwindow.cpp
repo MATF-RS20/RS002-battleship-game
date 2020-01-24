@@ -131,6 +131,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+// When humans play, we have field clicked events
+// If its human vs computer, the first player is always human
+// and the second is computer
 void MainWindow::player1FieldClicked(int x, int y)
 {
     checkGameStatus();
@@ -168,6 +172,8 @@ void MainWindow::player2FieldClicked(int x, int y)
         ui->player2Field->setEnabled(false);
     }
 
+    // if second player is computer, we don't wait for player1Field to be clicked
+    // , we call the AttackBy function for the computer player
     if(m_player2->GetPlayerType() == PlayerType::Computer) {
         ui->player1Field->setEnabled(true);
         ui->player2Field->setEnabled(false);
@@ -185,6 +191,7 @@ void MainWindow::player2FieldClicked(int x, int y)
     checkGameStatus();
 }
 
+// Returns selected row on the field
 int MainWindow::getSelectedRow()
 {
     QApplication::processEvents();
@@ -200,6 +207,7 @@ int MainWindow::getSelectedRow()
     return selectedRow;
 }
 
+// Returns selected column on the field
 int MainWindow::getSelectedColumn()
 {
     QApplication::processEvents();
@@ -215,6 +223,7 @@ int MainWindow::getSelectedColumn()
     return selectedColumn;
 }
 
+// Game starts when button is clicked
 void MainWindow::on_startBattleBtn_clicked()
 {
     QString player1Name = ui->player1NameInput->text();
@@ -228,6 +237,7 @@ void MainWindow::on_startBattleBtn_clicked()
     if(ui->player2Type->currentText() == "Computer")
             player2Type = PlayerType::Computer;
 
+    // Two players are created
     m_player1 = std::make_shared<Player>(player1Name, player1Type, ui->radioButtonHard1->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
     m_player2 = std::make_shared<Player>(player2Name, player2Type, ui->radioButtonHard2->isChecked() ? PlayerStrategy::Hard : PlayerStrategy::Easy);
 
@@ -238,17 +248,27 @@ void MainWindow::on_startBattleBtn_clicked()
     QThread::msleep(200);
     updateFields();
 
+    // Player names are set and visible above their feilds
     if(player1Type == PlayerType::Human)
     {
-        QString player1Name = ui->player1NameInput->text();
         ui->player1Name->setText(player1Name + ":");
         ui->player1Name->setStyleSheet("font-weight: bold");
+        if(player2Type == PlayerType::Computer)
+        {
+            player2Name = "Computer";
+            ui->player2Name->setText(player2Name +":");
+            ui->player2Name->setStyleSheet("font-weight: bold");
+        }
+        else
+        {
+            ui->player2Name->setText(player2Name + ":");
+            ui->player2Name->setStyleSheet("font-weight: bold");
+        }
 
-        QString player2Name = "Computer";
-        ui->player2Name->setText(player2Name +":");
-        ui->player2Name->setStyleSheet("font-weight: bold");
     }
 
+    // If two computers play, we call the function autoPlayCompVsComp
+    // else, game is conitnued by clicking on oponent's field
     if (player1Type == PlayerType::Computer && player2Type == PlayerType::Computer)
     {
         QString player1Name = "Computer 1";
@@ -262,8 +282,10 @@ void MainWindow::on_startBattleBtn_clicked()
     }
 }
 
+// Simulates two computers playing the game
 void MainWindow::autoplayCompVsComp()
 {
+    // while game is not over do the following:
     do {
         checkGameStatus();
         bool playAgain = false;
@@ -271,6 +293,7 @@ void MainWindow::autoplayCompVsComp()
         ui->player1Field->setEnabled(false);
         ui->player2Field->setEnabled(true);
         QApplication::processEvents();
+        // computer 1 plays until it misses
         do
         {
             playAgain = m_game->AttackBy(m_player1, m_player2);
@@ -283,6 +306,7 @@ void MainWindow::autoplayCompVsComp()
         ui->player1Field->setEnabled(true);
         ui->player2Field->setEnabled(false);
         QApplication::processEvents();
+        // computer 2 plays until it misses
         do
         {
             playAgain = m_game->AttackBy(m_player2, m_player1);
@@ -295,6 +319,7 @@ void MainWindow::autoplayCompVsComp()
     } while(m_game->GetGameState() != GameState::GameOver);
 }
 
+// Changes the looks of fields which are declared as hit/miss
 void MainWindow::updateFields()
 {
     QApplication::processEvents();
@@ -337,6 +362,7 @@ void MainWindow::updateFields()
     QApplication::processEvents();
 }
 
+// Checks if game is over after every attack
 void MainWindow::checkGameStatus() {
     if (m_game->GetGameState() == GameState::GameOver) {
         QMessageBox gameOverMsgBox;

@@ -6,6 +6,7 @@
 #include "Template/Shoot.hpp"
 #include <memory>
 
+// Abstract class - CreateShoot is different for ComputerTurn and HumanTurn
 class Turn
 {
 public:
@@ -14,7 +15,7 @@ public:
     virtual std::shared_ptr<Shoot> CreateShoot() {}
 
 private:
-    bool ExecuteShoot(std::shared_ptr<IPlayer> attacker, std::shared_ptr<IPlayer> defender, std::shared_ptr<Position> attackedPosition);
+    bool ExecuteShoot(std::shared_ptr<IPlayer> defender, std::shared_ptr<Position> attackedPosition);
 
 };
 

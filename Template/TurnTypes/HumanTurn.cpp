@@ -4,6 +4,8 @@ HumanTurn::HumanTurn(MainWindow *ui)
     : m_ui(ui)
 {}
 
+// we create shoot very simple
+// from selected coordinates on the board
 std::shared_ptr<Shoot> HumanTurn::CreateShoot()
 {
     int row = m_ui->getSelectedRow();
