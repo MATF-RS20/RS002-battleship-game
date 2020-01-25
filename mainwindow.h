@@ -43,6 +43,9 @@ private:
 
     int selectedRow;
     int selectedColumn;
+
+    QPixmap m_HitImage;
+    QPixmap m_MissImage;
 };
 
 #endif // MAINWINDOW_H

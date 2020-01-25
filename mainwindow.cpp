@@ -17,7 +17,9 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_HitImage(("Assets/Images/hit.png")),
+    m_MissImage(("Assets/Images/miss.png"))
 {
     ui->setupUi(this);
 
@@ -331,30 +333,30 @@ void MainWindow::updateFields()
             PositionStatus status2 = m_player2->GetBoard()->GetPositionStatus(row, column);
 
             QLabel *miss = new QLabel();
-            miss->setPixmap(QPixmap("Assets/Images/miss.png"));
+            miss->setPixmap(m_MissImage);
             miss->setScaledContents(true);
             QLabel *hit = new QLabel();
-            hit->setPixmap(QPixmap("Assets/Images/hit.png"));
+            hit->setPixmap(m_HitImage);
             hit->setScaledContents(true);
             switch(status1)
             {
                 case PositionStatus::Hit:
-                    ui->player1Field->item(row, column)->setBackground(Qt::black);
+                    ui->player1Field->item(row, column)->setBackground(m_HitImage);
 //                    ui->player1Field->setCellWidget(row,column,hit);
                     break;
                 case PositionStatus::Miss:
 //                    ui->player1Field->setCellWidget(row,column,miss);
-                      ui->player1Field->item(row, column)->setBackground(Qt::red);
+                      ui->player1Field->item(row, column)->setBackground(m_MissImage);
                     break;
             }
 
             switch(status2)
             {
                 case PositionStatus::Hit:
-                    ui->player2Field->item(row, column)->setBackground(Qt::black);
+                    ui->player2Field->item(row, column)->setBackground(m_HitImage);
                     break;
                 case PositionStatus::Miss:
-                    ui->player2Field->item(row, column)->setBackground(Qt::red);
+                    ui->player2Field->item(row, column)->setBackground(m_MissImage);
                     break;
             }
         }
