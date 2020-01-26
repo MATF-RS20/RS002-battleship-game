@@ -145,13 +145,13 @@
      <enum>Qt::CustomContextMenu</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">QTableWidget::item:selected{ background-color: transparent }</string>
     </property>
     <property name="horizontalScrollBarPolicy">
      <enum>Qt::ScrollBarAsNeeded</enum>
     </property>
     <property name="sizeAdjustPolicy">
-     <enum>QAbstractScrollArea::AdjustIgnored</enum>
+     <enum>QAbstractScrollArea::AdjustToContents</enum>
     </property>
     <property name="autoScroll">
      <bool>true</bool>
@@ -218,6 +218,9 @@
       <width>777777</width>
       <height>77777</height>
      </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget::item:selected{ background-color: transparent }</string>
     </property>
     <property name="selectionMode">
      <enum>QAbstractItemView::SingleSelection</enum>
@@ -344,7 +347,7 @@
      <x>0</x>
      <y>0</y>
      <width>950</width>
-     <height>22</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

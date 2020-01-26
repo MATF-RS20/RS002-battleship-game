@@ -341,22 +341,20 @@ void MainWindow::updateFields()
             switch(status1)
             {
                 case PositionStatus::Hit:
-                    ui->player1Field->item(row, column)->setBackground(m_HitImage);
-//                    ui->player1Field->setCellWidget(row,column,hit);
+                    ui->player1Field->setCellWidget(row,column,hit);
                     break;
                 case PositionStatus::Miss:
-//                    ui->player1Field->setCellWidget(row,column,miss);
-                      ui->player1Field->item(row, column)->setBackground(m_MissImage);
+                    ui->player1Field->setCellWidget(row,column,miss);
                     break;
             }
 
             switch(status2)
             {
                 case PositionStatus::Hit:
-                    ui->player2Field->item(row, column)->setBackground(m_HitImage);
+                    ui->player2Field->setCellWidget(row,column,hit);
                     break;
                 case PositionStatus::Miss:
-                    ui->player2Field->item(row, column)->setBackground(m_MissImage);
+                    ui->player2Field->setCellWidget(row,column,miss);
                     break;
             }
         }
