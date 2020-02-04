@@ -11,6 +11,8 @@
 #define SUBMARINE_SIZE 3
 #define DESTROYER_SIZE 2
 
+#define UNUSED(x) (void(x))
+
 enum ShipType {
     CarrierType = 0,
     BattleshipType,

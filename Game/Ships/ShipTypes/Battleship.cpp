@@ -21,11 +21,16 @@ int Battleship::GetShipSize()
 
 void Battleship::SetShipOnPosition(int x, int y)
 {
+    UNUSED(x);
+    UNUSED(y);
 
 }
 
 bool Battleship::IsShipOnPosition(int x, int y)
 {
+    UNUSED(x);
+    UNUSED(y);
+
     return false;
 }
 

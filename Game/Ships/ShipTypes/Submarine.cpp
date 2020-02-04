@@ -21,11 +21,16 @@ int Submarine::GetShipSize()
 
 void Submarine::SetShipOnPosition(int x, int y)
 {
+    UNUSED(x);
+    UNUSED(y);
 
 }
 
 bool Submarine::IsShipOnPosition(int x, int y)
 {
+    UNUSED(x);
+    UNUSED(y);
+
     return false;
 }
 

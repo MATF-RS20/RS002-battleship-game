@@ -21,11 +21,16 @@ int Cruiser::GetShipSize()
 
 void Cruiser::SetShipOnPosition(int x, int y)
 {
+    UNUSED(x);
+    UNUSED(y);
 
 }
 
 bool Cruiser::IsShipOnPosition(int x, int y)
 {
+    UNUSED(x);
+    UNUSED(y);
+
     return false;
 }
 

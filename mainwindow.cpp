@@ -339,6 +339,10 @@ void MainWindow::updateFields()
                     ui->player1Field->item(row, column)->setBackground(Qt::red);
 //                    ui->player1Field->setCellWidget(row,column,miss);
                     break;
+                case PositionStatus::Unknown:
+                    break;
+                case PositionStatus::Destroyed:
+                    break;
             }
 
             switch(status2)
@@ -350,6 +354,10 @@ void MainWindow::updateFields()
                 case PositionStatus::Miss:
                     ui->player2Field->item(row, column)->setBackground(Qt::red);
 //                    ui->player2Field->setCellWidget(row,column,miss);
+                    break;
+                case PositionStatus::Unknown:
+                    break;
+                case PositionStatus::Destroyed:
                     break;
             }
         }
@@ -451,7 +459,7 @@ void MainWindow::typeChanged2(const QString& name)
     }
 }
 
-void MainWindow::playerNameEdited(const QString & text) {
+void MainWindow::playerNameEdited() {
     if(!ui->player2NameInput->text().isEmpty() && !ui->player1NameInput->text().isEmpty()) {
         ui->startBattleBtn->setEnabled(true);
     }

@@ -21,11 +21,16 @@ int Destroyer::GetShipSize()
 
 void Destroyer::SetShipOnPosition(int x, int y)
 {
+    UNUSED(x);
+    UNUSED(y);
 
 }
 
 bool Destroyer::IsShipOnPosition(int x, int y)
 {
+    UNUSED(x);
+    UNUSED(y);
+
     return false;
 }
 

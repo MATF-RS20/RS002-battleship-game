@@ -21,11 +21,16 @@ int Carrier::GetShipSize()
 
 void Carrier::SetShipOnPosition(int x, int y)
 {
+ UNUSED(x);
+ UNUSED(y);
 
 }
 
 bool Carrier::IsShipOnPosition(int x, int y)
 {
+    UNUSED(x);
+    UNUSED(y);
+
     return false;
 }
 

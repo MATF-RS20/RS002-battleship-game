@@ -29,7 +29,7 @@ private slots:
 
     void typeChanged1(const QString&);
     void typeChanged2(const QString&);
-    void playerNameEdited(const QString &);
+    void playerNameEdited();
 
 private:
     void autoplayCompVsComp();
