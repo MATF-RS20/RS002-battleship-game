@@ -4,7 +4,6 @@ Battleship game
 Team members:
 1. Nevena Soldat nevenasoldat@gmail.com
 2. Djordje Vujinovic vujinovic.djordje@gmail.com
-3. Stefan Jacovic stefanjacovic25@gmail.com
 
 Project contains implementation of Battleship game using various design patterns like FactoryMethod, Strategy, Template, etc. 
 

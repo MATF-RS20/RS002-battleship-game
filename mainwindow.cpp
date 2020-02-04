@@ -59,9 +59,6 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->player2Field->setRowHeight(i,30);
     }
 
-//    connect(ui->ship1, SIGNAL(clicked(const QString& text)), &lineEdit, SLOT(setText(const QString& text)));
-//    connect(ui->ship1, &QLabel::, &lineEdit, SLOT(setText(const QString& text)));
-
 //    QPixmap pixmap("image_path");
 //    QIcon ButtonIcon(pixmap);
 //    button->setIcon(ButtonIcon);
@@ -77,14 +74,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->ship5Btn->setIcon(QIcon(QPixmap("Assets/Images/5.png")));
     ui->ship5Btn->setIconSize(QSize(150, 30));
 
-    // prikaz i odabir brodova
-    // TODO: napraviti draggable elemente koje mozemo pomerati u tabelu
-//    ui->ship1->setPixmap(QPixmap("Assets/Images/2.png"));
-//    ui->ship2->setPixmap(QPixmap("Assets/Images/3.png"));
-//    ui->ship3->setPixmap(QPixmap("Assets/Images/3.png"));
-//    ui->ship4->setPixmap(QPixmap("Assets/Images/4.png"));
-//    ui->ship5->setPixmap(QPixmap("Assets/Images/5.png"));
-
     connect(ui->startBattleBtn, &QPushButton::clicked, this, [this](){
         ui->player1NameInput->setDisabled(true);
         ui->player2NameInput->setDisabled(true);
@@ -92,23 +81,6 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->player2Type->setDisabled(true);
     });
 
-
-
-    // ubacio sam staticki ove brodove samo da vidim kako ce da izgleda
-//    // 1. ship, x = 3, y = 2, size = 2
-//    setShip(3,2,2);
-
-//    // 2. ship, x = 5, y = 7, size = 3
-//    setShip(5,7,3);
-
-//    // 2. ship, x = 5, y = 7, size = 3
-//    setShip(0,1,3);
-
-//    // 4. ship, x = 2, y = 0, size = 4
-//    setShip(2,0,4);
-
-//    // 5. ship, x = 8, y = 4, size = 5
-//    setShip(8,4,5);
 
 //    ui->player1Field->setCellWidget(1,5,ui->player1Field->cellWidget(8,4));
 //    ui->player1Field->cellWidget(8,5)
