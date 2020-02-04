@@ -10,6 +10,7 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QtDebug>
+#include <QColor>
 
 
 #include "mainwindow.h"
@@ -26,9 +27,9 @@ MainWindow::MainWindow(QWidget *parent) :
     for(int i = 0; i < 10; ++i) {
         for(int j = 0; j < 10; ++j) {
             ui->player1Field->setItem(i, j, new QTableWidgetItem);
-            ui->player1Field->item(i, j)->setBackground(Qt::blue);
+            ui->player1Field->item(i, j)->setBackground(Qt::darkCyan);
             ui->player2Field->setItem(i, j, new QTableWidgetItem);
-            ui->player2Field->item(i, j)->setBackground(Qt::blue);
+            ui->player2Field->item(i, j)->setBackground(Qt::darkCyan);
         }
     }
 
@@ -260,6 +261,23 @@ void MainWindow::on_startBattleBtn_clicked()
             player2Name = "Computer";
             ui->player2Name->setText(player2Name +":");
             ui->player2Name->setStyleSheet("font-weight: bold");
+
+            QVector<IShip*> m_ships = m_player1->GetBoard()->GetShips();
+
+            int i = 0;
+            int v;
+            foreach(IShip* ship, m_ships) {
+                int size = ship->GetShipSize();
+                int x = ship->getShipPositions().takeAt(0).get()->m_coordinateX;
+                if (x != ship->getShipPositions().takeAt(1).get()->m_coordinateX)
+                    v = 0;
+                int y = ship->getShipPositions().takeAt(0).get()->m_coordinateY;
+                if (y != ship->getShipPositions().takeAt(1).get()->m_coordinateY)
+                    v = 1;
+                setShip(x,y,size,v);
+                i++;
+             }
+
         }
         else
         {
@@ -341,20 +359,24 @@ void MainWindow::updateFields()
             switch(status1)
             {
                 case PositionStatus::Hit:
-                    ui->player1Field->setCellWidget(row,column,hit);
+//                    ui->player1Field->setCellWidget(row,column,miss);
+                    ui->player1Field->item(row, column)->setBackground(Qt::black);
                     break;
                 case PositionStatus::Miss:
-                    ui->player1Field->setCellWidget(row,column,miss);
+                    ui->player1Field->item(row, column)->setBackground(Qt::red);
+//                    ui->player1Field->setCellWidget(row,column,miss);
                     break;
             }
 
             switch(status2)
             {
                 case PositionStatus::Hit:
-                    ui->player2Field->setCellWidget(row,column,hit);
+                    ui->player2Field->item(row, column)->setBackground(Qt::black);
+//                    ui->player2Field->setCellWidget(row,column,hit);
                     break;
                 case PositionStatus::Miss:
-                    ui->player2Field->setCellWidget(row,column,miss);
+                    ui->player2Field->item(row, column)->setBackground(Qt::red);
+//                    ui->player2Field->setCellWidget(row,column,miss);
                     break;
             }
         }
@@ -377,7 +399,7 @@ void MainWindow::checkGameStatus() {
     }
 }
 
-void MainWindow::setShip(int x, int y, int size)
+void MainWindow::setShip(int x, int y, int size, int position)
 {
     for (int i = 0; i < size ; i++ ) {
         QLabel *ship = new QLabel();
@@ -387,10 +409,19 @@ void MainWindow::setShip(int x, int y, int size)
         else
             imageNamePom = "Assets/Images/" + std::to_string(size) + "_" + std::to_string(i+1) + ".png";
         const char* imageName = imageNamePom.c_str();
-        ship->setPixmap(QPixmap(imageName));
-        ship->setScaledContents(true);
-        ui->player1Field->setCellWidget(x,y+i,ship);
 
+        if (position == 0) {
+            QPixmap pm = QPixmap(imageName);
+            QTransform trans;
+            trans.rotate(90);
+            ship->setScaledContents(true);
+            ship->setPixmap(pm.transformed(trans));
+            ui->player1Field->setCellWidget(x+i,y,ship);
+        } else if(position == 1) {
+            ship->setPixmap(QPixmap(imageName));
+            ship->setScaledContents(true);
+            ui->player1Field->setCellWidget(x,y+i,ship);
+        }
     }
 }
 

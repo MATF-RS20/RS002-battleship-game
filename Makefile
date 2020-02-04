@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = BattleshipGameProject1.0.0
-DISTDIR = /home/djv/Desktop/ProjectFileRS/RS002-battleship-game/.tmp/BattleshipGameProject1.0.0
+DISTDIR = /home/djv/Desktop/rs_projekat/RS002-battleship-game/.tmp/BattleshipGameProject1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) /usr/lib/libQt5Widgets.so /usr/lib/libQt5Gui.so /usr/lib/libQt5Core.so /usr/lib/libGL.so -lpthread   
@@ -69,9 +69,9 @@ SOURCES       = Game/Ships/FactoryMethod/ShipFactory.cpp \
 		Template/TurnTypes/HumanTurn.cpp \
 		Template/Shoot.cpp \
 		Game/Player/Strategy/EasyMode.cpp \
-		Game/Player/Strategy/HardMode.cpp moc_mainwindow.cpp \
-		moc_EasyMode.cpp \
-		moc_HardMode.cpp
+		Game/Player/Strategy/HardMode.cpp \
+		Game/Player/Strategy/ShootingStrategyFactory.cpp qrc_qmake_qmake_immediate.cpp \
+		moc_mainwindow.cpp
 OBJECTS       = ShipFactory.o \
 		Carrier.o \
 		main.o \
@@ -90,9 +90,9 @@ OBJECTS       = ShipFactory.o \
 		Shoot.o \
 		EasyMode.o \
 		HardMode.o \
-		moc_mainwindow.o \
-		moc_EasyMode.o \
-		moc_HardMode.o
+		ShootingStrategyFactory.o \
+		qrc_qmake_qmake_immediate.o \
+		moc_mainwindow.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -298,8 +298,10 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		Template/Shoot.hpp \
 		Template/TurnTypes/ComputerTurn.hpp \
 		Template/TurnTypes/HumanTurn.hpp \
-		Game/Player/Strategy/EasyMode.h \
-		Game/Player/Strategy/HardMode.h Game/Ships/FactoryMethod/ShipFactory.cpp \
+		Game/Player/Strategy/EasyMode.hpp \
+		Game/Player/Strategy/HardMode.hpp \
+		Game/Player/Strategy/IShootingStrategy.hpp \
+		Game/Player/Strategy/ShootingStrategyFactory.hpp Game/Ships/FactoryMethod/ShipFactory.cpp \
 		Game/Ships/ShipTypes/Carrier.cpp \
 		main.cpp \
 		mainwindow.cpp \
@@ -316,7 +318,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		Template/TurnTypes/HumanTurn.cpp \
 		Template/Shoot.cpp \
 		Game/Player/Strategy/EasyMode.cpp \
-		Game/Player/Strategy/HardMode.cpp
+		Game/Player/Strategy/HardMode.cpp \
+		Game/Player/Strategy/ShootingStrategyFactory.cpp
 QMAKE_TARGET  = BattleshipGameProject
 DESTDIR       = 
 TARGET        = BattleshipGameProject
@@ -512,7 +515,8 @@ Makefile: BattleshipGameProject.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /us
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		BattleshipGameProject.pro
+		BattleshipGameProject.pro \
+		qmake_qmake_immediate.qrc
 	$(QMAKE) -o Makefile BattleshipGameProject.pro -spec linux-g++ CONFIG+=debug
 /usr/lib/qt/mkspecs/features/spec_pre.prf:
 /usr/lib/qt/mkspecs/common/unix.conf:
@@ -699,6 +703,7 @@ Makefile: BattleshipGameProject.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /us
 /usr/lib/qt/mkspecs/features/yacc.prf:
 /usr/lib/qt/mkspecs/features/lex.prf:
 BattleshipGameProject.pro:
+qmake_qmake_immediate.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile BattleshipGameProject.pro -spec linux-g++ CONFIG+=debug
 
@@ -713,9 +718,10 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents qmake_qmake_immediate.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Game/Board/IBoard.hpp Game/IGame.hpp Game/Player/IPlayer.hpp Game/Ships/FactoryMethod/ShipFactory.hpp Game/Ships/IShip.hpp Game/Ships/ShipTypes/Carrier.hpp mainwindow.h Game/Ships/ShipTypes/Cruiser.hpp Game/Ships/ShipTypes/Battleship.hpp Game/Ships/ShipTypes/Submarine.hpp Game/Ships/ShipTypes/Destroyer.hpp Game/Board/Board.hpp Game/Player/Player.hpp Game/IGame.hpp Game/Game.hpp Template/FactoryMethod/TurnFactory.hpp Game/Board/Position.hpp Template/Turn.hpp Template/Shoot.hpp Template/TurnTypes/ComputerTurn.hpp Template/TurnTypes/HumanTurn.hpp Game/Player/Strategy/EasyMode.h Game/Player/Strategy/HardMode.h $(DISTDIR)/
-	$(COPY_FILE) --parents Game/Ships/FactoryMethod/ShipFactory.cpp Game/Ships/ShipTypes/Carrier.cpp main.cpp mainwindow.cpp Game/Ships/ShipTypes/Cruiser.cpp Game/Ships/ShipTypes/Battleship.cpp Game/Ships/ShipTypes/Submarine.cpp Game/Ships/ShipTypes/Destroyer.cpp Game/Board/Board.cpp Game/Player/Player.cpp Game/Game.cpp Template/FactoryMethod/TurnFactory.cpp Template/Turn.cpp Template/TurnTypes/ComputerTurn.cpp Template/TurnTypes/HumanTurn.cpp Template/Shoot.cpp Game/Player/Strategy/EasyMode.cpp Game/Player/Strategy/HardMode.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents Game/Board/IBoard.hpp Game/IGame.hpp Game/Player/IPlayer.hpp Game/Ships/FactoryMethod/ShipFactory.hpp Game/Ships/IShip.hpp Game/Ships/ShipTypes/Carrier.hpp mainwindow.h Game/Ships/ShipTypes/Cruiser.hpp Game/Ships/ShipTypes/Battleship.hpp Game/Ships/ShipTypes/Submarine.hpp Game/Ships/ShipTypes/Destroyer.hpp Game/Board/Board.hpp Game/Player/Player.hpp Game/IGame.hpp Game/Game.hpp Template/FactoryMethod/TurnFactory.hpp Game/Board/Position.hpp Template/Turn.hpp Template/Shoot.hpp Template/TurnTypes/ComputerTurn.hpp Template/TurnTypes/HumanTurn.hpp Game/Player/Strategy/EasyMode.hpp Game/Player/Strategy/HardMode.hpp Game/Player/Strategy/IShootingStrategy.hpp Game/Player/Strategy/ShootingStrategyFactory.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents Game/Ships/FactoryMethod/ShipFactory.cpp Game/Ships/ShipTypes/Carrier.cpp main.cpp mainwindow.cpp Game/Ships/ShipTypes/Cruiser.cpp Game/Ships/ShipTypes/Battleship.cpp Game/Ships/ShipTypes/Submarine.cpp Game/Ships/ShipTypes/Destroyer.cpp Game/Board/Board.cpp Game/Player/Player.cpp Game/Game.cpp Template/FactoryMethod/TurnFactory.cpp Template/Turn.cpp Template/TurnTypes/ComputerTurn.cpp Template/TurnTypes/HumanTurn.cpp Template/Shoot.cpp Game/Player/Strategy/EasyMode.cpp Game/Player/Strategy/HardMode.cpp Game/Player/Strategy/ShootingStrategyFactory.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -740,17 +746,44 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_qmake_qmake_immediate.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_qmake_qmake_immediate.cpp
+qrc_qmake_qmake_immediate.cpp: qmake_qmake_immediate.qrc \
+		/usr/bin/rcc \
+		Assets/Images/2_1.png \
+		Assets/Images/2_2.png \
+		Assets/Images/3(2).png \
+		Assets/Images/miss.png \
+		Assets/Images/hit.png \
+		Assets/Images/2.png \
+		Assets/Images/3.png \
+		Assets/Images/4.png \
+		Assets/Images/5_1.png \
+		Assets/Images/5.png \
+		Assets/Images/4_1.png \
+		Assets/Images/5_2.png \
+		Assets/Images/4_2.png \
+		Assets/Images/3_1.png \
+		Assets/Images/5_3.png \
+		Assets/Images/4_3.png \
+		Assets/Images/3_2.png \
+		Assets/Images/5_4.png \
+		Assets/Images/3_3.png \
+		Assets/Images/4_4.png \
+		Assets/Images/5_5.png \
+		Assets/Images/background.jpg
+	/usr/bin/rcc -name qmake_qmake_immediate qmake_qmake_immediate.qrc -o qrc_qmake_qmake_immediate.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_EasyMode.cpp moc_HardMode.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_EasyMode.cpp moc_HardMode.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: mainwindow.h \
 		Game/IGame.hpp \
 		Game/Player/IPlayer.hpp \
@@ -759,17 +792,7 @@ moc_mainwindow.cpp: mainwindow.h \
 		Game/Board/Position.hpp \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/djv/Desktop/ProjectFileRS/RS002-battleship-game/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/djv/Desktop/ProjectFileRS/RS002-battleship-game -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include mainwindow.h -o moc_mainwindow.cpp
-
-moc_EasyMode.cpp: Game/Player/Strategy/EasyMode.h \
-		moc_predefs.h \
-		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/djv/Desktop/ProjectFileRS/RS002-battleship-game/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/djv/Desktop/ProjectFileRS/RS002-battleship-game -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include Game/Player/Strategy/EasyMode.h -o moc_EasyMode.cpp
-
-moc_HardMode.cpp: Game/Player/Strategy/HardMode.h \
-		moc_predefs.h \
-		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/djv/Desktop/ProjectFileRS/RS002-battleship-game/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/djv/Desktop/ProjectFileRS/RS002-battleship-game -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include Game/Player/Strategy/HardMode.h -o moc_HardMode.cpp
+	/usr/bin/moc $(DEFINES) --include /home/djv/Desktop/rs_projekat/RS002-battleship-game/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/djv/Desktop/rs_projekat/RS002-battleship-game -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/9.2.0 -I/usr/include/c++/9.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/9.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -788,7 +811,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -893,7 +916,8 @@ TurnFactory.o: Template/FactoryMethod/TurnFactory.cpp mainwindow.h \
 		Template/Shoot.hpp \
 		Template/TurnTypes/HumanTurn.hpp \
 		Template/Turn.hpp \
-		Template/TurnTypes/ComputerTurn.hpp
+		Template/TurnTypes/ComputerTurn.hpp \
+		Game/Player/Strategy/IShootingStrategy.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o TurnFactory.o Template/FactoryMethod/TurnFactory.cpp
 
 Turn.o: Template/Turn.cpp Template/Turn.hpp \
@@ -910,7 +934,9 @@ ComputerTurn.o: Template/TurnTypes/ComputerTurn.cpp Template/TurnTypes/ComputerT
 		Game/Board/IBoard.hpp \
 		Game/Ships/IShip.hpp \
 		Game/Board/Position.hpp \
-		Template/Shoot.hpp
+		Template/Shoot.hpp \
+		Game/Player/Strategy/IShootingStrategy.hpp \
+		Game/Player/Strategy/ShootingStrategyFactory.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ComputerTurn.o Template/TurnTypes/ComputerTurn.cpp
 
 HumanTurn.o: Template/TurnTypes/HumanTurn.cpp Template/TurnTypes/HumanTurn.hpp \
@@ -928,20 +954,37 @@ Shoot.o: Template/Shoot.cpp Template/Shoot.hpp \
 		Game/Board/Position.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Shoot.o Template/Shoot.cpp
 
-EasyMode.o: Game/Player/Strategy/EasyMode.cpp Game/Player/Strategy/EasyMode.h
+EasyMode.o: Game/Player/Strategy/EasyMode.cpp Game/Player/Strategy/EasyMode.hpp \
+		Game/Player/Strategy/IShootingStrategy.hpp \
+		Game/Player/IPlayer.hpp \
+		Game/Board/IBoard.hpp \
+		Game/Ships/IShip.hpp \
+		Game/Board/Position.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EasyMode.o Game/Player/Strategy/EasyMode.cpp
 
-HardMode.o: Game/Player/Strategy/HardMode.cpp Game/Player/Strategy/HardMode.h
+HardMode.o: Game/Player/Strategy/HardMode.cpp Game/Player/Strategy/HardMode.hpp \
+		Game/Player/Strategy/IShootingStrategy.hpp \
+		Game/Player/IPlayer.hpp \
+		Game/Board/IBoard.hpp \
+		Game/Ships/IShip.hpp \
+		Game/Board/Position.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HardMode.o Game/Player/Strategy/HardMode.cpp
+
+ShootingStrategyFactory.o: Game/Player/Strategy/ShootingStrategyFactory.cpp Game/Player/Strategy/ShootingStrategyFactory.hpp \
+		Game/Player/Strategy/IShootingStrategy.hpp \
+		Game/Player/IPlayer.hpp \
+		Game/Board/IBoard.hpp \
+		Game/Ships/IShip.hpp \
+		Game/Board/Position.hpp \
+		Game/Player/Strategy/EasyMode.hpp \
+		Game/Player/Strategy/HardMode.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ShootingStrategyFactory.o Game/Player/Strategy/ShootingStrategyFactory.cpp
+
+qrc_qmake_qmake_immediate.o: qrc_qmake_qmake_immediate.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qmake_qmake_immediate.o qrc_qmake_qmake_immediate.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
-
-moc_EasyMode.o: moc_EasyMode.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_EasyMode.o moc_EasyMode.cpp
-
-moc_HardMode.o: moc_HardMode.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_HardMode.o moc_HardMode.cpp
 
 ####### Install
 
