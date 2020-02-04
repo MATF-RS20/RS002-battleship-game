@@ -40,12 +40,13 @@ private:
     IGame* m_game;
     std::shared_ptr<IPlayer> m_player1;
     std::shared_ptr<IPlayer> m_player2;
+    bool isGameOverDialogShown;
 
     int selectedRow;
     int selectedColumn;
 
     QPixmap m_HitImage;
-    QPixmap m_MissImage;
+    QPixmap m_MissImage; 
 };
 
 #endif // MAINWINDOW_H

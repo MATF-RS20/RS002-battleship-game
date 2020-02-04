@@ -19,6 +19,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
+    isGameOverDialogShown(false),
     m_HitImage(("Assets/Images/hit.png")),
     m_MissImage(("Assets/Images/miss.png"))
 {
@@ -290,7 +291,7 @@ void MainWindow::autoplayCompVsComp()
         {
             playAgain = m_game->AttackBy(m_player1, m_player2);
             updateFields();
-            QThread::msleep(200);
+            QThread::msleep(250);
             checkGameStatus();
         }
         while(playAgain);
@@ -304,7 +305,7 @@ void MainWindow::autoplayCompVsComp()
             playAgain = m_game->AttackBy(m_player2, m_player1);
             updateFields();
             QApplication::processEvents();
-            QThread::msleep(200);
+            QThread::msleep(250);
             checkGameStatus();
         }
         while(playAgain);
@@ -358,16 +359,16 @@ void MainWindow::updateFields()
 
 // Checks if game is over after every attack
 void MainWindow::checkGameStatus() {
-    if (m_game->GetGameState() == GameState::GameOver) {
+    if (m_game->GetGameState() == GameState::GameOver && isGameOverDialogShown == false) {
         QMessageBox gameOverMsgBox;
         int status1 = m_player1->GetBoard()->NumberOfAvailableShips();
         int status2 = m_player2->GetBoard()->NumberOfAvailableShips();
+        isGameOverDialogShown = true;
         if (status1 == 0)
             gameOverMsgBox.setText(QString("Game over! Player 2 won the game!"));
         if (status2 == 0)
             gameOverMsgBox.setText(QString("Game over! Player 1 won the game!"));
         gameOverMsgBox.exec();
-        //QApplication::exit();
     }
 }
 
