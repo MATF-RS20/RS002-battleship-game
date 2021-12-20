@@ -97,7 +97,8 @@ RESOURCES += "Assets/Images/hit.png" \
                 "Assets/Images/5_2.png" \
                 "Assets/Images/5_3.png" \
                 "Assets/Images/5_4.png" \
-                "Assets/Images/5_5.png"
+                "Assets/Images/5_5.png" \
+                resource.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

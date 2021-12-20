@@ -20,8 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     isGameOverDialogShown(false),
-    m_HitImage(("Assets/Images/hit.png")),
-    m_MissImage(("Assets/Images/miss.png"))
+    m_HitImage((":/Assets/Images/hit.png")),
+    m_MissImage((":/Assets/Images/miss.png"))
 {
     ui->setupUi(this);
 
@@ -63,16 +63,16 @@ MainWindow::MainWindow(QWidget *parent) :
 //    QPixmap pixmap("image_path");
 //    QIcon ButtonIcon(pixmap);
 //    button->setIcon(ButtonIcon);
-    QPixmap pixmap("Assets/Images/2.png");
-    ui->ship1Btn->setIcon(QIcon(QPixmap("Assets/Images/2.png")));
+    QPixmap pixmap(":/Assets/Images/2.png");
+    ui->ship1Btn->setIcon(QIcon(QPixmap(":/Assets/Images/2.png")));
     ui->ship1Btn->setIconSize(QSize(60, 30));
-    ui->ship2Btn->setIcon(QIcon(QPixmap("Assets/Images/3.png")));
+    ui->ship2Btn->setIcon(QIcon(QPixmap(":/Assets/Images/3.png")));
     ui->ship2Btn->setIconSize(QSize(90, 30));
-    ui->ship3Btn->setIcon(QIcon(QPixmap("Assets/Images/3.png")));
+    ui->ship3Btn->setIcon(QIcon(QPixmap(":/Assets/Images/3.png")));
     ui->ship3Btn->setIconSize(QSize(90, 30));
-    ui->ship4Btn->setIcon(QIcon(QPixmap("Assets/Images/4.png")));
+    ui->ship4Btn->setIcon(QIcon(QPixmap(":/Assets/Images/4.png")));
     ui->ship4Btn->setIconSize(QSize(120, 30));
-    ui->ship5Btn->setIcon(QIcon(QPixmap("Assets/Images/5.png")));
+    ui->ship5Btn->setIcon(QIcon(QPixmap(":/Assets/Images/5.png")));
     ui->ship5Btn->setIconSize(QSize(150, 30));
 
     connect(ui->startBattleBtn, &QPushButton::clicked, this, [this](){
@@ -96,7 +96,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    QPixmap background("Assets/Images/background.jpg");
 
     this->centralWidget()->setStyleSheet(
-             "background-image:url(\"Assets/Images/background.jpg\"); background-position: center;" );
+             "background-image:url(\":/Assets/Images/background.jpg\"); background-position: center;" );
     ui->player1Field->setStyleSheet("background:none");
     ui->player2Field->setStyleSheet("background:none");
 
@@ -332,12 +332,12 @@ void MainWindow::updateFields()
             switch(status1)
             {
                 case PositionStatus::Hit:
-//                    ui->player1Field->setCellWidget(row,column,miss);
-                    ui->player1Field->item(row, column)->setBackground(Qt::black);
+                    ui->player1Field->setCellWidget(row,column,hit);
+//                    ui->player1Field->item(row, column)->setBackground(Qt::black);
                     break;
                 case PositionStatus::Miss:
-                    ui->player1Field->item(row, column)->setBackground(Qt::red);
-//                    ui->player1Field->setCellWidget(row,column,miss);
+//                    ui->player1Field->item(row, column)->setBackground(Qt::red);
+                    ui->player1Field->setCellWidget(row,column,miss);
                     break;
                 case PositionStatus::Unknown:
                     break;
@@ -348,12 +348,12 @@ void MainWindow::updateFields()
             switch(status2)
             {
                 case PositionStatus::Hit:
-                    ui->player2Field->item(row, column)->setBackground(Qt::black);
-//                    ui->player2Field->setCellWidget(row,column,hit);
+//                    ui->player2Field->item(row, column)->setBackground(Qt::black);
+                    ui->player2Field->setCellWidget(row,column,hit);
                     break;
                 case PositionStatus::Miss:
-                    ui->player2Field->item(row, column)->setBackground(Qt::red);
-//                    ui->player2Field->setCellWidget(row,column,miss);
+//                    ui->player2Field->item(row, column)->setBackground(Qt::red);
+                    ui->player2Field->setCellWidget(row,column,miss);
                     break;
                 case PositionStatus::Unknown:
                     break;
@@ -386,9 +386,9 @@ void MainWindow::setShip(int x, int y, int size, int position)
         QLabel *ship = new QLabel();
         std::string imageNamePom;
         if (size == 1)
-            imageNamePom = "Assets/Images/" + std::to_string(size) + ".png";
+            imageNamePom = ":/Assets/Images/" + std::to_string(size) + ".png";
         else
-            imageNamePom = "Assets/Images/" + std::to_string(size) + "_" + std::to_string(i+1) + ".png";
+            imageNamePom = ":/Assets/Images/" + std::to_string(size) + "_" + std::to_string(i+1) + ".png";
         const char* imageName = imageNamePom.c_str();
 
         if (position == 0) {
